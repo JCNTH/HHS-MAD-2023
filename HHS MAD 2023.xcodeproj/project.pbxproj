@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2B80F5782993666000B7E671 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B80F5772993666000B7E671 /* HomeScreen.swift */; };
-		2B80F57A29936B6300B7E671 /* CalendarUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B80F57929936B6300B7E671 /* CalendarUI.swift */; };
+		2B80F57A29936B6300B7E671 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B80F57929936B6300B7E671 /* Calendar.swift */; };
 		2BD60E48298603E200349CB8 /* HHS_MAD_2023App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD60E47298603E200349CB8 /* HHS_MAD_2023App.swift */; };
 		2BD60E4A298603E200349CB8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD60E49298603E200349CB8 /* ContentView.swift */; };
 		2BD60E4C298603E400349CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BD60E4B298603E400349CB8 /* Assets.xcassets */; };
@@ -18,6 +18,7 @@
 		2BD60E65298603E400349CB8 /* HHS_MAD_2023UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD60E64298603E400349CB8 /* HHS_MAD_2023UITestsLaunchTests.swift */; };
 		31EB336829936F2000F1CBE8 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EB336729936F2000F1CBE8 /* Activities.swift */; };
 		31EB336C299374C300F1CBE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31EB336B299374C300F1CBE8 /* Main.storyboard */; };
+		A6E5E04729A7FB7F00B3E026 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E5E04629A7FB7F00B3E026 /* Day.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +40,7 @@
 
 /* Begin PBXFileReference section */
 		2B80F5772993666000B7E671 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
-		2B80F57929936B6300B7E671 /* CalendarUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarUI.swift; sourceTree = "<group>"; };
+		2B80F57929936B6300B7E671 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		2BD60E44298603E200349CB8 /* HHS MAD 2023.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HHS MAD 2023.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD60E47298603E200349CB8 /* HHS_MAD_2023App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HHS_MAD_2023App.swift; sourceTree = "<group>"; };
 		2BD60E49298603E200349CB8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +53,7 @@
 		2BD60E64298603E400349CB8 /* HHS_MAD_2023UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HHS_MAD_2023UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		31EB336729936F2000F1CBE8 /* Activities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
 		31EB336B299374C300F1CBE8 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		A6E5E04629A7FB7F00B3E026 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,10 +116,11 @@
 			isa = PBXGroup;
 			children = (
 				2BD60E4E298603E400349CB8 /* Preview Assets.xcassets */,
-				2B80F57929936B6300B7E671 /* CalendarUI.swift */,
+				2B80F57929936B6300B7E671 /* Calendar.swift */,
 				2B80F5772993666000B7E671 /* HomeScreen.swift */,
 				31EB336729936F2000F1CBE8 /* Activities.swift */,
 				31EB336B299374C300F1CBE8 /* Main.storyboard */,
+				A6E5E04629A7FB7F00B3E026 /* Day.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -272,9 +275,10 @@
 			files = (
 				2BD60E4A298603E200349CB8 /* ContentView.swift in Sources */,
 				2BD60E48298603E200349CB8 /* HHS_MAD_2023App.swift in Sources */,
+				A6E5E04729A7FB7F00B3E026 /* Day.swift in Sources */,
 				2B80F5782993666000B7E671 /* HomeScreen.swift in Sources */,
 				31EB336829936F2000F1CBE8 /* Activities.swift in Sources */,
-				2B80F57A29936B6300B7E671 /* CalendarUI.swift in Sources */,
+				2B80F57A29936B6300B7E671 /* Calendar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
