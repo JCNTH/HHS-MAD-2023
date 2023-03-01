@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B382F1029AEE55A001430D0 /* Upcoming Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B382F0F29AEE55A001430D0 /* Upcoming Events.swift */; };
 		2B80F5782993666000B7E671 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B80F5772993666000B7E671 /* HomeScreen.swift */; };
 		2B80F57A29936B6300B7E671 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B80F57929936B6300B7E671 /* Calendar.swift */; };
 		2BD60E48298603E200349CB8 /* HHS_MAD_2023App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD60E47298603E200349CB8 /* HHS_MAD_2023App.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B382F0F29AEE55A001430D0 /* Upcoming Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Upcoming Events.swift"; sourceTree = "<group>"; };
 		2B80F5772993666000B7E671 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		2B80F57929936B6300B7E671 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		2BD60E44298603E200349CB8 /* HHS MAD 2023.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HHS MAD 2023.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +126,7 @@
 				31EB336B299374C300F1CBE8 /* Main.storyboard */,
 				A6E5E04629A7FB7F00B3E026 /* Day.swift */,
 				A6D2235429ADC8C200B4B953 /* EventPage.swift */,
+				2B382F0F29AEE55A001430D0 /* Upcoming Events.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				A6D2235529ADC8C200B4B953 /* EventPage.swift in Sources */,
 				31EB336829936F2000F1CBE8 /* Activities.swift in Sources */,
 				2B80F57A29936B6300B7E671 /* Calendar.swift in Sources */,
+				2B382F1029AEE55A001430D0 /* Upcoming Events.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
