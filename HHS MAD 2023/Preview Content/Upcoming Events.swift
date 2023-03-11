@@ -20,7 +20,8 @@ struct CalendarUI: View {
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
   
-    let inactive = Color(red: 217/255, green: 217/255, blue: 217/255)
+//    let inactive = Color(red: 217/255, green: 217/255, blue: 217/255)
+    let inactive = Color.black
     let active = Color(red: 85/255, green: 172/255, blue: 85/255)
     
     @State var fromDate = 0
@@ -29,9 +30,9 @@ struct CalendarUI: View {
     var body: some View {
    
         VStack{
-            Text("Upcoming Events")
-                .font(.system(size: 40, weight: .bold, design: .rounded))
-                .foregroundColor(Color(red: 36/255, green: 120/255, blue: 36/255))
+//            Text("Upcoming Events")
+//                .font(.system(size: 40, weight: .bold, design: .rounded))
+//                .foregroundColor(Color(red: 36/255, green: 120/255, blue: 36/255))
             
             HStack(alignment: .center, spacing: width/20){
                 Button{
@@ -173,6 +174,8 @@ struct CalendarUI: View {
                     .foregroundColor(Color(red: 85/255, green: 172/255, blue: 85/255))
                     .font(.system(size: 25, weight: .bold, design: .rounded))
                     .offset(y: -height/7)
+                
+//                Text(String(getDay(days: 1).day!))
 
                 
             }
@@ -212,10 +215,59 @@ func getMonth() -> String
     dateFormatter.dateFormat = "LLLL"
     let nameOfMonth = dateFormatter.string(from: now)
     
-
+  
     
     return nameOfMonth
 }
 
+func getDay(days: Int) -> DateComponents
+{
+    // Get right now as it's `DateComponents`.
 
+    let now = Calendar.current.dateComponents(in: .current, from: Date())
+   
 
+    
+    // Create the start of the day in `DateComponents` by leaving off the time.
+    let today = DateComponents(year: now.year, month: now.month, day: now.day! + days)
+    let dateToday = Calendar.current.date(from: today)!
+    print(dateToday.timeIntervalSince1970)
+
+    // Add 1 to the day to get tomorrow.
+    // Don't worry about month and year wraps, the API handles that.
+    let tomorrow = DateComponents(year: now.year, month: now.month, day: now.day! + 1)
+    let dateTomorrow = Calendar.current.date(from: tomorrow)!
+   
+    
+
+    return today
+}
+
+//extension Date {
+//    static var yesterday: Date { return Date().dayBefore }
+//    static var tomorrow:  Date { return Date().dayAfter }
+//    var dayBefore: Date {
+//        return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
+//    }
+//    var dayAfter: Date {
+//        return Calendar.current.date(byAdding: .day, value: 1, to: noon)!
+//    }
+//    var dayAfter2: Date {
+//        return Calendar.current.date(byAdding: .day, value: 2, to: noon)!
+//    }
+//    var dayAfter3: Date {
+//        return Calendar.current.date(byAdding: .day, value: 3, to: noon)!
+//    }
+//    var dayAfter4: Date {
+//        return Calendar.current.date(byAdding: .day, value: 4, to: noon)!
+//    }
+//    var noon: Date {
+//        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+//    }
+//    var month: Int {
+//        return Calendar.current.component(.month,  from: self)
+//    }
+//    var isLastDayOfMonth: Bool {
+//        return dayAfter.month != month
+//    }
+//}
