@@ -16,112 +16,137 @@ struct Activities: View {
     @State var Clubs = "Clubs"
     @State var Academics = "Academics"
     @State var Events = "Events"
+    @State var home = true
+    @State var messages = false
+    @State var calendar = false
+    @State var academics2 = false
 
     
     var body: some View {
-        
-       
-        ZStack {
-            //Background color
-            Color(red: 231/255, green: 255/255, blue: 231/255)
-                .ignoresSafeArea()
+        ZStack{
             
-            // Top section
-            Group {
-                // Introductory Section
-                Group {
-                    Text("Hello Julian")
-                        .padding()
-                        .font(.system(size: 25, weight: .bold, design: .rounded))
-                        .offset(x: -80, y: -360)
-                    
-                    Text("Have a Nice Day")
-                        .padding()
-                        .font(.system(size: 15, design: .rounded))
-                        .offset(x: -93, y: -330)
-                    
-                    Image ("hot")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .clipShape(Circle())
-                        .frame(width:80.0, height: 80.0, alignment: .center)
-                        .offset(x:100, y: -355)
-                }
-                
-                //School image and weather section
-                Group {
-                    Image ("school")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .cornerRadius(10)
-                        .frame(width: 350, height: 160)
-                        .offset(x:0, y:-220)
-                    
-                    Text("64° F ⛅")
-                        .padding()
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .offset(x: -115, y: -151)
-                        .foregroundColor(.white)
-                }
-                
-            }
+           
             
-            //Middle Section
-            Group {
-                
-                
-                
-                
-                VStack{
+            if (home) {
+                ZStack {
+                    //Background color
+                    Color(red: 231/255, green: 255/255, blue: 231/255)
+                        .ignoresSafeArea()
                     
-                }
-                // Activities topic selector
-                Group {
-                    
-                    ZStack{
-                        RoundedRectangle( cornerRadius: 13, style: .continuous)
-                            .frame(width: 360, height: 50)
-                        
-                        HStack(spacing: 20){
-                            Button_(text: $Social, state: $social, other1: $events, other2: $clubs, other3: $academics)
-                            Button_(text: $Events, state: $events, other1: $social, other2: $clubs, other3: $academics)
-                            Button_(text: $Clubs, state: $clubs, other1: $events, other2: $social, other3: $academics)
-                            Button_(text: $Academics, state: $academics, other1: $events, other2: $clubs, other3: $social)
+                    // Top section
+                    Group {
+                        // Introductory Section
+                        Group {
+                            Text("Hello Julian")
+                                .padding()
+                                .font(.system(size: 25, weight: .bold, design: .rounded))
+                                .offset(x: -80, y: -360)
                             
-                       
+                            Text("Have a Nice Day")
+                                .padding()
+                                .font(.system(size: 15, design: .rounded))
+                                .offset(x: -93, y: -330)
+                            
+                            Image ("hot")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .clipShape(Circle())
+                                .frame(width:80.0, height: 80.0, alignment: .center)
+                                .offset(x:100, y: -355)
+                        }
+                        
+                        //School image and weather section
+                        Group {
+                            Image ("school")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .cornerRadius(10)
+                                .frame(width: 350, height: 160)
+                                .offset(x:0, y:-220)
+                            
+                            Text("64° F ⛅")
+                                .padding()
+                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                                .offset(x: -115, y: -151)
+                                .foregroundColor(.white)
+                        }
+                        
                     }
-                       
+                    
+                    //Middle Section
+                    Group {
+                        
+                        
+                        
+                        
+                        VStack{
+                            
+                        }
+                        // Activities topic selector
+                        Group {
+                            
+                            ZStack{
+                                RoundedRectangle( cornerRadius: 13, style: .continuous)
+                                    .frame(width: 360, height: 50)
+                                
+                                HStack(spacing: 20){
+                                    Button_(text: $Social, state: $social, other1: $events, other2: $clubs, other3: $academics)
+                                    Button_(text: $Events, state: $events, other1: $social, other2: $clubs, other3: $academics)
+                                    Button_(text: $Clubs, state: $clubs, other1: $events, other2: $social, other3: $academics)
+                                    Button_(text: $Academics, state: $academics, other1: $events, other2: $clubs, other3: $social)
+                                    
+                               
+                            }
+                               
+                            }
+                            .padding(.bottom, 180)
+                        }
+                        
+                        
+                        // Actual info
+                        if(academics){
+                            
+                        }
+                        
+                        if(events){
+                            CalendarUI(numDates: 5)
+                                .padding(.top, 300)
+                        }
+                            
+                        if(clubs){
+                            
+                        }
+                            
+                        if(social){
+                            ActivitiesPage()
+                        }
+                        
+                        
+                        
+                        
+                            
                     }
-                    .padding(.bottom, 180)
-                }
-                
-                
-                // Actual info
-                if(academics){
                     
-                }
-                
-                if(events){
-                    CalendarUI(numDates: 5)
-                        .padding(.top, 300)
-                }
+                   
                     
-                if(clubs){
-                    
+                        
                 }
-                    
-                if(social){
-                    ActivitiesPage()
-                }
-                
-                
-                
-                MenuScreen()
-                    
             }
             
-                
+            if(messages)
+            {
+                Messages()
+                    .offset(y: 50)
+            }
+            
+            
+            MenuScreen(home: $home, messages: $messages, calendar: $calendar, academics2: $academics2)
         }
+        
+        
+        
+      
+       
         
         
     }
@@ -207,10 +232,10 @@ struct Button_Menu: View{
 }
 
 struct MenuScreen: View{
-    @State var home = true
-    @State var messages = false
-    @State var calendar = false
-    @State var academics = false
+    @Binding var home: Bool
+    @Binding var messages: Bool
+    @Binding var calendar: Bool
+    @Binding var academics2: Bool
     @State var Home = "house.fill"
     @State var Messages = "message.fill"
     @State var Calendar = "calendar"
@@ -223,10 +248,10 @@ struct MenuScreen: View{
                 .frame(width: 400, height: 100)
             
             HStack(spacing: 30){
-                Button_Menu(text: $Home, state: $home, other1: $messages, other2: $calendar, other3: $academics )
-                Button_Menu(text: $Messages, state: $messages, other1: $home, other2: $calendar, other3: $academics )
-                Button_Menu(text: $Calendar, state: $calendar, other1: $messages, other2: $home, other3: $academics )
-                Button_Menu(text: $Academics, state: $academics, other1: $messages, other2: $calendar, other3: $home )
+                Button_Menu(text: $Home, state: $home, other1: $messages, other2: $calendar, other3: $academics2 )
+                Button_Menu(text: $Messages, state: $messages, other1: $home, other2: $calendar, other3: $academics2 )
+                Button_Menu(text: $Calendar, state: $calendar, other1: $messages, other2: $home, other3: $academics2 )
+                Button_Menu(text: $Academics, state: $academics2, other1: $messages, other2: $calendar, other3: $home )
             }.offset(y: -20)
         }.padding(.top, 800)
         
