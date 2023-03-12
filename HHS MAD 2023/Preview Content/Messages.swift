@@ -10,6 +10,7 @@ import SwiftUI
 struct Messages: View {
     @State var name = "Julian Ng"
     @State var image = "https://hws.dev/paul.jpg"
+    @State var showPage = false
     
     var body: some View {
         
@@ -21,29 +22,37 @@ struct Messages: View {
             // Top section
             Group {
                 // Introductory Section
-                VStack {
-                    Text("Messeges")
-                        .font(.system(size: 35, weight: .bold, design: .rounded))
-                        .offset(x: -80)
-                        .foregroundColor(Color.green)
-                    
-                    ScrollView{
-                        VStack{
-                            EnterChat(image: $image, name: $name)
-                            EnterChat(image: $image, name: $name)
-                            EnterChat(image: $image, name: $name)
-                            EnterChat(image: $image, name: $name)
-                            EnterChat(image: $image, name: $name)
-                            EnterChat(image: $image, name: $name)
-                            EnterChat(image: $image, name: $name)
-                           
-                           
+                
+                if(!showPage){
+                    VStack {
+                        Text("Messages")
+                            .font(.system(size: 35, weight: .bold, design: .rounded))
+                            .offset(x: -80)
+                            .foregroundColor(Color.green)
+                        
+                        ScrollView{
+                            VStack{
+                                EnterChat(image: $image, name: $name, showPage: $showPage)
+                                EnterChat(image: $image, name: $name, showPage: $showPage)
+                                EnterChat(image: $image, name: $name, showPage: $showPage)
+                                EnterChat(image: $image, name: $name, showPage: $showPage)
+                                EnterChat(image: $image, name: $name, showPage: $showPage)
+                             
+                               
+                               
+                            }
                         }
+                        .frame(maxWidth: .infinity)
+                        .background(.white)
+                        .cornerRadius(30, corners: [.topLeft, .topRight])
                     }
-                    .frame(maxWidth: .infinity)
-                    .background(.white)
-                    .cornerRadius(30, corners: [.topLeft, .topRight])
                 }
+                
+                if(showPage)
+                {
+                    MessagePage()
+                }
+               
                 
             
                 
@@ -67,6 +76,7 @@ struct EnterChat: View{
    
     @Binding var image: String
     @Binding var name: String
+    @Binding var showPage: Bool
     
     var body: some View {
         let imageUrl = URL(string: image)
@@ -75,7 +85,7 @@ struct EnterChat: View{
         
         
         Button{
-            
+            showPage = true
         } label: {
             
             HStack(spacing: 20){

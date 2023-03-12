@@ -25,7 +25,7 @@ struct MessagePage: View {
                     .background(.white)
                     .cornerRadius(30, corners: [.topLeft, .topRight])
             }
-            .background(Color.green)
+            .background(Color(red: 231/255, green: 255/255, blue: 231/255))
             
             MessageField()
         }
