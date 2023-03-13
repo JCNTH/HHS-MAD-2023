@@ -15,7 +15,7 @@ struct HomeScreen: View {
     
     var body: some View {
         
-        GeometryReader{ geo in
+        GeometryReader{ geo in  
             
             
             ZStack{

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2B382F1029AEE55A001430D0 /* Upcoming Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B382F0F29AEE55A001430D0 /* Upcoming Events.swift */; };
 		2B80F5782993666000B7E671 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B80F5772993666000B7E671 /* HomeScreen.swift */; };
-		2B80F57A29936B6300B7E671 /* Calendar3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B80F57929936B6300B7E671 /* Calendar3.swift */; };
 		2BD60E48298603E200349CB8 /* HHS_MAD_2023App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD60E47298603E200349CB8 /* HHS_MAD_2023App.swift */; };
 		2BD60E4A298603E200349CB8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD60E49298603E200349CB8 /* ContentView.swift */; };
 		2BD60E4C298603E400349CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BD60E4B298603E400349CB8 /* Assets.xcassets */; };
@@ -29,6 +28,8 @@
 		31EB336C299374C300F1CBE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31EB336B299374C300F1CBE8 /* Main.storyboard */; };
 		A6D2235529ADC8C200B4B953 /* EventPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D2235429ADC8C200B4B953 /* EventPage.swift */; };
 		A6E5E04729A7FB7F00B3E026 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E5E04629A7FB7F00B3E026 /* Day.swift */; };
+		BD141D9529BFA9E800885DD0 /* PhotoSharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD141D9429BFA9E800885DD0 /* PhotoSharing.swift */; };
+		BD434E5C29BE5867007F74EF /* Academics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD434E5B29BE5867007F74EF /* Academics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +52,6 @@
 /* Begin PBXFileReference section */
 		2B382F0F29AEE55A001430D0 /* Upcoming Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Upcoming Events.swift"; sourceTree = "<group>"; };
 		2B80F5772993666000B7E671 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
-		2B80F57929936B6300B7E671 /* Calendar3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar3.swift; sourceTree = "<group>"; };
 		2BD60E44298603E200349CB8 /* HHS MAD 2023.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HHS MAD 2023.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD60E47298603E200349CB8 /* HHS_MAD_2023App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HHS_MAD_2023App.swift; sourceTree = "<group>"; };
 		2BD60E49298603E200349CB8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -74,6 +74,8 @@
 		31EB336B299374C300F1CBE8 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A6D2235429ADC8C200B4B953 /* EventPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPage.swift; sourceTree = "<group>"; };
 		A6E5E04629A7FB7F00B3E026 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		BD141D9429BFA9E800885DD0 /* PhotoSharing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSharing.swift; sourceTree = "<group>"; };
+		BD434E5B29BE5867007F74EF /* Academics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Academics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +139,6 @@
 			children = (
 				2BD60E4E298603E400349CB8 /* Preview Assets.xcassets */,
 				2BD9619B29BD5D31009C6AE0 /* Messeges */,
-				2B80F57929936B6300B7E671 /* Calendar3.swift */,
 				2B80F5772993666000B7E671 /* HomeScreen.swift */,
 				31EB336729936F2000F1CBE8 /* Activities.swift */,
 				31EB336B299374C300F1CBE8 /* Main.storyboard */,
@@ -147,6 +148,8 @@
 				2BD9618D29BD1168009C6AE0 /* ActivitesPage.swift */,
 				2BD9618F29BD2221009C6AE0 /* MessagePage.swift */,
 				2BD9619C29BD5DBC009C6AE0 /* Messages.swift */,
+				BD434E5B29BE5867007F74EF /* Academics.swift */,
+				BD141D9429BFA9E800885DD0 /* PhotoSharing.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -315,14 +318,15 @@
 				2BD9619D29BD5DBC009C6AE0 /* Messages.swift in Sources */,
 				2BD60E48298603E200349CB8 /* HHS_MAD_2023App.swift in Sources */,
 				A6E5E04729A7FB7F00B3E026 /* Day.swift in Sources */,
+				BD434E5C29BE5867007F74EF /* Academics.swift in Sources */,
 				2B80F5782993666000B7E671 /* HomeScreen.swift in Sources */,
 				2BD9619029BD2221009C6AE0 /* MessagePage.swift in Sources */,
 				A6D2235529ADC8C200B4B953 /* EventPage.swift in Sources */,
 				2BD9618E29BD1168009C6AE0 /* ActivitesPage.swift in Sources */,
 				2BD9619A29BD5BBB009C6AE0 /* MessageField.swift in Sources */,
 				31EB336829936F2000F1CBE8 /* Activities.swift in Sources */,
-				2B80F57A29936B6300B7E671 /* Calendar3.swift in Sources */,
 				2BD9619429BD591D009C6AE0 /* Message.swift in Sources */,
+				BD141D9529BFA9E800885DD0 /* PhotoSharing.swift in Sources */,
 				2BD9619229BD5829009C6AE0 /* TitleRow.swift in Sources */,
 				2BD9619629BD59D2009C6AE0 /* MessageBubble .swift in Sources */,
 				2B382F1029AEE55A001430D0 /* Upcoming Events.swift in Sources */,

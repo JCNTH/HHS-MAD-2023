@@ -32,7 +32,7 @@ struct Activities: View {
                     //Background color
                     Color(red: 231/255, green: 255/255, blue: 231/255)
                         .ignoresSafeArea()
-                    
+                 
                     // Top section
                     Group {
                         // Introductory Section
