@@ -175,6 +175,38 @@ struct CalendarUI: View {
                     .font(.system(size: 25, weight: .bold, design: .rounded))
                     .offset(y: -height/7)
                 
+                
+                
+                Button{
+                   
+                } label: {
+                    
+                    HStack(spacing: 20){
+                        
+                        
+                        VStack(alignment: .leading)
+                        {
+                            Text("Teacher Non-Duty Day")
+                                .font(.title).bold()
+                            
+                            Text("Whole Day")
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                        }.frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Image(systemName: "timer")
+                            .foregroundColor(.gray)
+                            .padding(10)
+                            .background(.white)
+                            .cornerRadius(50)
+                    }
+                    .padding()
+                  
+                    
+                    
+                        
+
+                }
 //                Text(String(getDay(days: 1).day!))
 
                 
