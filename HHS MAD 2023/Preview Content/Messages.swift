@@ -33,10 +33,10 @@ struct Messages: View {
                         ScrollView{
                             VStack{
                                 EnterChat(image: $image, name: $name, showPage: $showPage)
-                                EnterChat(image: $image, name: $name, showPage: $showPage)
-                                EnterChat(image: $image, name: $name, showPage: $showPage)
-                                EnterChat(image: $image, name: $name, showPage: $showPage)
-                                EnterChat(image: $image, name: $name, showPage: $showPage)
+//                                EnterChat(image: $image, name: $name, showPage: $showPage)
+//                                EnterChat(image: $image, name: $name, showPage: $showPage)
+//                                EnterChat(image: $image, name: $name, showPage: $showPage)
+//                                EnterChat(image: $image, name: $name, showPage: $showPage)
                              
                                
                                
