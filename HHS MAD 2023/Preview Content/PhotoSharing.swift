@@ -15,39 +15,39 @@ struct PhotoSharing: View {
        
         ZStack {
             //Background color
-            Color(red: 231/255, green: 255/255, blue: 231/255)
-                .ignoresSafeArea()
-            
+//            Color(red: 231/255, green: 255/255, blue: 231/255)
+//                .ignoresSafeArea()
+//
             // Top section
             Group {
-                // Introductory Section
+//                // Introductory Section
                 Group {
                     Text("Photo Sharing")
                         .padding()
                         .font(.system(size: 30, weight: .bold, design: .rounded))
-                        .offset(x: -60, y: -365)
+                        .offset(x: -60, y: -300)
                 }
                 
                 
-                // Activities topic selector
-                Group {
-                    RoundedRectangle( cornerRadius: 13, style: .continuous)
-                        .frame(width: 320, height: 50)
-                        .offset(x: 0, y: -315)
-                    
-                    Text("Social     Clubs      Academics     Other")
-                        .padding()
-                        .font(.system(size: 15, design: .rounded))
-                        .offset(x: 0, y: -315)
-                        .foregroundColor(.white)
-                    
-                    RoundedRectangle( cornerRadius: 13, style: .continuous)
-                        .fill(.green)
-                        .frame(width: 50, height: 40)
-                        .offset(x: -105, y: -315)
-                        .opacity(0.5)
-                    
-                }
+//                // Activities topic selector
+//                Group {
+//                    RoundedRectangle( cornerRadius: 13, style: .continuous)
+//                        .frame(width: 320, height: 50)
+//                        .offset(x: 0, y: -315)
+//
+//                    Text("Social     Clubs      Academics     Other")
+//                        .padding()
+//                        .font(.system(size: 15, design: .rounded))
+//                        .offset(x: 0, y: -315)
+//                        .foregroundColor(.white)
+//
+//                    RoundedRectangle( cornerRadius: 13, style: .continuous)
+//                        .fill(.green)
+//                        .frame(width: 50, height: 40)
+//                        .offset(x: -105, y: -315)
+//                        .opacity(0.5)
+//
+//                }
                 
                 Image ("ScrollBar")
                     .resizable()

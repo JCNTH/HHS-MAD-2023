@@ -9,7 +9,9 @@ import SwiftUI
 
 struct Messages: View {
     @State var name = "Julian Ng"
+    @State var name2 = "Administration"
     @State var image = "https://hws.dev/paul.jpg"
+    @State var image2 = "https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3540&q=80"
     @State var showPage = false
     
     var body: some View {
@@ -32,6 +34,7 @@ struct Messages: View {
                         
                         ScrollView{
                             VStack{
+                                EnterChat(image: $image2, name: $name2, showPage: $showPage)
                                 EnterChat(image: $image, name: $name, showPage: $showPage)
 //                                EnterChat(image: $image, name: $name, showPage: $showPage)
 //                                EnterChat(image: $image, name: $name, showPage: $showPage)

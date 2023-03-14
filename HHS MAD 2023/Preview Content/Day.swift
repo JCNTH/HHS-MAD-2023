@@ -28,18 +28,18 @@ struct Day: View {
                 
                 HStack {
                     Spacer()
-                    Button("hello") {
-                        print("hello")
+                    Button("CAASPP Testing") {
+                        print("CAASPP Testing")
                     }
                     .padding(5.0)
                 }.background(Color(hue: 0.335, saturation: 0.378, brightness: 0.681))
-                HStack {
-                    Spacer()
-                    Button("hello") {
-                        print("hello")
-                    }
-                    .padding(5.0)
-                }.background(Color(hue: 0.335, saturation: 0.378, brightness: 0.681))
+//                HStack {
+//                    Spacer()
+//                    Button("hello") {
+//                        print("hello")
+//                    }
+//                    .padding(5.0)
+//                }.background(Color(hue: 0.335, saturation: 0.378, brightness: 0.681))
             }.padding([.leading, .bottom, .trailing], 20.0)
         }.background(Color(hue: 0.335, saturation: 0.495, brightness: 0.855))
         .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)

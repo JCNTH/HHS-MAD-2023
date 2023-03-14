@@ -268,7 +268,7 @@ func getDay(days: Int) -> DateComponents
     // Add 1 to the day to get tomorrow.
     // Don't worry about month and year wraps, the API handles that.
     let tomorrow = DateComponents(year: now.year, month: now.month, day: now.day! + 1)
-    let dateTomorrow = Calendar.current.date(from: tomorrow)!
+//    let dateTomorrow = Calendar.current.date(from: tomorrow)!
    
     
 

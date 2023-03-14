@@ -8,25 +8,26 @@
 import SwiftUI
 
 struct Activities: View {
-    @State var academics = false
+    @State var photos = false
     @State var events = false
     @State var clubs = false
     @State var social = true
     @State var Social = "Social"
     @State var Clubs = "Clubs"
-    @State var Academics = "Academics"
+    @State var Photos = "Photos"
     @State var Events = "Events"
     @State var home = true
     @State var messages = false
     @State var calendar = false
     @State var academics2 = false
+    let screenRect = UIScreen.main.bounds
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
 
     
     var body: some View {
         ZStack{
-            
-           
-            
+            //Start page, home page
             if (home) {
                 ZStack {
                     //Background color
@@ -87,36 +88,39 @@ struct Activities: View {
                             
                             ZStack{
                                 RoundedRectangle( cornerRadius: 13, style: .continuous)
-                                    .frame(width: 360, height: 50)
+                                    .frame(width: width/1.2, height: height/20)
                                 
                                 HStack(spacing: 20){
-                                    Button_(text: $Social, state: $social, other1: $events, other2: $clubs, other3: $academics)
-                                    Button_(text: $Events, state: $events, other1: $social, other2: $clubs, other3: $academics)
-                                    Button_(text: $Clubs, state: $clubs, other1: $events, other2: $social, other3: $academics)
-                                    Button_(text: $Academics, state: $academics, other1: $events, other2: $clubs, other3: $social)
+                                    Button_(text: $Social, state: $social, other1: $events, other2: $clubs, other3: $photos)
+                                    Button_(text: $Events, state: $events, other1: $social, other2: $clubs, other3: $photos)
+                                    Button_(text: $Clubs, state: $clubs, other1: $events, other2: $social, other3: $photos)
+                                    Button_(text: $Photos, state: $photos, other1: $events, other2: $clubs, other3: $social)
                                     
                                
                             }
                                
                             }
-                            .padding(.bottom, 180)
+                            .padding(.bottom, height/5)
                         }
                         
                         
-                        // Actual info
-                        if(academics){
-                            
+                        //Photos Page
+                        if(photos){
+                            PhotoSharing()
+                                .padding(.top, height/1.4)
                         }
                         
+                        //Events Page
                         if(events){
                             CalendarUI(numDates: 5)
-                                .padding(.top, 300)
+                                .padding(.top, height/2.8)
                         }
                             
                         if(clubs){
                             
                         }
                             
+                        //Acitivites page
                         if(social){
                             ActivitiesPage()
                         }
@@ -133,12 +137,25 @@ struct Activities: View {
                 }
             }
             
+            //Mesagges Page
             if(messages)
             {
                 Messages()
                     .offset(y: 50)
             }
             
+            //Calendar page
+            if(calendar)
+            {
+                CalendarPage()
+            }
+            
+            
+            //Forums Page
+            if(academics2)
+            {
+                HHS_MAD_2023.Academics()
+            }
             
             MenuScreen(home: $home, messages: $messages, calendar: $calendar, academics2: $academics2)
         }
@@ -153,7 +170,7 @@ struct Activities: View {
     
     func resetValues()
     {
-        academics = false
+        photos = false
         events = false
         clubs = false
         social = false

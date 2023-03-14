@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MessagePage: View {
-    var messageArray = ["Hello you", "How are you doing?", "I've been building SwiftUI applications from scratch and it's so much fun!"]
+    var messageArray = ["Hello!", "I am sick today. I won't be able to make it to school", "My full name is Julian Ng-Thow-Hing. Please mark me absent."]
     
     var body: some View {
         
