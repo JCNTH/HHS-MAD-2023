@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  HHS MAD 2023
 //
-//  Created by Julian NTH on 1/28/23.
+//  Created by Julian NTH, Aaditya, and Dhruv on 1/28/23.
 //
 
 import SwiftUI

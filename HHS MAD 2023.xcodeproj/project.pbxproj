@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2B382F1029AEE55A001430D0 /* Upcoming Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B382F0F29AEE55A001430D0 /* Upcoming Events.swift */; };
 		2B80F5782993666000B7E671 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B80F5772993666000B7E671 /* HomeScreen.swift */; };
-		2B80F57A29936B6300B7E671 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B80F57929936B6300B7E671 /* Calendar.swift */; };
 		2BD60E48298603E200349CB8 /* HHS_MAD_2023App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD60E47298603E200349CB8 /* HHS_MAD_2023App.swift */; };
 		2BD60E4A298603E200349CB8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD60E49298603E200349CB8 /* ContentView.swift */; };
 		2BD60E4C298603E400349CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BD60E4B298603E400349CB8 /* Assets.xcassets */; };
@@ -54,7 +53,6 @@
 /* Begin PBXFileReference section */
 		2B382F0F29AEE55A001430D0 /* Upcoming Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Upcoming Events.swift"; sourceTree = "<group>"; };
 		2B80F5772993666000B7E671 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
-		2B80F57929936B6300B7E671 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		2BD60E44298603E200349CB8 /* HHS MAD 2023.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HHS MAD 2023.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD60E47298603E200349CB8 /* HHS_MAD_2023App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HHS_MAD_2023App.swift; sourceTree = "<group>"; };
 		2BD60E49298603E200349CB8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -143,7 +141,6 @@
 			children = (
 				2BD60E4E298603E400349CB8 /* Preview Assets.xcassets */,
 				2BD9619B29BD5D31009C6AE0 /* Messeges */,
-				2B80F57929936B6300B7E671 /* Calendar.swift */,
 				2B80F5772993666000B7E671 /* HomeScreen.swift */,
 				31EB336729936F2000F1CBE8 /* Activities.swift */,
 				31EB336B299374C300F1CBE8 /* Main.storyboard */,
@@ -332,7 +329,6 @@
 				2BD9618E29BD1168009C6AE0 /* ActivitesPage.swift in Sources */,
 				2BD9619A29BD5BBB009C6AE0 /* MessageField.swift in Sources */,
 				31EB336829936F2000F1CBE8 /* Activities.swift in Sources */,
-				2B80F57A29936B6300B7E671 /* Calendar.swift in Sources */,
 				2BD9619429BD591D009C6AE0 /* Message.swift in Sources */,
 				BD141D9529BFA9E800885DD0 /* PhotoSharing.swift in Sources */,
 				2BD9619229BD5829009C6AE0 /* TitleRow.swift in Sources */,
@@ -503,8 +499,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -532,8 +527,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

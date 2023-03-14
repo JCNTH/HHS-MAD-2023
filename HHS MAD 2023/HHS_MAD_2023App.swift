@@ -17,3 +17,9 @@ struct HHS_MAD_2023App: App {
         }
     }
 }
+
+struct Previews_HHS_MAD_2023App_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
