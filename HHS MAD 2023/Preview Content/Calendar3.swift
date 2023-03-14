@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Calendar: View {
+struct Calendar3: View {
     var body: some View {
         VStack{
             Day(date:"Mon 11", events:[])
@@ -21,7 +21,7 @@ struct Calendar: View {
 
 struct Calendar_Previews: PreviewProvider {
     static var previews: some View {
-        Calendar()
+        Calendar3()
     }
 }
 
