@@ -13,13 +13,18 @@ struct EventPage: View {
     var date:String;
     var location:String;
     var description:String;
-
+    @Binding var activeEvent:String
+    
     var body: some View {
         VStack(spacing: 20.0) {
             
             HStack {
-                Image(systemName: "arrow.backward")
-                    .padding(.leading).scaleEffect(2)
+                Button(action: {
+                    activeEvent = "none";
+                }) {
+                    Image(systemName: "arrow.backward")
+                        .padding(.leading).scaleEffect(2)
+                }
                 Spacer()
             }
             Text(eventName)
@@ -73,11 +78,5 @@ struct EventPage: View {
             .background(Color(hue: 0.339, saturation: 0.269, brightness: 0.934))
             
         }.background(.white)
-    }
-}
-
-struct EventPage_Previews: PreviewProvider {
-    static var previews: some View {
-        EventPage(eventName:"CASSPP", time:"7 AM", date:"1/1/23", location:"L103", description:"Required for Juniors. Statewide testing to monitor high school learning progress.")
     }
 }
