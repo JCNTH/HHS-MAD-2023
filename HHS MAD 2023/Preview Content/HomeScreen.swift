@@ -23,9 +23,11 @@ struct HomeScreen: View {
                     .edgesIgnoringSafeArea(.all)
                 
                 VStack{
-                    RoundedRectangle(cornerRadius: 100, style: .continuous)
-                        .fill(Color.white)
-                        .frame(width: width/2, height: height/4)
+//                    RoundedRectangle(cornerRadius: 100, style: .continuous)
+//                        .fill(Color.white)
+//                        .frame(width: width/2, height: height/4)
+                    
+                    Image("MAD-LOGO-TRANSPARENT")
                     HStack{
                         
                     }
