@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CalendarPage: View {
+    @Binding var activeEvent: String;
+    
     var body: some View {
         ZStack {
             Group {
@@ -29,25 +31,22 @@ struct CalendarPage: View {
         
                 
             VStack{
-                Day(date:"Mon 13", events:[])
-                Day(date:"Tues 14", events:[])
-                Day(date:"Wed 15", events:[])
-                Day(date:"Thurs 16", events:[])
-                Day(date:"Fri 17", events:[])
-                Day(date:"Sat 18", events:[])
-                Day(date:"Sun 19", events:[])
+                Day(date:"Mon 13", events:[], activeEvent: $activeEvent)
+                Day(date:"Tues 14", events:[], activeEvent: $activeEvent)
+                Day(date:"Wed 15", events:[], activeEvent: $activeEvent)
+                Day(date:"Thurs 16", events:[], activeEvent: $activeEvent)
+                Day(date:"Fri 17", events:[], activeEvent: $activeEvent)
+                Day(date:"Sat 18", events:[], activeEvent: $activeEvent)
+                Day(date:"Sun 19", events:[], activeEvent: $activeEvent)
                
             }.scaleEffect(x:0.8, y:0.8)
                 
             }
         }
+        
     }
 }
 
-struct CalendarPage_Previews: PreviewProvider {
-    static var previews: some View {
-        CalendarPage()
-    }
-}
+
 
 

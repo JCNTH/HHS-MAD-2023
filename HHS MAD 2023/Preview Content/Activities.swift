@@ -15,6 +15,8 @@ struct Activities: View {
     @State var clubs = false
     @State var social = true
     
+    @State var activeEvent = "none";
+    
     //Text variables
     @State var Social = "Social"
     @State var Clubs = "Clubs"
@@ -194,10 +196,14 @@ struct Activities: View {
             }
             
             //Calendar page
-            if(calendar)
-            {
-                CalendarPage()
+            if (calendar) {
+                if (!self.activeEvent.elementsEqual("none")) {
+                    EventPage(eventName:"CASSPP", time:"7 AM", date:"1/1/23", location:"L103", description:"Required for Juniors. Statewide testing to monitor high school learning progress.")
+                } else {
+                    CalendarPage(activeEvent: $activeEvent)
+                }
             }
+            
             
             
             //Forums Page

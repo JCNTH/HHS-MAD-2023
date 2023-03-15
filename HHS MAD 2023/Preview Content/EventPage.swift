@@ -13,14 +13,21 @@ struct EventPage: View {
     var date:String;
     var location:String;
     var description:String;
-    
+
     var body: some View {
         VStack(spacing: 20.0) {
+            
+            HStack {
+                Image(systemName: "arrow.backward")
+                    .padding(.leading).scaleEffect(2)
+                Spacer()
+            }
             Text(eventName)
-                .font(.title)
+                .font(.system(size: 30, weight: .bold, design: .rounded))
                 .fontWeight(.heavy)
+
             VStack {
-                Image ("Activity1")
+                Image ("CAASPP")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .cornerRadius(10)
@@ -42,7 +49,7 @@ struct EventPage: View {
                     Text(location)
                         .italic()
                 }
-                HStack {
+                HStack(alignment: .top) {
                     Text("Description:")
                         .bold()
                     Text(description)
@@ -50,11 +57,11 @@ struct EventPage: View {
                 }
                 HStack {
                     Image(systemName: "arrowtriangle.left.fill")
-                    Image ("Activity1")
+                    Image ("testTaking")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .cornerRadius(10)
-                    Image ("Activity1")
+                    Image ("testTaking2")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .cornerRadius(10)
@@ -71,6 +78,6 @@ struct EventPage: View {
 
 struct EventPage_Previews: PreviewProvider {
     static var previews: some View {
-        EventPage(eventName:"Senior Sunrise", time:"7 AM", date:"1/1/23", location:"HHS Quad", description:"Come out to enjoy the sunrise!")
+        EventPage(eventName:"CASSPP", time:"7 AM", date:"1/1/23", location:"L103", description:"Required for Juniors. Statewide testing to monitor high school learning progress.")
     }
 }

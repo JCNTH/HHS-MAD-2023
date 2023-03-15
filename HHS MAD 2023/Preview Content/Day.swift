@@ -10,6 +10,9 @@ import SwiftUI
 struct Day: View {
     var date: String
     var events:Array<String>
+    @Binding var activeEvent: String
+
+
     var body: some View {
         VStack{
             HStack{
@@ -29,7 +32,7 @@ struct Day: View {
                 HStack {
                     Spacer()
                     Button("CAASPP Testing") {
-                        print("CAASPP Testing")
+                        activeEvent = "CAASPP";
                     }
                     .padding(5.0)
                 }.background(Color(hue: 0.335, saturation: 0.378, brightness: 0.681))
@@ -47,14 +50,3 @@ struct Day: View {
     }
 }
 
-struct Day_Previews: PreviewProvider {
-    static var previews: some View {
-        Day(date: "Mon 11", events: ["Varsity Basketball", "Amazing Pumpkin Patch Fieldtrip", "Girls Water Polo"])
-    }
-}
-
-struct Previews_Day_Previews: PreviewProvider {
-    static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
-    }
-}
