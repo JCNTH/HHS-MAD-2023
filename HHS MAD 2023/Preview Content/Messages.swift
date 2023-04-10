@@ -53,7 +53,16 @@ struct Messages: View {
                 
                 if(showPage)
                 {
-                    MessagePage()
+                    ZStack{
+                        Button{
+                            showPage = false
+                        } label:
+                        {
+                            Image(systemName: "chevron.backward")
+                        }
+                        MessagePage()
+                    }
+                  
                 }
                
                 

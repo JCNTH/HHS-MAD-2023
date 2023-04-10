@@ -30,7 +30,7 @@ struct Activities: View {
     @State var academics2 = false
     
     //Clubs
-    @State var FBLA_IMAGE = "https://scontent-sjc3-1.xx.fbcdn.net/v/t39.30808-6/290348585_5547688558576292_6336213932476525550_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=29cyXmZOzxAAX9nsFo8&_nc_ht=scontent-sjc3-1.xx&oh=00_AfABwXkw547iGSliH33qomo9mdS9IwnYQbVG_q4e2I4JZA&oe=64144BE9"
+    @State var FBLA_IMAGE = "https://scontent-sjc3-1.xx.fbcdn.net/v/t39.30808-6/290348585_5547688558576292_6336213932476525550_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=RehMbmD__j0AX_fpL8A&_nc_ht=scontent-sjc3-1.xx&oh=00_AfDGV4rZQLn9p06ZdY_OCJxwutY1PJWEyfadEjtD0IhtDQ&oe=6437E469"
     @State var FBLA_NAME = "FBLA"
     @State var FBLA_STATE = false
     @State var ROBOTICS_IMAGE = "https://homesteadrobotics.com/wp-content/uploads/2019/11/Logo-no-words-300x219.png"
@@ -47,12 +47,15 @@ struct Activities: View {
     @State var DATA_STATE = false
     
     @State var showDescription = false
+    private let defaults = UserDefaults.standard
     
     //Screen Length & Width to adjust for different phone sizes
     let screenRect = UIScreen.main.bounds
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
 
+    @State var name = "Julian"
+    @State var activitiesCurrent = ActivityManager()
     
     var body: some View {
         ZStack{
@@ -66,9 +69,12 @@ struct Activities: View {
                     // Top section
                     Group {
                         
-                        // Introductory Section
+                        // Introductory Section.
+                        // Creates the profile picture of the user and also displays the user's name.
+                        // Additional information is displayed such as the current weather at the school.
+                        // as well as a picture.
                         Group {
-                            Text("Hello Julian")
+                            Text("Hello " + name)
                                 .padding()
                                 .font(.system(size: 25, weight: .bold, design: .rounded))
                                 .offset(x: -width/4.8, y: -360)
@@ -157,11 +163,86 @@ struct Activities: View {
                                 
                                 if(showDescription)
                                 {
+                                    //If "FBLA" club is selected
                                     if(FBLA_STATE){
-                                        RoundedRectangle( cornerRadius: 45, style: .continuous)
-//                                            .ignoresSafeAreaEdges
-                                            .foregroundColor(Color.white)
-                                            .frame(width: width, height: height)
+                                            ZStack{
+                                                //FBLA club description
+                                                ScrollView{
+                                                    Button{
+                                                      FBLA_STATE = false
+                                                    showDescription = false
+                                                    } label: {
+                                                        Image(systemName: "xmark")
+                                                            .resizable()
+                                                            .frame(width: 20, height: 20)
+
+                                                        
+                                            
+                                                    }.offset(x: -width/3, y: height/20)
+                                                      
+                                                    
+                                                    VStack(alignment: .center, spacing: 20){
+                                                    
+                                                        AsyncImage(url: URL(string: FBLA_IMAGE)) { image in
+                                                            image.resizable()
+                                                                .aspectRatio(contentMode: .fill)
+                                                                .frame(width: 100, height: 80)
+                                                                .cornerRadius(50)
+
+                                                        } placeholder: {
+                                                            ProgressView()
+                                                        }
+                                                        
+                                                        
+                                                        
+                                                        Text("FBLA")
+                                                            .font(.largeTitle).bold()
+                                                            .foregroundColor(Color.green)
+                                                        Text("Meetings: Monthly")
+                                                            .font(.system(size: 20, weight: .bold, design: .default))
+                                                        Text("Membership: Try-Out Based")
+                                                            .font(.system(size: 20, weight: .bold, design: .default))
+        //                                                padding()
+                                                        
+                                                        Text("About The Club")
+                                                            .foregroundColor(Color.blue)
+                                                            .font(.system(size: 30, weight: .bold, design: .default))
+                                                            .frame(width: 1000, height: 60)
+                                                        
+                                                        Text("Homestead FBLA currently has 4 projects. The projects consist of the American Enterprise Project, the Community Service Project, the Partnership with Business Project, and the Software Ventures Project.")
+                                                            .fixedSize(horizontal: false, vertical: true)
+                                                            .font(.system(size: 18, weight: .bold, design: .default))
+                                                            .multilineTextAlignment(.center)
+
+//                                                        Spacer()
+
+                                                        Text("Achievements")
+                                                            .foregroundColor(Color.blue)
+                                                            .font(.system(size: 30, weight: .bold, design: .default))
+                                                            .frame(width: 1000, height: 60)
+                                                        
+                                                        Text("23 Bay Section Championships")
+                                                            .font(.system(size: 18, weight: .bold, design: .default))
+
+                                                        Text("21 State Championships")
+                                                            .font(.system(size: 18, weight: .bold, design: .default))
+
+                                                        Text("20 National Championships")
+                                                            .font(.system(size: 18, weight: .bold, design: .default))
+
+                                                    }.padding(.top, height/10).frame(width: UIScreen.main.bounds.width/1.4, height: 500).offset(y: 80)
+                                                   
+                                                }.frame(width: width/1.2, height: height/1.2)
+                                                .background(Rectangle().fill(Color.white).shadow(radius: 3).frame(width: width/1.2, height: height/1.2))
+
+                                               
+
+                                                
+
+                                            }.aspectRatio(1, contentMode: .fit)
+
+//                                        }
+                                       
                                     }
                                     else if(ROBOTICS_STATE) {
                                         
@@ -181,8 +262,10 @@ struct Activities: View {
                         }
                             
                         //Acitivites page
-                        if(social){
-                            ActivitiesPage()
+                        if(social) {
+                            ActivitiesPage(newActivity: $activitiesCurrent)
+//                                .onChange(of: activitiesCurrent) {_ in save()  }
+                                  
                         }
                     }
                 }
@@ -192,7 +275,8 @@ struct Activities: View {
             if(messages)
             {
                 Messages()
-                    .offset(y: height/15)
+                    .padding(.top, height/15)
+                  
             }
             
             //Calendar page
@@ -214,7 +298,27 @@ struct Activities: View {
             
             MenuScreen(home: $home, messages: $messages, calendar: $calendar, academics2: $academics2)
         }
+        
+        
+//        .onAppear(perform: load)
+//
+//        defaults.set(activitiesCurrent, forKey: "activities")
+
     }
+    
+//    func save() {
+//        defaults.set(forKey: "activities")
+//
+//        activitiesCurrent = activity_saved
+//
+//      }
+//
+//    func load() {
+//        let activity_saved = defaults(forKey: "activities")
+//
+//        activitiesCurrent = activity_saved
+//
+//      }
 }
 
 struct Activities_Previews: PreviewProvider {
@@ -373,3 +477,4 @@ struct ClubDescription: View{
        
     }
 }
+

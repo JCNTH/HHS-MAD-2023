@@ -21,12 +21,23 @@ struct PhotoSharing: View {
             // Top section
             Group {
 //                // Introductory Section
-                Group {
+                HStack {
+                    
                     Text("Photo Sharing")
                         .padding()
                         .font(.system(size: 30, weight: .bold, design: .rounded))
-                        .offset(x: -60, y: -300)
-                }
+                      
+                    
+                    Button{
+                        
+                    }label:
+                    {
+                        Image("instagram-icon")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 70, height: 70)
+                    }
+                } .offset(x: 0, y: -320)
                 
                 
 //                // Activities topic selector

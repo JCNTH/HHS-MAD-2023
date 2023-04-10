@@ -186,12 +186,12 @@ struct CalendarUI: View {
                         
                         VStack(alignment: .leading)
                         {
-                            Text("Teacher Non-Duty Day")
+                            Text("Multicultural Week")
                                 .font(.title).bold()
                             
-                            Text("Whole Day")
-                                .font(.caption)
-                                .foregroundColor(.gray)
+//                            Text("Whole Day")
+//                                .font(.caption)
+//                                .foregroundColor(.gray)
                         }.frame(maxWidth: .infinity, alignment: .leading)
                         
                         Image(systemName: "timer")
