@@ -267,6 +267,9 @@ struct Activities: View {
 //                                .onChange(of: activitiesCurrent) {_ in save()  }
                                   
                         }
+                        
+                        
+                        
                     }
                 }
             }
@@ -296,7 +299,32 @@ struct Activities: View {
                 HHS_MAD_2023.Academics()
             }
             
+           
+            
             MenuScreen(home: $home, messages: $messages, calendar: $calendar, academics2: $academics2)
+            
+            ZStack{
+                
+               
+
+                
+//                Circle()
+//                    .trim(from: 0, to: 0.5)
+//                    .frame(width: 400, height: 80)
+//                    .foregroundColor(Color(red: 231/255, green: 255/255, blue: 231/255))
+//                    .offset(y: -65)
+//    //                .clipShape(Circle())
+//
+//
+//
+                Image("MAD-LOGO-TRANSPARENT")
+                    .resizable()
+                    .frame(width: 70, height: 75)
+                    .foregroundColor(Color(red: 231/255, green: 255/255, blue: 231/255))
+                    .offset(y: -65)
+
+            }.offset(y: 400)
+
         }
         
         
@@ -367,6 +395,9 @@ struct Button_Menu: View{
     @Binding var other3: Bool
     
     var body: some View{
+        
+//        Image(uiImage: UIImage(systemName: "\(text).fill") ?? UIImage(systemName: "questionmark.square.fill")!)
+
         Button{
             state = true
             other1 = false
@@ -375,9 +406,9 @@ struct Button_Menu: View{
         } label: {
             
             ZStack{
-                Image(systemName: text)
+                Image(systemName: state ? text + ".fill" : text)
                     .resizable()
-                    .frame(width: 45, height: 40)
+                    .frame(width: 35, height: 30)
                     .foregroundColor(state ? Color(red: 85/255, green: 172/255, blue: 85/255):Color.white)
                     
                     
@@ -399,23 +430,50 @@ struct MenuScreen: View{
     @Binding var messages: Bool
     @Binding var calendar: Bool
     @Binding var academics2: Bool
-    @State var Home = "house.fill"
-    @State var Messages = "message.fill"
-    @State var Calendar = "calendar"
-    @State var Academics = "book.fill"
+    @State var Home = "house"
+    @State var Messages = "message"
+    @State var Calendar = "list.bullet.rectangle"
+    @State var Academics = "book"
     
     var body: some View{
         
         ZStack{
-            RoundedRectangle( cornerRadius: 45, style: .continuous)
-                .frame(width: 400, height: 100)
             
-            HStack(spacing: 30){
-                Button_Menu(text: $Home, state: $home, other1: $messages, other2: $calendar, other3: $academics2 )
-                Button_Menu(text: $Messages, state: $messages, other1: $home, other2: $calendar, other3: $academics2 )
-                Button_Menu(text: $Calendar, state: $calendar, other1: $messages, other2: $home, other3: $academics2 )
-                Button_Menu(text: $Academics, state: $academics2, other1: $messages, other2: $calendar, other3: $home )
-            }.offset(y: -20)
+            HStack(spacing: 0){
+                CustomShape()
+                    .fill(Color.black, style: FillStyle(eoFill: true, antialiased: true))
+                    .shadow(radius: 10.0)
+                    .rotationEffect(.radians(.pi/2))
+                    .frame(width: 130, height: 150, alignment: .center)
+                  
+                
+                RoundedRectangle( cornerRadius: 0, style: .continuous)
+                    .frame(width: 150, height: 130)
+                
+              
+    //                .clipShape(Circle())
+           
+                
+            }  .offset(x: 75)
+        
+  
+            
+                
+            
+            HStack(spacing: 100){
+                HStack(spacing: 35){
+                    Button_Menu(text: $Home, state: $home, other1: $messages, other2: $calendar, other3: $academics2 )
+                    Button_Menu(text: $Messages, state: $messages, other1: $home, other2: $calendar, other3: $academics2 )
+                   
+                }
+                
+                HStack(spacing: 35){
+                    Button_Menu(text: $Calendar, state: $calendar, other1: $messages, other2: $home, other3: $academics2 )
+                    Button_Menu(text: $Academics, state: $academics2, other1: $messages, other2: $calendar, other3: $home )
+                }
+            }.offset(y: -30)
+            
+            
         }.padding(.top, 800)
         
 
@@ -475,6 +533,26 @@ struct ClubDescription: View{
         }
         
        
+    }
+}
+
+
+struct CustomShape: Shape {
+    let screenRect = UIScreen.main.bounds
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
+    
+    func path(in rect: CGRect) -> Path {
+        
+//        rect.setWidth = width
+//        rect.height = height
+        
+        return Path { path in
+            path.addArc(center: CGPoint(x: rect.minX/2, y: rect.midY), radius: rect.height/4, startAngle: Angle(degrees: 90), endAngle: Angle(degrees: 270), clockwise: true)
+            path.addRect(CGRect(x: 0, y: rect.minY, width: rect.width, height: 2*width))
+
+        }
+        
     }
 }
 
