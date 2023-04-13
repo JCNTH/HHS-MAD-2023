@@ -159,7 +159,7 @@ struct Activities: View {
 
                                     }
                                     
-                                }.padding(.top, height/2.1)
+                                }.padding(.top, height/2)
                                 
                                 if(showDescription)
                                 {
@@ -278,7 +278,7 @@ struct Activities: View {
             if(messages)
             {
                 Messages()
-                    .padding(.top, height/15)
+                    .padding(.top, height/10)
                   
             }
             
