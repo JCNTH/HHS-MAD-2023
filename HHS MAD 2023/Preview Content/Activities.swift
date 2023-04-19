@@ -7,7 +7,23 @@
 
 import SwiftUI
 
+import SwiftUI
+import FirebaseCore
+
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    FirebaseApp.configure()
+
+    return true
+  }
+}
+
+
 struct Activities: View {
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     //Boolean variables for activities page
     @State var photos = false
@@ -66,7 +82,7 @@ struct Activities: View {
                 // Creates the profile picture of the user and also displays the user's name.
                 // Additional information is displayed such as the current weather at the school.
                 // as well as a picture.
-                var introSection = Group {
+                let introSection = Group {
                     Text("Hello " + name)
                         .padding()
                         .font(.system(size: 25, weight: .bold, design: .rounded))
@@ -86,7 +102,7 @@ struct Activities: View {
                 }
                 
                 //School image and weather section
-                var imageAndWeather = Group {
+                let imageAndWeather = Group {
                     Image ("school")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -115,7 +131,7 @@ struct Activities: View {
                     //Middle Section
                     Group {
                         
-                        var activitiesTopicSelector = ZStack {
+                        let activitiesTopicSelector = ZStack {
                             RoundedRectangle( cornerRadius: 13, style: .continuous)
                                 .frame(width: width/1.2, height: height/20)
                             
@@ -150,7 +166,7 @@ struct Activities: View {
                         //Clubs Page
                         if(clubs){
                             ZStack {
-                                var clubDescriptions = ScrollView {
+                                let clubDescriptions = ScrollView {
                                     ClubDescription(image: $FBLA_IMAGE, name: $FBLA_NAME, showDescription: $showDescription, state: $FBLA_STATE)
                                     ClubDescription(image: $ROBOTICS_IMAGE, name: $ROBOTICS_NAME, showDescription: $showDescription, state: $ROBOTICS_STATE)
                                     ClubDescription(image: $CHESS_IMAGE, name: $CHESS_NAME, showDescription: $showDescription, state: $CHESS_STATE)
@@ -159,12 +175,12 @@ struct Activities: View {
                                 }
                                 VStack{
                                     clubDescriptions
-                                }.padding(.top, height/2.1)                                
+                                }.padding(.top, height/2.1)
                                 if(showDescription)
                                 {
                                     //If "FBLA" club is selected
                                     if(FBLA_STATE){
-                                        var FBLAdesc =
+                                        let FBLAdesc =
                                         ZStack{
                                             //FBLA club description
                                             ScrollView{
@@ -338,6 +354,7 @@ struct Activities: View {
 //        activitiesCurrent = activity_saved
 //
 //      }
+
 
 struct Activities_Previews: PreviewProvider {
     static var previews: some View {
