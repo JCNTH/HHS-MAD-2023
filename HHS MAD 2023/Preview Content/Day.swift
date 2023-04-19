@@ -10,7 +10,7 @@ import SwiftUI
 struct Day: View {
     var date: String
     var events:Array<String>
-    @Binding var activeEvent: String
+    var activeEvent: String
 
 
     var body: some View {
@@ -18,6 +18,7 @@ struct Day: View {
             HStack{
                 Text(date)
                 .font(.title3)
+                .foregroundColor(Color(red: 85/255, green: 172/255, blue: 85/255))
                 .padding([.top, .leading])
                 Spacer()
             }
@@ -32,7 +33,7 @@ struct Day: View {
                 HStack {
                     Spacer()
                     Button("CAASPP Testing") {
-                        activeEvent = "CAASPP";
+//                        activeEvent = "CAASPP";
                     }
                     .padding(5.0)
                 }.background(Color(hue: 0.335, saturation: 0.378, brightness: 0.681))
@@ -50,3 +51,10 @@ struct Day: View {
     }
 }
 
+
+struct Day_Preview: PreviewProvider {
+    static var previews: some View {
+        let random = "CAASPP";
+        Day(date:"Mon 13", events:[], activeEvent:"Baseball Game")
+    }
+}
