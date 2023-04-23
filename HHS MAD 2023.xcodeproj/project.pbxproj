@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B0D87A929F4EE560031D471 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EB336729936F2000F1CBE8 /* Activities.swift */; };
 		2B382F1029AEE55A001430D0 /* Upcoming Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B382F0F29AEE55A001430D0 /* Upcoming Events.swift */; };
 		2B80F5782993666000B7E671 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B80F5772993666000B7E671 /* HomeScreen.swift */; };
 		2BD60E48298603E200349CB8 /* HHS_MAD_2023App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD60E47298603E200349CB8 /* HHS_MAD_2023App.swift */; };
@@ -25,7 +26,6 @@
 		2BD9619A29BD5BBB009C6AE0 /* MessageField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9619929BD5BBB009C6AE0 /* MessageField.swift */; };
 		2BD9619D29BD5DBC009C6AE0 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9619C29BD5DBC009C6AE0 /* Messages.swift */; };
 		2BD961A129BFBD07009C6AE0 /* CalendarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD961A029BFBD07009C6AE0 /* CalendarPage.swift */; };
-		31EB336829936F2000F1CBE8 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EB336729936F2000F1CBE8 /* Activities.swift */; };
 		A6B08EDD29EF9A55006D3A63 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A6B08EDC29EF9A55006D3A63 /* FirebaseAnalytics */; };
 		A6B08EDF29EF9AA6006D3A63 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6B08EDE29EF9AA5006D3A63 /* GoogleService-Info.plist */; };
 		A6D2235529ADC8C200B4B953 /* EventPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D2235429ADC8C200B4B953 /* EventPage.swift */; };
@@ -73,7 +73,7 @@
 		2BD9619929BD5BBB009C6AE0 /* MessageField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageField.swift; sourceTree = "<group>"; };
 		2BD9619C29BD5DBC009C6AE0 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
 		2BD961A029BFBD07009C6AE0 /* CalendarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPage.swift; sourceTree = "<group>"; };
-		31EB336729936F2000F1CBE8 /* Activities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
+		31EB336729936F2000F1CBE8 /* Activities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Activities.swift; path = "/Users/julian/Desktop/HHS MAD 2023/HHSMAD/HHS MAD 2023/Preview Content/Activities.swift"; sourceTree = "<absolute>"; };
 		A6B08EDE29EF9AA5006D3A63 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A6D2235429ADC8C200B4B953 /* EventPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPage.swift; sourceTree = "<group>"; };
 		A6E5E04629A7FB7F00B3E026 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
@@ -130,9 +130,9 @@
 		2BD60E46298603E200349CB8 /* HHS MAD 2023 */ = {
 			isa = PBXGroup;
 			children = (
-				A6B08EDE29EF9AA5006D3A63 /* GoogleService-Info.plist */,
 				2BD60E47298603E200349CB8 /* HHS_MAD_2023App.swift */,
 				2BD60E49298603E200349CB8 /* ContentView.swift */,
+				A6B08EDE29EF9AA5006D3A63 /* GoogleService-Info.plist */,
 				2BD60E4B298603E400349CB8 /* Assets.xcassets */,
 				2BD60E4D298603E400349CB8 /* Preview Content */,
 			);
@@ -336,10 +336,10 @@
 				A6D2235529ADC8C200B4B953 /* EventPage.swift in Sources */,
 				2BD9618E29BD1168009C6AE0 /* ActivitesPage.swift in Sources */,
 				2BD9619A29BD5BBB009C6AE0 /* MessageField.swift in Sources */,
-				31EB336829936F2000F1CBE8 /* Activities.swift in Sources */,
 				2BD9619429BD591D009C6AE0 /* Message.swift in Sources */,
 				BD141D9529BFA9E800885DD0 /* PhotoSharing.swift in Sources */,
 				2BD9619229BD5829009C6AE0 /* TitleRow.swift in Sources */,
+				2B0D87A929F4EE560031D471 /* Activities.swift in Sources */,
 				2BD9619629BD59D2009C6AE0 /* MessageBubble .swift in Sources */,
 				2B382F1029AEE55A001430D0 /* Upcoming Events.swift in Sources */,
 				2BD9619829BD5B21009C6AE0 /* Extensions.swift in Sources */,

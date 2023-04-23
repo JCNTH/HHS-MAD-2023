@@ -7,23 +7,7 @@
 
 import SwiftUI
 
-import SwiftUI
-import FirebaseCore
-
-
-class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
-
-    return true
-  }
-}
-
-
 struct Activities: View {
-    
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     //Boolean variables for activities page
     @State var photos = false
@@ -77,77 +61,76 @@ struct Activities: View {
         ZStack{
             //Start page, home page
             if (home) {
-                
-                // Introductory Section.
-                // Creates the profile picture of the user and also displays the user's name.
-                // Additional information is displayed such as the current weather at the school.
-                // as well as a picture.
-                let introSection = Group {
-                    Text("Hello " + name)
-                        .padding()
-                        .font(.system(size: 25, weight: .bold, design: .rounded))
-                        .offset(x: -width/4.8, y: -360)
-                        
-                    Text("Have a Nice Day")
-                        .padding()
-                        .font(.system(size: 15, design: .rounded))
-                        .offset(x: -width/4.2, y: -330)
-                    
-                    Image ("hot")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .clipShape(Circle())
-                        .frame(width:80.0, height: 80.0, alignment: .center)
-                        .offset(x:width/3.3, y: -355)
-                }
-                
-                //School image and weather section
-                let imageAndWeather = Group {
-                    Image ("school")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .cornerRadius(10)
-                        .frame(width: width/1.2, height: height/9)
-                        .offset(x:0, y:-220)
-                    
-                    Text("64° F ⛅")
-                        .padding()
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .offset(x: -width/3.3, y: -height/5)
-                        .foregroundColor(.white)
-                }
-                
                 ZStack {
                     //Background color
                     Color(red: 231/255, green: 255/255, blue: 231/255)
                         .ignoresSafeArea()
-                        
+                 
                     // Top section
                     Group {
-                        introSection
-                        imageAndWeather
+                        
+                        // Introductory Section.
+                        // Creates the profile picture of the user and also displays the user's name.
+                        // Additional information is displayed such as the current weather at the school.
+                        // as well as a picture.
+                        Group {
+                            Text("Hello " + name)
+                                .padding()
+                                .font(.system(size: 25, weight: .bold, design: .rounded))
+                                .offset(x: -width/4.8, y: -360)
+                                
+                            Text("Have a Nice Day")
+                                .padding()
+                                .font(.system(size: 15, design: .rounded))
+                                .offset(x: -width/4.2, y: -330)
+                            
+                            Image ("hot")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .clipShape(Circle())
+                                .frame(width:80.0, height: 80.0, alignment: .center)
+                                .offset(x:width/3.3, y: -355)
+                        }
+                        
+                        //School image and weather section
+                        Group {
+                            Image ("school")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .cornerRadius(10)
+                                .frame(width: width/1.2, height: height/9)
+                                .offset(x:0, y:-220)
+                            
+                            Text("64° F ⛅")
+                                .padding()
+                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                                .offset(x: -width/3.3, y: -height/5)
+                                .foregroundColor(.white)
+                        }
+                        
                     }
                     
                     //Middle Section
                     Group {
                         
-                        let activitiesTopicSelector = ZStack {
-                            RoundedRectangle( cornerRadius: 13, style: .continuous)
-                                .frame(width: width/1.2, height: height/20)
-                            
-                            HStack(spacing: 20){
-                                Button_(text: $Social, state: $social, other1: $events, other2: $clubs, other3: $photos)
-                                Button_(text: $Events, state: $events, other1: $social, other2: $clubs, other3: $photos)
-                                Button_(text: $Clubs, state: $clubs, other1: $events, other2: $social, other3: $photos)
-                                Button_(text: $Photos, state: $photos, other1: $events, other2: $clubs, other3: $social)
-                            }
-                        }
-                        
                         // Activities topic selector
                         Group {
-                            activitiesTopicSelector
+                            
+                            ZStack{
+                                RoundedRectangle( cornerRadius: 13, style: .continuous)
+                                    .frame(width: width/1.2, height: height/20)
+                                
+                                HStack(spacing: 20){
+                                    Button_(text: $Social, state: $social, other1: $events, other2: $clubs, other3: $photos)
+                                    Button_(text: $Events, state: $events, other1: $social, other2: $clubs, other3: $photos)
+                                    Button_(text: $Clubs, state: $clubs, other1: $events, other2: $social, other3: $photos)
+                                    Button_(text: $Photos, state: $photos, other1: $events, other2: $clubs, other3: $social)
+                                    
                                
-                        }.padding(.bottom, height/5)
+                            }
+                               
+                            }
+                            .padding(.bottom, height/5)
                         }
                         
                         
@@ -166,89 +149,99 @@ struct Activities: View {
                         //Clubs Page
                         if(clubs){
                             ZStack {
-                                let clubDescriptions = ScrollView {
-                                    ClubDescription(image: $FBLA_IMAGE, name: $FBLA_NAME, showDescription: $showDescription, state: $FBLA_STATE)
-                                    ClubDescription(image: $ROBOTICS_IMAGE, name: $ROBOTICS_NAME, showDescription: $showDescription, state: $ROBOTICS_STATE)
-                                    ClubDescription(image: $CHESS_IMAGE, name: $CHESS_NAME, showDescription: $showDescription, state: $CHESS_STATE)
-                                    ClubDescription(image: $SHOGI_IMAGE, name: $SHOGI_NAME, showDescription: $showDescription, state: $SHOGI_STATE)
-                                    ClubDescription(image: $DATA_IMAGE, name: $DATA_NAME, showDescription: $showDescription, state: $DATA_STATE)
-                                }
                                 VStack{
-                                    clubDescriptions
-                                }.padding(.top, height/2.1)
+                                    ScrollView{
+                                        ClubDescription(image: $FBLA_IMAGE, name: $FBLA_NAME, showDescription: $showDescription, state: $FBLA_STATE)
+                                        ClubDescription(image: $ROBOTICS_IMAGE, name: $ROBOTICS_NAME, showDescription: $showDescription, state: $ROBOTICS_STATE)
+                                        ClubDescription(image: $CHESS_IMAGE, name: $CHESS_NAME, showDescription: $showDescription, state: $CHESS_STATE)
+                                        ClubDescription(image: $SHOGI_IMAGE, name: $SHOGI_NAME, showDescription: $showDescription, state: $SHOGI_STATE)
+                                        ClubDescription(image: $DATA_IMAGE, name: $DATA_NAME, showDescription: $showDescription, state: $DATA_STATE)
+
+                                    }
+                                    
+                                }.padding(.top, height/2)
+                                
                                 if(showDescription)
                                 {
                                     //If "FBLA" club is selected
                                     if(FBLA_STATE){
-                                        let FBLAdesc =
-                                        ZStack{
-                                            //FBLA club description
-                                            ScrollView{
-                                                Button{
-                                                    FBLA_STATE = false
+                                            ZStack{
+                                                //FBLA club description
+                                                ScrollView{
+                                                    Button{
+                                                      FBLA_STATE = false
                                                     showDescription = false
-                                                } label: {
-                                                    Image(systemName: "xmark")
-                                                        .resizable()
-                                                        .frame(width: 20, height: 20)
-                                                    
-                                                }.offset(x: -width/3, y: height/20)
-                                                
-                                                VStack(alignment: .center, spacing: 20){
-                                                    AsyncImage(url: URL(string: FBLA_IMAGE)) { image in
-                                                        image.resizable()
-                                                            .aspectRatio(contentMode: .fill)
-                                                            .frame(width: 100, height: 80)
-                                                            .cornerRadius(50)
+                                                    } label: {
+                                                        Image(systemName: "xmark")
+                                                            .resizable()
+                                                            .frame(width: 20, height: 20)
+
                                                         
-                                                    } placeholder: {
-                                                        ProgressView()
-                                                    }
-                                                    
-                                                    
-                                                    
-                                                    Text("FBLA")
-                                                        .font(.largeTitle).bold()
-                                                        .foregroundColor(Color.green)
-                                                    Text("Meetings: Monthly")
-                                                        .font(.system(size: 20, weight: .bold, design: .default))
-                                                    Text("Membership: Try-Out Based")
-                                                        .font(.system(size: 20, weight: .bold, design: .default))
-                                                    //                                                padding()
-                                                    
-                                                    Text("About The Club")
-                                                        .foregroundColor(Color.blue)
-                                                        .font(.system(size: 30, weight: .bold, design: .default))
-                                                        .frame(width: 1000, height: 60)
-                                                    
-                                                    Text("Homestead FBLA currently has 4 projects. The projects consist of the American Enterprise Project, the Community Service Project, the Partnership with Business Project, and the Software Ventures Project.")
-                                                        .fixedSize(horizontal: false, vertical: true)
-                                                        .font(.system(size: 18, weight: .bold, design: .default))
-                                                        .multilineTextAlignment(.center)
-                                                    
-                                                    Text("Achievements")
-                                                        .foregroundColor(Color.blue)
-                                                        .font(.system(size: 30, weight: .bold, design: .default))
-                                                        .frame(width: 1000, height: 60)
-                                                    
-                                                    Text("23 Bay Section Championships")
-                                                        .font(.system(size: 18, weight: .bold, design: .default))
-                                                    
-                                                    Text("21 State Championships")
-                                                        .font(.system(size: 18, weight: .bold, design: .default))
-                                                    
-                                                    Text("20 National Championships")
-                                                        .font(.system(size: 18, weight: .bold, design: .default))
-                                                    
-                                                }.padding(.top, height/10).frame(width: UIScreen.main.bounds.width/1.4, height: 500).offset(y: 80)
-                                                
-                                                
-                                            }.frame(width: width/1.2, height: height/1.2)
-                                                .background(Rectangle().fill(Color.white).shadow(radius: 3).frame(width: width/1.2, height: height/1.2))
                                             
-                                        }.aspectRatio(1, contentMode: .fit)
-                                        
-                                    FBLAdesc
+                                                    }.offset(x: -width/3, y: height/20)
+                                                      
+                                                    
+                                                    VStack(alignment: .center, spacing: 20){
+                                                    
+                                                        AsyncImage(url: URL(string: FBLA_IMAGE)) { image in
+                                                            image.resizable()
+                                                                .aspectRatio(contentMode: .fill)
+                                                                .frame(width: 100, height: 80)
+                                                                .cornerRadius(50)
+
+                                                        } placeholder: {
+                                                            ProgressView()
+                                                        }
+                                                        
+                                                        
+                                                        
+                                                        Text("FBLA")
+                                                            .font(.largeTitle).bold()
+                                                            .foregroundColor(Color.green)
+                                                        Text("Meetings: Monthly")
+                                                            .font(.system(size: 20, weight: .bold, design: .default))
+                                                        Text("Membership: Try-Out Based")
+                                                            .font(.system(size: 20, weight: .bold, design: .default))
+        //                                                padding()
+                                                        
+                                                        Text("About The Club")
+                                                            .foregroundColor(Color.blue)
+                                                            .font(.system(size: 30, weight: .bold, design: .default))
+                                                            .frame(width: 1000, height: 60)
+                                                        
+                                                        Text("Homestead FBLA currently has 4 projects. The projects consist of the American Enterprise Project, the Community Service Project, the Partnership with Business Project, and the Software Ventures Project.")
+                                                            .fixedSize(horizontal: false, vertical: true)
+                                                            .font(.system(size: 18, weight: .bold, design: .default))
+                                                            .multilineTextAlignment(.center)
+
+//                                                        Spacer()
+
+                                                        Text("Achievements")
+                                                            .foregroundColor(Color.blue)
+                                                            .font(.system(size: 30, weight: .bold, design: .default))
+                                                            .frame(width: 1000, height: 60)
+                                                        
+                                                        Text("23 Bay Section Championships")
+                                                            .font(.system(size: 18, weight: .bold, design: .default))
+
+                                                        Text("21 State Championships")
+                                                            .font(.system(size: 18, weight: .bold, design: .default))
+
+                                                        Text("20 National Championships")
+                                                            .font(.system(size: 18, weight: .bold, design: .default))
+
+                                                    }.padding(.top, height/10).frame(width: UIScreen.main.bounds.width/1.4, height: 500).offset(y: 80)
+                                                   
+                                                }.frame(width: width/1.2, height: height/1.2)
+                                                .background(Rectangle().fill(Color.white).shadow(radius: 3).frame(width: width/1.2, height: height/1.2))
+
+                                               
+
+                                                
+
+                                            }.aspectRatio(1, contentMode: .fit)
+
+//                                        }
                                        
                                     }
                                     else if(ROBOTICS_STATE) {
@@ -294,7 +287,7 @@ struct Activities: View {
                 if (!self.activeEvent.elementsEqual("none")) {
                     EventPage(eventName:"CASSPP", time:"7 AM", date:"1/1/23", location:"L103", description:"Required for Juniors. Statewide testing to monitor high school learning progress.", activeEvent: $activeEvent)
                 } else {
-                    CalendarPage(activeEvent: activeEvent)
+//                    CalendarPage(activeEvent: $activeEvent)
                 }
             }
             
@@ -354,7 +347,7 @@ struct Activities: View {
 //        activitiesCurrent = activity_saved
 //
 //      }
-
+}
 
 struct Activities_Previews: PreviewProvider {
     static var previews: some View {
@@ -562,4 +555,3 @@ struct CustomShape: Shape {
         
     }
 }
-

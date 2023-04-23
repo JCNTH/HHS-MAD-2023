@@ -9,13 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        CalendarPage(activeEvent: "CAASPP")
+        Activities()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView();
+        ContentView()
     }
 }
 
