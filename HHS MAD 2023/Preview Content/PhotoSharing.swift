@@ -28,7 +28,7 @@ struct PhotoSharing: View {
                         LazyVGrid(columns: [.init(.adaptive(minimum: 200)), .init(.adaptive(minimum: 200))]){
                             ForEach(selectedImageData, id: \.self){dataItem in
                                 if let dataItem = dataItem, let uiImage = UIImage(data: dataItem){
-                                    Image(uiImage: uiImage).resizable().frame(width: 180, height: 150).aspectRatio(contentMode: .fill).cornerRadius(10)
+                                    Image(uiImage: uiImage).resizable().frame(width: width/2, height: height/7).aspectRatio(contentMode: .fill).cornerRadius(10)
                                 }
                             }
                         }
@@ -37,13 +37,13 @@ struct PhotoSharing: View {
                 }
                 else{
                     Spacer()
-                    Text("Please select image by tapping on photo icon on toolbar").foregroundColor(.gray).font(.system(size: 25)).bold().multilineTextAlignment(.center)
+                    Text("Please select image by tapping on pihoto icon on toolbar").foregroundColor(.gray).font(.system(size: 25)).bold().multilineTextAlignment(.center)
                 }
                 Spacer()
                 Text("\(selectedImageData.count) photos")
             }
             
-            .navigationTitle("Photo Album")
+            .navigationTitle("Photo Sharing")
             .toolbar{
                 PhotosPicker(selection: $selectedImage,maxSelectionCount: 50 ,matching: .images, label: {
                     Image(systemName: "photo.fill").tint(.mint)

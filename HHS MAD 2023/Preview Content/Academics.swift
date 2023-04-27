@@ -31,12 +31,28 @@ struct Academics: View {
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     
-    @State var button1 = true
-    @State var button2 = false
-    @State var button3 = false
-    @State var button4 = false
-    
     @State private var TopImage = "math"
+    
+    /*
+    @State var mathImage1 =
+    @State var mathImage2 =
+    @State var mathImage3 =
+     
+    @State var scienceImage1 =
+    @State var scienceImage2 =
+    @State var scienceImage3 =
+
+     @State var ssImage1 =
+     @State var ssImage2 =
+     @State var ssImage3 =
+      
+     @State var otherImage1 =
+     @State var otherImage2 =
+     @State var otherImage3 =
+     
+
+     
+     */
     
     var body: some View {
         
@@ -368,13 +384,12 @@ struct Academics: View {
                         Text("American Studies")
                             .padding()
                             .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .offset(x: 50, y: -260)
+                            .offset(x: 60, y: -260)
                             .foregroundColor(.white)
                         
-                        VStack{
-                            Text("Need help on the")
-                            Text("research project")
-                        }    .padding()
+                        
+                        Text("Need help on research")
+                            .padding()
                             .font(.system(size: 13, design: .rounded))
                             .offset(x: 70, y: -240)
                             .foregroundColor(.white)
@@ -389,7 +404,105 @@ struct Academics: View {
                 }
                 
                 if (other){
+                    Group {
+                        RoundedRectangle( cornerRadius: 13, style: .continuous)
+                            .frame(width: 360, height: 120)
+                            .offset(x: 0, y: -220)
+                        
+                        Image ("Homework")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .cornerRadius(10)
+                            .frame(width: 150, height: 120)
+                            .offset(x:-94, y:-220)
+                        
+                        Text("AP CS")
+                            .padding()
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .offset(x: 40, y: -260)
+                            .foregroundColor(.white)
+                        
+                        
+                        Text("Recursion maze problem")
+                            .padding()
+                            .font(.system(size: 13, design: .rounded))
+                            .offset(x: 80, y: -240)
+                            .foregroundColor(.white)
+                        
+                        Text("↑ 13 ↓")
+                            .padding()
+                            .font(.system(size: 32, design: .rounded))
+                            .offset(x: 50, y: -200)
+                            .foregroundColor(.white)
+                        
+                    }
                     
+                    //Middle Post
+                    Group {
+                        RoundedRectangle( cornerRadius: 13, style: .continuous)
+                            .frame(width: 360, height: 120)
+                            .offset(x: 0, y: -220)
+                        
+                        Image ("Homework")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .cornerRadius(10)
+                            .frame(width: 150, height: 120)
+                            .offset(x:-94, y:-220)
+                        
+                        Text("Principle of Business")
+                            .padding()
+                            .font(.system(size: 13, weight: .bold, design: .rounded))
+                            .offset(x: 60, y: -260)
+                            .foregroundColor(.white)
+                        
+                        
+                        Text("Leadership styles memorization")
+                            .padding()
+                            .font(.system(size: 12, design: .rounded))
+                            .offset(x: 80, y: -240)
+                            .foregroundColor(.white)
+                        
+                        Text("↑ 6 ↓")
+                            .padding()
+                            .font(.system(size: 32, design: .rounded))
+                            .offset(x: 50, y: -200)
+                            .foregroundColor(.white)
+                        
+                    }.offset(x:0, y: 130)
+                    
+                    //Bottom Post
+                    Group {
+                        RoundedRectangle( cornerRadius: 13, style: .continuous)
+                            .frame(width: 360, height: 120)
+                            .offset(x: 0, y: -220)
+                        
+                        Image ("Homework")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .cornerRadius(10)
+                            .frame(width: 150, height: 120)
+                            .offset(x:-94, y:-220)
+                        
+                        Text("Accounting")
+                            .padding()
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .offset(x: 50, y: -260)
+                            .foregroundColor(.white)
+                        
+                        Text("Checking account test help")
+                            .padding()
+                            .font(.system(size: 13, design: .rounded))
+                            .offset(x: 80, y: -240)
+                            .foregroundColor(.white)
+                        
+                        Text("↑ -16 ↓")
+                            .padding()
+                            .font(.system(size: 32, design: .rounded))
+                            .offset(x: 50, y: -200)
+                            .foregroundColor(.white)
+                        
+                    }.offset(x:0, y: 260)
                 }
                 
                 
