@@ -10,6 +10,25 @@ import SwiftUI
 
 
 struct Academics: View {
+    
+    //Boolean variables for activities page
+    @State var math = false
+    @State var science = false
+    @State var socialstudies = false
+    @State var other = true
+    
+    @State var activeEvent = "none";
+    
+    //Text variables
+    @State var Math = "Math"
+    @State var Science = "Science"
+    @State var SocialStudies = "Social Studies"
+    @State var Other = "Other"
+    
+    let screenRect = UIScreen.main.bounds
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
+    
     var body: some View {
         
        
@@ -18,7 +37,7 @@ struct Academics: View {
             Color(red: 231/255, green: 255/255, blue: 231/255)
                 .ignoresSafeArea()
             
-            // Top section
+            // Top sectionlike
             Group {
                 // Introductory Section
                 Group {
@@ -30,24 +49,18 @@ struct Academics: View {
                 
                 
                 // Activities topic selector
-                Group {
+                let activitiesTopicSelector = ZStack {
                     RoundedRectangle( cornerRadius: 13, style: .continuous)
-                        .frame(width: 320, height: 50)
-                        .offset(x: 0, y: -315)
+                        .frame(width: width/1.2, height: height/20)
                     
-                    Text("Math     Science      Social Studies     Other")
-                        .padding()
-                        .font(.system(size: 15, design: .rounded))
-                        .offset(x: 0, y: -315)
-                        .foregroundColor(.white)
-                    
-                    RoundedRectangle( cornerRadius: 13, style: .continuous)
-                        .fill(.green)
-                        .frame(width: 50, height: 40)
-                        .offset(x: -123, y: -315)
-                        .opacity(0.5)
-                    
+                    HStack(spacing: 20){
+                        Button_(text: $Math, state: $math, other1: $science, other2: $socialstudies, other3: $other)
+                        Button_(text: $Science, state: $science, other1: $math, other2: $socialstudies, other3: $other)
+                        Button_(text: $SocialStudies, state: $socialstudies, other1: $math, other2: $science, other3: $other)
+                        Button_(text: $Other, state: $other, other1: $math, other2: $science, other3: $socialstudies)
+                    }
                 }
+                
                 
                 //Top Post
                 Group {
