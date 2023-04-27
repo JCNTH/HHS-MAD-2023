@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct MessageField: View {
-    
-    @State private var message = ""
+    @Binding var messageArray: Array<String>
+    @Binding var message: String
 
     var body: some View {
         HStack {
@@ -19,7 +19,8 @@ struct MessageField: View {
                 .disableAutocorrection(true)
 
             Button {
-                print("Message sent")
+                messageArray.append(message)
+                
                 message = ""
             } label: {
                 Image(systemName: "paperplane.fill")
@@ -38,12 +39,12 @@ struct MessageField: View {
     }
 }
 
-struct MessageField_Previews: PreviewProvider {
-    static var previews: some View {
-        MessageField()
-           
-    }
-}
+//struct MessageField_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MessageField()
+//
+//    }
+//}
 
 struct CustomTextField: View {
     var placeholder: Text

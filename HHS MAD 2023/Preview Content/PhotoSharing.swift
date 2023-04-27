@@ -26,10 +26,11 @@ struct PhotoSharing: View {
                     // Show Image
                     ScrollView{
                         LazyVGrid(columns: [.init(.adaptive(minimum: 200)), .init(.adaptive(minimum: 200))]){
-                            ForEach(selectedImageData, id: \.self){dataItem in
-                                if let dataItem = dataItem, let uiImage = UIImage(data: dataItem){
-                                    Image(uiImage: uiImage).resizable().frame(width: 180, height: 150).aspectRatio(contentMode: .fill).cornerRadius(10)
-                                }
+                            ForEach(selectedImageData, id: \.self){ dataItem in
+                               let uiImage = UIImage(data: dataItem)
+                                
+                                Image(uiImage: uiImage!).resizable().frame(width: 180, height: 150).aspectRatio(contentMode: .fill).cornerRadius(10)
+                                
                             }
                         }
                         .padding()

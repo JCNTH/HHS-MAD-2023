@@ -36,10 +36,7 @@ struct Messages: View {
                             VStack{
                                 EnterChat(image: $image2, name: $name2, showPage: $showPage)
                                 EnterChat(image: $image, name: $name, showPage: $showPage)
-//                                EnterChat(image: $image, name: $name, showPage: $showPage)
-//                                EnterChat(image: $image, name: $name, showPage: $showPage)
-//                                EnterChat(image: $image, name: $name, showPage: $showPage)
-//                                EnterChat(image: $image, name: $name, showPage: $showPage)
+
                              
                                
                                
@@ -60,7 +57,8 @@ struct Messages: View {
                         {
                             Image(systemName: "chevron.backward")
                         }
-                        MessagePage()
+                        
+                        MessagePage(messageArray: [String](), showPage: $showPage)
                     }
                   
                 }

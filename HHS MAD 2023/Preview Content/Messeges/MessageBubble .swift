@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MessageBubble: View {
     var message: Message
-    @State private var showTime = false
+    @State private var showTime = true
     
     var body: some View {
         VStack(alignment: message.received ? .leading : .trailing) {
@@ -20,9 +20,7 @@ struct MessageBubble: View {
                     .cornerRadius(30)
             }
             .frame(maxWidth: 300, alignment: message.received ? .leading : .trailing)
-            .onTapGesture {
-                showTime.toggle()
-            }
+            
             
             if showTime {
                 Text("\(message.timestamp.formatted(.dateTime.hour().minute()))")
