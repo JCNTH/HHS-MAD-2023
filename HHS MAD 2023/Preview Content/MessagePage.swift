@@ -11,10 +11,14 @@ struct MessagePage: View {
     @State var messageArray: Array<String>
     @State var message = ""
     @Binding var showPage: Bool
+    @Binding var name: String
+    @Binding var image: URL
+    @Binding var chat: Bool
 //    @State 
     let screenRect = UIScreen.main.bounds
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
+    
     
     var body: some View {
         
@@ -25,6 +29,7 @@ struct MessagePage: View {
                 HStack{
                     
                     Button{
+                        chat = false
                         showPage = false
                     } label:
                     {
@@ -33,7 +38,7 @@ struct MessagePage: View {
                             .frame(width: 15, height: 25)
                     }
                     
-                    TitleRow()
+                    TitleRow(imageUrl: $image, name: $name)
                     
                     
                   
@@ -48,10 +53,17 @@ struct MessagePage: View {
                    
                         ScrollView{
                             ForEach(messageArray, id: \.self) { text in MessageBubble(
-                                
                                 message: Message(id: "123", text: text, received: true, timestamp: Date()))
-                                
                             }
+                            
+                            if(!messageArray.isEmpty)
+                            {
+                                MessageBubble( message: Message(id: "123", text: "Thank you for reporting the bug! Our moderation team will review it as soon as possible! We will get back to you soon.", received: true, timestamp: Date()))
+                                    .offset(x: 30)
+                            }
+                           
+                            
+                            
                         }.padding(.top, 10)
                             .cornerRadius(30, corners: [.topLeft, .topRight])
                             .frame(width: width, height: 1.7*height/3)
