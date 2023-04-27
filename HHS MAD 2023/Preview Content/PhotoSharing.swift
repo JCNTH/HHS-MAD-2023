@@ -7,100 +7,59 @@
 
 
 import SwiftUI
+import PhotosUI
 
 
 struct PhotoSharing: View {
+   
+    @State private var selectedImage:[PhotosPickerItem] = []
+    @State private var selectedImageData: [Data] = []
+    
+    let screenRect = UIScreen.main.bounds
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
+    
     var body: some View {
-        
-       
-        ZStack {
-            //Background color
-//            Color(red: 231/255, green: 255/255, blue: 231/255)
-//                .ignoresSafeArea()
-//
-            // Top section
-            Group {
-//                // Introductory Section
-                HStack {
-                    
-                    Text("Photo Sharing")
+        NavigationStack {
+            VStack{
+                if selectedImageData.count > 0{
+                    // Show Image
+                    ScrollView{
+                        LazyVGrid(columns: [.init(.adaptive(minimum: 200)), .init(.adaptive(minimum: 200))]){
+                            ForEach(selectedImageData, id: \.self){dataItem in
+                                if let dataItem = dataItem, let uiImage = UIImage(data: dataItem){
+                                    Image(uiImage: uiImage).resizable().frame(width: 180, height: 150).aspectRatio(contentMode: .fill).cornerRadius(10)
+                                }
+                            }
+                        }
                         .padding()
-                        .font(.system(size: 30, weight: .bold, design: .rounded))
-                      
-                    
-                    Button{
-                        
-                    }label:
-                    {
-                        Image("instagram-icon")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 70, height: 70)
                     }
-                } .offset(x: 0, y: -320)
-                
-                
-//                // Activities topic selector
-//                Group {
-//                    RoundedRectangle( cornerRadius: 13, style: .continuous)
-//                        .frame(width: 320, height: 50)
-//                        .offset(x: 0, y: -315)
-//
-//                    Text("Social     Clubs      Academics     Other")
-//                        .padding()
-//                        .font(.system(size: 15, design: .rounded))
-//                        .offset(x: 0, y: -315)
-//                        .foregroundColor(.white)
-//
-//                    RoundedRectangle( cornerRadius: 13, style: .continuous)
-//                        .fill(.green)
-//                        .frame(width: 50, height: 40)
-//                        .offset(x: -105, y: -315)
-//                        .opacity(0.5)
-//
-//                }
-                
-                Image ("ScrollBar")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .cornerRadius(10)
-                    .frame(width: 300, height: 500)
-                    .offset(x:-160, y:-130)
-                
-                Group {
-                    Image ("Activity1")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .cornerRadius(10)
-                        .frame(width: 150, height: 250)
-                        .offset(x:-94, y:65)
-                    
-                    Image ("Activity1")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .cornerRadius(10)
-                        .frame(width: 150, height: 250)
-                        .offset(x:64, y:65)
-                    
-                    Image ("Activity1")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .cornerRadius(10)
-                        .frame(width: 150, height: 250)
-                        .offset(x:-94, y:210)
-                    
-                    Image ("Activity1")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .cornerRadius(10)
-                        .frame(width: 150, height: 250)
-                        .offset(x:64, y:210)
-                    
-                }.offset(x:45, y:-270)
-                
+                }
+                else{
+                    Spacer()
+                    Text("Please select image by tapping on photo icon on toolbar").foregroundColor(.gray).font(.system(size: 25)).bold().multilineTextAlignment(.center)
+                }
+                Spacer()
+                Text("\(selectedImageData.count) photos")
             }
             
-        }
+            .navigationTitle("Photo Album")
+            .toolbar{
+                PhotosPicker(selection: $selectedImage,maxSelectionCount: 50 ,matching: .images, label: {
+                    Image(systemName: "photo.fill").tint(.mint)
+                })
+                .onChange(of: selectedImage){newItem in
+                    Task{
+                        selectedImage = []
+                        for item in newItem {
+                            if let data = try? await item.loadTransferable(type: Data.self){
+                                selectedImageData.append(data)
+                            }
+                        }
+                    }
+                }
+            }
+        } .offset(x: 0, y: -height/5)
     }
 }
 
