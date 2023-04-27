@@ -29,6 +29,11 @@ struct Academics: View {
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     
+    @State var button1 = true
+    @State var button2 = false
+    @State var button3 = false
+    @State var button4 = false
+    
     var body: some View {
         
        
@@ -54,10 +59,10 @@ struct Academics: View {
                         .frame(width: width/1.2, height: height/20)
                     
                     HStack(spacing: 20){
-                        Button_(text: $Math, state: $math, other1: $science, other2: $socialstudies, other3: $other)
-                        Button_(text: $Science, state: $science, other1: $math, other2: $socialstudies, other3: $other)
-                        Button_(text: $SocialStudies, state: $socialstudies, other1: $math, other2: $science, other3: $other)
-                        Button_(text: $Other, state: $other, other1: $math, other2: $science, other3: $socialstudies)
+                        button1(text: $Math, state: $math, other1: $science, other2: $socialstudies, other3: $other)
+                        button2(text: $Science, state: $science, other1: $math, other2: $socialstudies, other3: $other)
+                        button3(text: $SocialStudies, state: $socialstudies, other1: $math, other2: $science, other3: $other)
+                        button4(text: $Other, state: $other, other1: $math, other2: $science, other3: $socialstudies)
                     }
                 }
                 
