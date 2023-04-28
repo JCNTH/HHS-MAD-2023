@@ -40,7 +40,7 @@ struct PhotoSharing: View {
                 }
                 else{
                     Spacer()
-                    Text("Please select image by tapping on pihoto icon on toolbar").foregroundColor(.gray).font(.system(size: 25)).bold().multilineTextAlignment(.center)
+                    Text("Please select image by tapping on photo icon on toolbar").foregroundColor(.gray).font(.system(size: 25)).bold().multilineTextAlignment(.center)
                 }
                 Spacer()
                 Text("\(selectedImageData.count) photos")
