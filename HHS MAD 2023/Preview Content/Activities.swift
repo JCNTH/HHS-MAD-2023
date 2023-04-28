@@ -168,7 +168,7 @@ struct Activities: View {
                             }
                                
                             }
-                            .padding(.bottom, height/5)
+                            .padding(.bottom, height/5.5)
                         }
                         
                         
@@ -539,7 +539,7 @@ struct ClubDescription: View{
             
             ZStack {
                 RoundedRectangle( cornerRadius: 20, style: .continuous)
-                    .frame(width: 370, height: 100)
+                    .frame(width: width/1.1, height: height/10)
                     .foregroundColor(Color.white)
                 
                 HStack(spacing: 20){

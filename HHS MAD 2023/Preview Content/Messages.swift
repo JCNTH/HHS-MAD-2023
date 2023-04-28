@@ -36,12 +36,13 @@ struct Messages: View {
     var body: some View {
         
         ZStack{
-            //Background color
-            Color(red: 231/255, green: 255/255, blue: 231/255)
-                .ignoresSafeArea()
+           
             
             // Top section
             Group {
+                //Background color
+                Color(red: 231/255, green: 255/255, blue: 231/255)
+                    .ignoresSafeArea()
                 // Introductory Section
                 
                 if(!showPage){
@@ -119,7 +120,7 @@ struct Messages: View {
             
                 
             }
-        }
+        }.offset(y: -40)
        
        
         
