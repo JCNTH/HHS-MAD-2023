@@ -58,7 +58,7 @@ struct Activities: View {
     @State var activitiesCurrent = ActivityManager()
     
     @State private var currentIndex = 0
-    let images : [String] = ["1", "2", "3"]
+    let images = ["https://upload.wikimedia.org/wikipedia/commons/a/a5/Homestead_Quad_Cupertino.jpeg", "https://www.carducciassociates.com/images/uploads/projects/_ansel_crops/HOMESTEAD_HIGH_SCHOOL_06-1051-1470849515.jpg", "https://d2rzw8waxoxhv2.cloudfront.net/featured/xlarge/hhs95014/1670859681812-601-88.jpeg"]
     
     var body: some View {
         ZStack{
@@ -98,11 +98,22 @@ struct Activities: View {
                         //School image and weather section
                         Group {
                             VStack {
-                                Image (images [currentIndex])
-                                    .resizable ()
-                                    .scaledToFit ()
+//                                Image(URL(images[currentIndex]))
+//                                    .resizable ()
+//                                    .scaledToFit ()
+                                
+                                AsyncImage(url: URL(string: images[currentIndex])) { image in
+                                    image.resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 50, height: 50)
+                                        .cornerRadius(50)
+                                    
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                                
                                 HStack{
-                                    ForEach(0..<images.count){ index in
+                                    ForEach(0..<images.count, id: \.self){ index in
                                         Circle()
                                             .fill (self.currentIndex == index ? Color.red : Color.brown)
                                             .frame (width: 10, height: 10)
