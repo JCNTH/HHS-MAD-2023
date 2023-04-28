@@ -36,12 +36,13 @@ struct Messages: View {
     var body: some View {
         
         ZStack{
-            //Background color
-            Color(red: 231/255, green: 255/255, blue: 231/255)
-                .ignoresSafeArea()
+           
             
             // Top section
             Group {
+                //Background color
+                Color(red: 231/255, green: 255/255, blue: 231/255)
+                    .ignoresSafeArea()
                 // Introductory Section
                 
                 if(!showPage){
@@ -87,7 +88,7 @@ struct Messages: View {
 //                            EnterChat(image: $image, name: $name, showPage: $showPage)
 //                                .padding(.vertical, 5)
                         }
-                        .offset(y: -25)
+                        .offset(y: -10)
               
                        
                     }.offset(y: 20)
@@ -119,7 +120,7 @@ struct Messages: View {
             
                 
             }
-        }
+        }.offset(y: -40)
        
        
         

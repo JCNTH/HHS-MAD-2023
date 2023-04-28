@@ -9,7 +9,9 @@
 
 import SwiftUI
 
-@main
+
+
+ @main
 struct HHS_MAD_2023App: App {
     var body: some Scene {
         WindowGroup {

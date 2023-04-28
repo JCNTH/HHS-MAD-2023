@@ -50,7 +50,7 @@ struct CalendarUI: View {
                             .foregroundColor(button1 ? active:inactive)
                             .shadow(radius: button1 ? 5:0)
                         VStack{
-                            Text(getDate())
+                            Text(String(Int(getDate())!-4))
                                 .foregroundColor(Color.white)
                             
                             Text(getMonth().prefix(3))
@@ -78,7 +78,7 @@ struct CalendarUI: View {
                             .foregroundColor(button2 ? active:inactive)
                             .shadow(radius: button2 ? 5:0)
                         VStack{
-                            Text(String(Int(getDate())!+1))
+                            Text(String(Int(getDate())!-3))
                                 .foregroundColor(Color.white)
                             
                             Text(getMonth().prefix(3))
@@ -103,7 +103,7 @@ struct CalendarUI: View {
                             .foregroundColor(button3 ? active:inactive)
                             .shadow(radius: button3 ? 5:0)
                         VStack{
-                            Text(String(Int(getDate())!+2))
+                            Text(String(Int(getDate())!-2))
                                 .foregroundColor(Color.white)
                             
                             Text(getMonth().prefix(3))
@@ -128,7 +128,7 @@ struct CalendarUI: View {
                             .foregroundColor(button4 ? active:inactive)
                             .shadow(radius: button4 ? 5:0)
                         VStack{
-                            Text(String(Int(getDate())!+3))
+                            Text(String(Int(getDate())!-1))
                                 .foregroundColor(Color.white)
                             
                             Text(getMonth().prefix(3))
@@ -154,7 +154,7 @@ struct CalendarUI: View {
                             .foregroundColor(button5 ? active:inactive)
                             .shadow(radius: button5 ? 5:0)
                         VStack{
-                            Text(String(Int(getDate())!+4))
+                            Text(String(Int(getDate())!))
                                 .foregroundColor(Color.white)
                             
                             Text(getMonth().prefix(3))

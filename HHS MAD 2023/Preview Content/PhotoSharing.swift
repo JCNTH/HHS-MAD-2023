@@ -52,21 +52,15 @@ struct PhotoSharing: View {
 //                Text("\(selectedImageData.count) photos")
             }
          
-            Button{
-               share = true
-            } label : {
-                Text("hi")
-            }.sheet(isPresented: $share) {
-                ShareSheet(activityItems: ["Hello World"])
-            }
+           
 
             
             
-           
+            HStack(spacing: 30){
                 PhotosPicker(selection: $selectedImage,maxSelectionCount: 50 ,matching: .images, label: {
                     Image(systemName: "plus.app.fill")
                         .resizable()
-                        .frame(width: 80, height: 80)
+                        .frame(width: 60, height: 60)
                         .tint(.mint)
                     
                         
@@ -82,6 +76,18 @@ struct PhotoSharing: View {
                         }
                     }
                 }
+            
+            Button{
+               share = true
+            } label : {
+                Image(systemName: "square.and.arrow.up.fill")
+                    .resizable()
+                    .frame(width: 50, height: 60)
+            }.sheet(isPresented: $share) {
+                ShareSheet(activityItems: ["Selected Images"])
+            }
+        }
+               
               
                 
                
