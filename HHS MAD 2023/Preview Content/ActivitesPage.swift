@@ -118,6 +118,8 @@ struct ActivitiesPage: View {
                     if(createNewActivity)
                     {
                         createActivity(createNewClub: $createNewActivity, numOfClubs: $numOfClubs, Activity: newActivity)
+                        
+                        
                     }
                         
                 }
@@ -244,6 +246,8 @@ struct createActivity: View {
                         .sheet(isPresented: $showImagePicker){
                             ImagePicker(image: $inputImage)
                         }
+                    
+                    Spacer()
                 }
                 
                 
