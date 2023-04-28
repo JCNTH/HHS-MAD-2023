@@ -9,7 +9,7 @@ A comprehensive mobile application designed to connect students of Homestead Hig
 3. [Requirements](#requirements)
 4. [Installation](#installation)
 5. [Usage/Instructions](#usage/instructions)
-6. [Code Snippets](#code snippets)
+6. [CodeSnippets](#codesnippets)
 7. [Contributing](#contributing)
 8. [Support](#support)
 9. [License](#license)
@@ -59,7 +59,7 @@ Upon opening the app for the first time, follow these steps to maximize your exp
 3. Navigate the app using the bottom menu bar to access the Social Feed, Calendar, Messaging System, and Academics.
 4. You can post academic questions, as well as photos to share with peers, and approved accounts (such as teachers or club officers) are able to post events that can be seen and accessed by students. 
 
-## Code Snippets
+## CodeSnippets
 
 Here are some code snippets from the project and their explanations:
 
