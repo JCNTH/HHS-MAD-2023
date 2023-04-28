@@ -9,7 +9,7 @@ A comprehensive mobile application designed to connect students of Homestead Hig
 3. [Requirements](#requirements)
 4. [Installation](#installation)
 5. [Usage/Instructions](#usage/instructions)
-6. [CodeSnippets](#codesnippets)
+6. [CodeSnippet](#codesnippet)
 7. [Contributing](#contributing)
 8. [Support](#support)
 9. [License](#license)
@@ -59,7 +59,7 @@ Upon opening the app for the first time, follow these steps to maximize your exp
 3. Navigate the app using the bottom menu bar to access the Social Feed, Calendar, Messaging System, and Academics.
 4. You can post academic questions, as well as photos to share with peers, and approved accounts (such as teachers or club officers) are able to post events that can be seen and accessed by students. 
 
-## CodeSnippets
+## CodeSnippet
 
 Here are some code snippets from the project and their explanations:
 
@@ -84,35 +84,6 @@ db.collection("event_page").order(by: "timestamp", descending: true).getDocument
 ```
 
 The above code snippet shows the implementation of the retrieval of event feed posts from Firestore in the `getPosts` function. The function queries the `event_page` collection in Firestore and orders the results by timestamp in descending order. The data is then converted into `Event` objects and returned in a `success` result, otherwise an `error` is returned in a `failure` result.
-
-### Messaging System
-
-The Messaging System feature of the HHS-MAD 2023 app is implemented using Firebase Cloud Messaging (FCM), a messaging service provided by Google that allows the app to receive and send messages.
-
-```swift
-// Configure Firebase Cloud Messaging
-Messaging.messaging().delegate = self
-Messaging.messaging().isAutoInitEnabled = true
-if #available(iOS 10.0, *) {
-   UNUserNotificationCenter.current().delegate = self
-   let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-   UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { (granted, error) in
-      if granted {
-         DispatchQueue.main.async {
-            UIApplication.shared.registerForRemoteNotifications()
-         }
-      } else {
-         print(error?.localizedDescription ?? "")
-      }
-   }
-} else {
-   let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-   UIApplication.shared.registerUserNotificationSettings(settings)
-   UIApplication.shared.registerForRemoteNotifications()
-}
-```
-
-The above code snippet shows the configuration of Firebase Cloud Messaging in the `application(_:didFinishLaunchingWithOptions:)` function in the `AppDelegate.swift` file. The code sets the app's messaging delegate, enables automatic initialization of FCM, and requests authorization to display notifications from the user. If the authorization is granted, the app registers for remote notifications.
 
 ## Contributing
 
