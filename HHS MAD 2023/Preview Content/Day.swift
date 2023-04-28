@@ -10,33 +10,44 @@ import SwiftUI
 struct Day: View {
     var date: String
     var events:Array<String>
-    var activeEvent: String
+    @Binding var activeEvent: String
 
 
     var body: some View {
         VStack{
             HStack{
                 Text(date)
-                .font(.title3)
+                .font(.system(size: 25, weight: .bold, design: .rounded))
                 .foregroundColor(Color(red: 85/255, green: 172/255, blue: 85/255))
                 .padding([.top, .leading])
                 Spacer()
             }
             VStack(){
-//                List(events, id: \.self) { event in
-//                    HStack {
-//                        Spacer()
-//                        Text(event)
-//                    }.frame(maxWidth:.infinity, maxHeight:.infinity).background(Color(hue: 0.335, saturation: 0.378, brightness: 0.681))
-//                }.background(Color(hue: 0.335, saturation: 0.378, brightness: 0.681))
-                
-                HStack {
-                    Spacer()
-                    Button("CAASPP Testing") {
-//                        activeEvent = "CAASPP";
+                ForEach(events, id: \.self) { event in
+                    HStack {
+                        Spacer()
+                        Button {
+                            activeEvent = event
+                        } label: {
+                            Text(event)
+                                .font(.system(size: 20, weight: .medium, design: .rounded))
+                                .foregroundColor(Color(red: 85/255, green: 172/255, blue: 85/255))
+                        }
+                        .padding(1.0)
                     }
-                    .padding(5.0)
-                }.background(Color(hue: 0.335, saturation: 0.378, brightness: 0.681))
+                }
+                
+//                HStack {
+//                    Spacer()
+//                    Button {
+//                        activeEvent = events[0]
+//                    } label: {
+//                        Text("CAASPP")
+//                            .font(.system(size: 20, weight: .medium, design: .rounded))
+//                            .foregroundColor(Color(red: 85/255, green: 172/255, blue: 85/255))
+//                    }
+//                    .padding(5.0)
+//                }
 //                HStack {
 //                    Spacer()
 //                    Button("hello") {
@@ -44,17 +55,17 @@ struct Day: View {
 //                    }
 //                    .padding(5.0)
 //                }.background(Color(hue: 0.335, saturation: 0.378, brightness: 0.681))
-            }.padding([.leading, .bottom, .trailing], 20.0)
-        }.background(Color(hue: 0.335, saturation: 0.495, brightness: 0.855))
+            }.padding([.leading, .bottom, .trailing], 20.0).background(Color(hue: 0.335, saturation: 0.189, brightness: 0.897))
+        }.background(Color(hue: 0.335, saturation: 0.35, brightness: 0.83))
         .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
         .shadow(color:.gray, radius: 8, x:4, y:4).fontDesign(.serif)
     }
 }
 
 
-struct Day_Preview: PreviewProvider {
-    static var previews: some View {
-        let random = "CAASPP";
-        Day(date:"Mon 13", events:[], activeEvent:"Baseball Game")
-    }
-}
+//struct Day_Preview: PreviewProvider {
+//    static var previews: some View {
+//        let random = "CAASPP";
+//        Day(date:"Mon 13", events:[], activeEvent:"Baseball Game")
+//    }
+//}
