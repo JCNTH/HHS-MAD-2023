@@ -88,7 +88,7 @@ struct Messages: View {
 //                            EnterChat(image: $image, name: $name, showPage: $showPage)
 //                                .padding(.vertical, 5)
                         }
-                        .offset(y: -25)
+                        .offset(y: -10)
               
                        
                     }.offset(y: 20)
