@@ -91,7 +91,7 @@ struct Messages: View {
                         .offset(y: -10)
               
                        
-                    }.offset(y: 20)
+                    }.offset(y: 50)
                 }
                 
                 if(showPage)
