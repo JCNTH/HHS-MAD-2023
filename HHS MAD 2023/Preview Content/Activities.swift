@@ -105,8 +105,9 @@ struct Activities: View {
                                 AsyncImage(url: URL(string: images[currentIndex])) { image in
                                     image.resizable()
                                         .aspectRatio(contentMode: .fill)
-                                        .frame(width: 50, height: 50)
-                                        .cornerRadius(50)
+                                        .frame(width: width-(width/10), height: 180)
+                                        .cornerRadius(10)
+                                        .offset(x:0, y:160)
                                     
                                 } placeholder: {
                                     ProgressView()
@@ -118,7 +119,7 @@ struct Activities: View {
                                             .fill (self.currentIndex == index ? Color.red : Color.brown)
                                             .frame (width: 10, height: 10)
                                     }
-                                }
+                                } .offset(x: 0, y:130)
                                 
                                 Spacer ()
                             }
@@ -135,10 +136,10 @@ struct Activities: View {
                                 }
                             }
                         }
-                            Text("64° F ⛅")
+                            Text("72° F ⛅")
                                 .padding()
                                 .font(.system(size: 18, weight: .bold, design: .rounded))
-                                .offset(x: -width/3.3, y: -height/5)
+                                .offset(x: -width/3.3, y: -height/6)
                                 .foregroundColor(.white)
                         }
                         
