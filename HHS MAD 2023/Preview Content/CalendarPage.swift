@@ -36,7 +36,7 @@ struct CalendarPage: View {
                     }
                 }
             }
-            .padding(.top, 40.0)
+            .padding(.top, 50.0)
            
             ScrollView{
                 VStack{
