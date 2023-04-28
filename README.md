@@ -8,11 +8,12 @@ A comprehensive mobile application designed to connect students of Homestead Hig
 2. [Features](#features)
 3. [Requirements](#requirements)
 4. [Installation](#installation)
-5. [Usage](#usage)
-6. [Contributing](#contributing)
-7. [Support](#support)
-8. [License](#license)
-9. [Copyright](#copyright)
+5. [Usage/Instructions](#usage/instructions)
+6. [Code Snippets](#code snippets)
+7. [Contributing](#contributing)
+8. [Support](#support)
+9. [License](#license)
+10. [Copyright](#copyright)
 
 ## Introduction
 
