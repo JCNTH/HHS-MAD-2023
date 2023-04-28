@@ -359,11 +359,12 @@ struct Activities: View {
 //
 //
 //
-                Image("MAD-LOGO-TRANSPARENT")
+                Image("MAD_LOGOS-removebg-preview")
                     .resizable()
-                    .frame(width: 70, height: 75)
+                    .frame(width: 105, height: 112.5)
                     .foregroundColor(Color(red: 231/255, green: 255/255, blue: 231/255))
                     .offset(y: -65)
+                    
 
             }.offset(y: 400)
 
