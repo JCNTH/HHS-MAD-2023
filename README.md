@@ -60,34 +60,15 @@ Upon opening the app for the first time, follow these steps to maximize your exp
 
 ## Code Snippets
 
-Sure, here are some code snippets from the project and their explanations:
+Here are some code snippets from the project and their explanations:
 
-### Authentication
+### Events Page
 
-The authentication system of the HHS-MAD 2023 app is implemented using Firebase Authentication, a service provided by Google that allows easy authentication of users with email and password credentials.
-
-```swift
-// Configure Firebase authentication
-Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-   if error == nil {
-      // Authentication succeeded
-      completion(.success(result!.user))
-   } else {
-      // Authentication failed
-      completion(.failure(error!))
-   }
-}
-```
-
-The above code snippet shows the implementation of the Firebase Authentication in the `signIn` function, where the user's email and password credentials are used to authenticate and sign them in. If the authentication is successful, the function returns the user's information in a `success` result, otherwise it returns an `error` in a `failure` result.
-
-### Social Feed
-
-The Social Feed feature of the HHS-MAD 2023 app is implemented using a table view to display posts and comments. The data is stored and retrieved using Cloud Firestore, a NoSQL document-based database provided by Firebase.
+The Social Feed feature of the HHS-MAD 2023 app is implemented using a table view to display posts, with direct linking to wepages. The data is stored and retrieved using Cloud Firestore, a NoSQL document-based database provided by Firebase.
 
 ```swift
 // Retrieve social feed posts from Firestore
-db.collection("social_feed").order(by: "timestamp", descending: true).getDocuments { (snapshot, error) in
+db.collection("event_page").order(by: "timestamp", descending: true).getDocuments { (snapshot, error) in
    if error == nil && snapshot != nil {
       var posts = [Post]()
       for doc in snapshot!.documents {
@@ -101,7 +82,7 @@ db.collection("social_feed").order(by: "timestamp", descending: true).getDocumen
 }
 ```
 
-The above code snippet shows the implementation of the retrieval of social feed posts from Firestore in the `getPosts` function. The function queries the `social_feed` collection in Firestore and orders the results by timestamp in descending order. The data is then converted into `Post` objects and returned in a `success` result, otherwise an `error` is returned in a `failure` result.
+The above code snippet shows the implementation of the retrieval of event feed posts from Firestore in the `getPosts` function. The function queries the `event_page` collection in Firestore and orders the results by timestamp in descending order. The data is then converted into `Event` objects and returned in a `success` result, otherwise an `error` is returned in a `failure` result.
 
 ### Messaging System
 
