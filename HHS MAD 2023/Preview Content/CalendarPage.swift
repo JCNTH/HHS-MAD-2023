@@ -45,21 +45,21 @@ struct CalendarPage: View {
 //                        Day(date:(daysOfWeek[i] + " " + 23 + dayShift, events:[""]), activeEvent:$activeEvent)
 //                    }
                     if (dayShift == 0) {
-                        Day(date:"Sun " + String(23 + dayShift), events:[""], activeEvent:$activeEvent)
+                        Day(date:"Sun " + String(23 + dayShift), events:["Robotics Workshops", "FBLA Panda Express Fundraiser"], activeEvent:$activeEvent)
                         Day(date:"Mon " + String(23 + dayShift + 1), events:["Varsity BBall Game @ MV"], activeEvent:$activeEvent)
                         Day(date:"Tues " + String(23 + dayShift + 2), events:["Robotics Workshops"], activeEvent:$activeEvent)
                         Day(date:"Wed " + String(23 + dayShift + 3), events:["Senior Sunrise"], activeEvent:$activeEvent)
                         Day(date:"Thurs " + String(23 + dayShift + 4), events:["Bike for Boba", "Robotics Workshops"], activeEvent:$activeEvent)
                         Day(date:"Fri " + String(23 + dayShift + 5), events:["Multicultural Night"], activeEvent:$activeEvent)
-                        Day(date:"Sat " + String(23 + dayShift + 6), events:["Robotics Workshops", "FBLA Panda Express Fundraiser"], activeEvent:$activeEvent)
+                        Day(date:"Sat " + String(23 + dayShift + 6), events:[""], activeEvent:$activeEvent)
                     } else {
-                        Day(date:"Sun " + String(23 + dayShift), events:[""], activeEvent:$activeEvent)
+                        Day(date:"Sun " + String(23 + dayShift), events:["Robotics Workshops", "Quiz Bowl MOD Fundraiser"], activeEvent:$activeEvent)
                         Day(date:"Mon " + String(23 + dayShift + 1), events:["JV Badminton @ BCP"], activeEvent:$activeEvent)
                         Day(date:"Tues " + String(23 + dayShift + 2), events:["Robotics Workshops"], activeEvent:$activeEvent)
                         Day(date:"Wed " + String(23 + dayShift + 3), events:[""], activeEvent:$activeEvent)
                         Day(date:"Thurs " + String(23 + dayShift + 4), events:["Robotics Workshops"], activeEvent:$activeEvent)
                         Day(date:"Fri " + String(23 + dayShift + 5), events:["Mustang Homecoming"], activeEvent:$activeEvent)
-                        Day(date:"Sat " + String(23 + dayShift + 6), events:["Robotics Workshops", "Quiz Bowl MOD Fundraiser"], activeEvent:$activeEvent)
+                        Day(date:"Sat " + String(23 + dayShift + 6), events:[""], activeEvent:$activeEvent)
                     }
                     
                 }.padding(.vertical, -80.0).scaleEffect(x:0.8, y:0.8)
