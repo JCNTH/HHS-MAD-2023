@@ -31,6 +31,8 @@ struct Academics: View {
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     
+    @State var forumnpost = false
+    
     @State private var TopImage = "math"
     
     /*
@@ -603,7 +605,15 @@ struct Academics: View {
                 
         }
         
-        
+        /*
+        //Mesagges Page
+        if(forumnpost)
+        {
+            EventPage()
+                .padding(.top, height/10)
+              
+        }
+         */
     }
 }
 

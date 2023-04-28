@@ -49,9 +49,10 @@ struct PhotoSharing: View {
             .navigationTitle("Photo Sharing")
             .toolbar{
                 PhotosPicker(selection: $selectedImage,maxSelectionCount: 50 ,matching: .images, label: {
-                    Image(systemName: "photo.fill").tint(.mint)
+                    Image(systemName: "plus.app.fill").tint(.mint)
+                        
                 })
-                .onChange(of: selectedImage){newItem in
+                .onChange(of: selectedImage){ newItem in
                     Task{
                         selectedImage = []
                         for item in newItem {
@@ -61,11 +62,43 @@ struct PhotoSharing: View {
                         }
                     }
                 }
+                .padding(.top, 90)
+                .padding(.trailing, 75)
+                
+               
             }
         } .offset(x: 0, y: -height/5)
     }
 }
 
+enum NoFlipEdge {
+    case left, right
+}
+
+struct NoFlipPadding: ViewModifier {
+    let edge: NoFlipEdge
+    let length: CGFloat?
+    @Environment(\.layoutDirection) var layoutDirection
+    
+    private var computedEdge: Edge.Set {
+        if layoutDirection == .rightToLeft {
+            return edge == .left ? .trailing : .leading
+        } else {
+            return edge == .left ? .leading : .trailing
+        }
+    }
+    
+    func body(content: Content) -> some View {
+        content
+            .padding(computedEdge, length)
+    }
+}
+
+extension View {
+    func padding(_ edge: NoFlipEdge, _ length: CGFloat? = nil) -> some View {
+        self.modifier(NoFlipPadding(edge: edge, length: length))
+    }
+}
 
 struct PhotoSharing_Previews: PreviewProvider {
     static var previews: some View {
