@@ -61,7 +61,7 @@ Upon opening the app for the first time, follow these steps to maximize your exp
 
 ## CodeSnippet
 
-Here are some code snippets from the project and their explanations:
+Here is a code snippet from the project and its explanation:
 
 ### Events Page
 
