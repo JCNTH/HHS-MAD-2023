@@ -130,7 +130,7 @@ struct Activities: View {
                             .onAppear {
                                 print ("Appear")
                                 
-                                Timer.scheduledTimer(withTimeInterval: 2, repeats: true){ timer in
+                                Timer.scheduledTimer(withTimeInterval: 3, repeats: true){ timer in
                                     if self.currentIndex + 1 == self.images.count {
                                         self.currentIndex = 0
                                     } else{
