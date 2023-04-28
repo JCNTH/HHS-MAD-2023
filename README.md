@@ -22,11 +22,11 @@ The HHS-MAD 2023 mobile application aims to enhance the student experience at Ho
 
 The HHS-MAD 2023 app offers a wide range of features that cater to the needs of the school community, including:
 
-1. **Social Feed**: A dedicated space for students to share photos, ask questions, and collaborate on homework assignments.
+1. **Event Feed**: A dedicated space for students to share events, post photos, and link them to seperate web pages for use. 
 2. **Calendar**: An organized view of school events, academic schedules, and important deadlines.
 3. **Messaging System**: A secure and efficient platform that enables communication between students, parents, and teachers.
-4. **Notifications**: Timely alerts for important news, events, and updates from the school administration.
-5. **Customization**: Personalization options for user profiles, including avatars and display settings.
+4. **Photo Sharing**: A secure and efficient platform that enables communication between students, parents, and teachers, which is moderated by teachers and selected students. 
+5. **Homework Forumns** A space for students to post questions/comments/answers about homework, allowing for students to effectively and safely collaborate. 
 
 ## Requirements
 
@@ -49,14 +49,14 @@ To install the HHS-MAD 2023 app on an iOS device, follow these steps:
 7. Select your device as the build target.
 8. Click the "Build and run" button to build and install the app on your device.
 
-## Usage
+## Usage/Instructions
 
 Upon opening the app for the first time, follow these steps to maximize your experience:
 
 1. Sign in using your school credentials (email and password).
 2. Complete your profile by adding a profile picture and personal information.
 3. Navigate the app using the bottom menu bar to access the Social Feed, Calendar, Messaging System, and Academics.
-4. Customize your app experience in the Academics tab by adjusting notification preferences and selecting your classes.
+4. You can post academic questions, as well as photos to share with peers, and approved accounts (such as teachers or club officers) are able to post events that can be seen and accessed by students. 
 
 ## Code Snippets
 
@@ -64,10 +64,10 @@ Here are some code snippets from the project and their explanations:
 
 ### Events Page
 
-The Social Feed feature of the HHS-MAD 2023 app is implemented using a table view to display posts, with direct linking to wepages. The data is stored and retrieved using Cloud Firestore, a NoSQL document-based database provided by Firebase.
+The Events Page feature of the HHS-MAD 2023 app is implemented using a table view to display posts, with direct linking to wepages. The data is stored and retrieved using Cloud Firestore, a NoSQL document-based database provided by Firebase.
 
 ```swift
-// Retrieve social feed posts from Firestore
+// Retrieve events page posts from Firestore
 db.collection("event_page").order(by: "timestamp", descending: true).getDocuments { (snapshot, error) in
    if error == nil && snapshot != nil {
       var posts = [Post]()
