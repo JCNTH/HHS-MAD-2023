@@ -14,13 +14,16 @@ struct PhotoSharing: View {
    
     @State private var selectedImage:[PhotosPickerItem] = []
     @State private var selectedImageData: [Data] = []
+    @State var share = false
     
     let screenRect = UIScreen.main.bounds
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     
+    let viewController = ViewController()
+    
     var body: some View {
-        NavigationStack {
+        ScrollView {
             VStack{
                 if selectedImageData.count > 0{
                     // Show Image
@@ -30,8 +33,11 @@ struct PhotoSharing: View {
                             ForEach(selectedImageData, id: \.self){ dataItem in
                                let uiImage = UIImage(data: dataItem)
                                 
-                                Image(uiImage: uiImage!).resizable().frame(width: 180, height: 150).aspectRatio(contentMode: .fill).cornerRadius(10)
                                 
+                                Image(uiImage: uiImage!).resizable().frame(width: 180, height: 130).aspectRatio(contentMode: .fill).cornerRadius(10)
+                                
+                               
+//                                Controller.shareToInstaStories()
 
                             }
                         }
@@ -39,19 +45,33 @@ struct PhotoSharing: View {
                     }
                 }
                 else{
-                    Spacer()
-                    Text("Please select image by tapping on photo icon on toolbar").foregroundColor(.gray).font(.system(size: 25)).bold().multilineTextAlignment(.center)
-                }
-                Spacer()
-                Text("\(selectedImageData.count) photos")
-            }
             
-            .navigationTitle("Photo Sharing")
-            .toolbar{
+                    Text("Add Photos ").foregroundColor(.gray).font(.system(size: 25)).bold().multilineTextAlignment(.center)
+                }
+         
+//                Text("\(selectedImageData.count) photos")
+            }
+         
+            Button{
+               share = true
+            } label : {
+                Text("hi")
+            }.sheet(isPresented: $share) {
+                ShareSheet(activityItems: ["Hello World"])
+            }
+
+            
+            
+           
                 PhotosPicker(selection: $selectedImage,maxSelectionCount: 50 ,matching: .images, label: {
-                    Image(systemName: "plus.app.fill").tint(.mint)
+                    Image(systemName: "plus.app.fill")
+                        .resizable()
+                        .frame(width: 80, height: 80)
+                        .tint(.mint)
+                    
                         
                 })
+               
                 .onChange(of: selectedImage){ newItem in
                     Task{
                         selectedImage = []
@@ -62,12 +82,39 @@ struct PhotoSharing: View {
                         }
                     }
                 }
-                .padding(.top, 90)
-                .padding(.trailing, 75)
+              
                 
                
-            }
-        } .offset(x: 0, y: -height/5)
+           
+        }.offset(y: -200)
+    }
+    
+    
+    
+    
+    
+  
+}
+
+struct ShareSheet: UIViewControllerRepresentable {
+    typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
+    
+    let activityItems: [Any]
+    let applicationActivities: [UIActivity]? = nil
+    let excludedActivityTypes: [UIActivity.ActivityType]? = nil
+    let callback: Callback? = nil
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(
+                   activityItems: activityItems,
+                   applicationActivities: applicationActivities)
+               controller.excludedActivityTypes = excludedActivityTypes
+               controller.completionWithItemsHandler = callback
+               return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        // nothing to do here
     }
 }
 
