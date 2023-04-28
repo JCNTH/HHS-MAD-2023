@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct TitleRow: View {
-    var imageUrl = URL(string: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3540&q=80")
-    var name = "Administration"
+    @Binding var imageUrl: URL
+    @Binding var name: String
     
     var body: some View {
         HStack(spacing: 20){
@@ -43,10 +43,10 @@ struct TitleRow: View {
     }
 }
 
-struct TitleRow_Previews: PreviewProvider {
-    static var previews: some View {
-        TitleRow()
-            .background(Color(red: 231/255, green: 255/255, blue: 231/255))
-    }
-}
+//struct TitleRow_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TitleRow()
+//            .background(Color(red: 231/255, green: 255/255, blue: 231/255))
+//    }
+//}
 

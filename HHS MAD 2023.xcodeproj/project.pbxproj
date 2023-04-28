@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2B382F1029AEE55A001430D0 /* Upcoming Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B382F0F29AEE55A001430D0 /* Upcoming Events.swift */; };
 		2B80F5782993666000B7E671 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B80F5772993666000B7E671 /* HomeScreen.swift */; };
+		2B82C67629FB788F0032E23B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B82C67529FB788F0032E23B /* GoogleService-Info.plist */; };
+		2B82C67A29FBA4D60032E23B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B82C67929FBA4D60032E23B /* ViewController.swift */; };
 		2BD60E48298603E200349CB8 /* HHS_MAD_2023App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD60E47298603E200349CB8 /* HHS_MAD_2023App.swift */; };
 		2BD60E4A298603E200349CB8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD60E49298603E200349CB8 /* ContentView.swift */; };
 		2BD60E4C298603E400349CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BD60E4B298603E400349CB8 /* Assets.xcassets */; };
@@ -25,7 +27,6 @@
 		2BD9619A29BD5BBB009C6AE0 /* MessageField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9619929BD5BBB009C6AE0 /* MessageField.swift */; };
 		2BD9619D29BD5DBC009C6AE0 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9619C29BD5DBC009C6AE0 /* Messages.swift */; };
 		2BD961A129BFBD07009C6AE0 /* CalendarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD961A029BFBD07009C6AE0 /* CalendarPage.swift */; };
-		A69E460E29FAE6EC0051CBCE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A69E460D29FAE6EC0051CBCE /* GoogleService-Info.plist */; };
 		A6B08EDD29EF9A55006D3A63 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A6B08EDC29EF9A55006D3A63 /* FirebaseAnalytics */; };
 		A6D2235529ADC8C200B4B953 /* EventPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D2235429ADC8C200B4B953 /* EventPage.swift */; };
 		A6E5E04729A7FB7F00B3E026 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E5E04629A7FB7F00B3E026 /* Day.swift */; };
@@ -54,6 +55,8 @@
 /* Begin PBXFileReference section */
 		2B382F0F29AEE55A001430D0 /* Upcoming Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Upcoming Events.swift"; sourceTree = "<group>"; };
 		2B80F5772993666000B7E671 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		2B82C67529FB788F0032E23B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2B82C67929FBA4D60032E23B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2BD60E44298603E200349CB8 /* HHS MAD 2023.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HHS MAD 2023.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD60E47298603E200349CB8 /* HHS_MAD_2023App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HHS_MAD_2023App.swift; sourceTree = "<group>"; };
 		2BD60E49298603E200349CB8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,7 +76,6 @@
 		2BD9619929BD5BBB009C6AE0 /* MessageField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageField.swift; sourceTree = "<group>"; };
 		2BD9619C29BD5DBC009C6AE0 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
 		2BD961A029BFBD07009C6AE0 /* CalendarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPage.swift; sourceTree = "<group>"; };
-		A69E460D29FAE6EC0051CBCE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Library/Messages/Attachments/96/06/0CAEFC99-84ED-4D0E-BE96-2A05784587C0/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A6D2235429ADC8C200B4B953 /* EventPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPage.swift; sourceTree = "<group>"; };
 		A6E5E04629A7FB7F00B3E026 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		BD141D9429BFA9E800885DD0 /* PhotoSharing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSharing.swift; sourceTree = "<group>"; };
@@ -130,10 +132,11 @@
 		2BD60E46298603E200349CB8 /* HHS MAD 2023 */ = {
 			isa = PBXGroup;
 			children = (
-				A69E460D29FAE6EC0051CBCE /* GoogleService-Info.plist */,
 				2BD60E47298603E200349CB8 /* HHS_MAD_2023App.swift */,
 				2BD60E49298603E200349CB8 /* ContentView.swift */,
+				2B82C67929FBA4D60032E23B /* ViewController.swift */,
 				2BD60E4B298603E400349CB8 /* Assets.xcassets */,
+				2B82C67529FB788F0032E23B /* GoogleService-Info.plist */,
 				2BD60E4D298603E400349CB8 /* Preview Content */,
 			);
 			path = "HHS MAD 2023";
@@ -299,8 +302,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BD60E4F298603E400349CB8 /* Preview Assets.xcassets in Resources */,
+				2B82C67629FB788F0032E23B /* GoogleService-Info.plist in Resources */,
 				2BD60E4C298603E400349CB8 /* Assets.xcassets in Resources */,
-				A69E460E29FAE6EC0051CBCE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +338,7 @@
 				2BD9619029BD2221009C6AE0 /* MessagePage.swift in Sources */,
 				A6D2235529ADC8C200B4B953 /* EventPage.swift in Sources */,
 				2BD9618E29BD1168009C6AE0 /* ActivitesPage.swift in Sources */,
+				2B82C67A29FBA4D60032E23B /* ViewController.swift in Sources */,
 				2BD9619A29BD5BBB009C6AE0 /* MessageField.swift in Sources */,
 				2BD9619429BD591D009C6AE0 /* Message.swift in Sources */,
 				BD141D9529BFA9E800885DD0 /* PhotoSharing.swift in Sources */,
