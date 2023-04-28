@@ -57,6 +57,9 @@ struct Activities: View {
     @State var name = "Julian"
     @State var activitiesCurrent = ActivityManager()
     
+    @State private var currentIndex = 0
+    let images : [String] = ["1", "2", "3"]
+    
     var body: some View {
         ZStack{
             //Start page, home page
@@ -94,13 +97,33 @@ struct Activities: View {
                         
                         //School image and weather section
                         Group {
-                            Image ("school")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .cornerRadius(10)
-                                .frame(width: width/1.2, height: height/9)
-                                .offset(x:0, y:-220)
-                            
+                            VStack {
+                                Image (images [currentIndex])
+                                    .resizable ()
+                                    .scaledToFit ()
+                                HStack{
+                                    ForEach(0..<images.count){ index in
+                                        Circle()
+                                            .fill (self.currentIndex == index ? Color.red : Color.brown)
+                                            .frame (width: 10, height: 10)
+                                    }
+                                }
+                                
+                                Spacer ()
+                            }
+                            .padding ()
+                            .onAppear {
+                                print ("Appear")
+                                
+                                Timer.scheduledTimer(withTimeInterval: 2, repeats: true){ timer in
+                                    if self.currentIndex + 1 == self.images.count {
+                                        self.currentIndex = 0
+                                    } else{
+                                        self.currentIndex += 1
+                                    }
+                                }
+                            }
+                        }
                             Text("64° F ⛅")
                                 .padding()
                                 .font(.system(size: 18, weight: .bold, design: .rounded))
@@ -108,7 +131,7 @@ struct Activities: View {
                                 .foregroundColor(.white)
                         }
                         
-                    }
+                    
                     
                     //Middle Section
                     Group {
@@ -470,7 +493,7 @@ struct MenuScreen: View{
                 HStack(spacing: 35){
                     Button_Menu(text: $Calendar, state: $calendar, other1: $messages, other2: $home, other3: $academics2 )
                     Button_Menu(text: $Academics, state: $academics2, other1: $messages, other2: $calendar, other3: $home )
-                }
+                } 
             }.offset(y: -30)
             
             
