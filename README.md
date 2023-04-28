@@ -32,8 +32,7 @@ The HHS-MAD 2023 app offers a wide range of features that cater to the needs of 
 
 To use the HHS-MAD 2023 mobile app, ensure that your device meets the following requirements:
 
-1. Android: Android 6.0 (Marshmallow) or higher
-2. iOS: iOS 12.0 or higher
+1. iOS: iOS 12.0 or higher
 
 ## Installation
 
