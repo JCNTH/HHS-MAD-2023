@@ -66,7 +66,10 @@ struct Activities: View {
             if (home) {
                 ZStack {
                     //Background color
-                    Color(red: 231/255, green: 255/255, blue: 231/255)
+//                    Color(red: 231/255, green: 255/255, blue: 231/255)
+//                        .ignoresSafeArea()
+                    
+                    Color(red: 255/255, green: 255/255, blue: 255/255)
                         .ignoresSafeArea()
                  
                     // Top section
@@ -155,8 +158,14 @@ struct Activities: View {
                         Group {
                             
                             ZStack{
-                                RoundedRectangle( cornerRadius: 13, style: .continuous)
-                                    .frame(width: width/1.2, height: height/20)
+//                                RoundedRectangle( cornerRadius: 13, style: .continuous)
+//                                    .frame(width: width/1.2, height: height/20)
+                                
+                                
+                                Divider()
+                                    .frame(width: width/1.1, height:3)
+                                    .background(Color.gray)
+                                    .offset(y: height/45)
                                 
                                 HStack(spacing: 20){
                                     Button_(text: $Social, state: $social, other1: $events, other2: $clubs, other3: $photos)
@@ -167,6 +176,7 @@ struct Activities: View {
                                
                             }
                                
+                                  
                             }
                             .padding(.bottom, height/5.5)
                         }
@@ -175,7 +185,7 @@ struct Activities: View {
                         //Photos Page
                         if(photos){
                             PhotoSharing()
-                                .padding(.top, height/1.35)
+                                .padding(.top, height/2.2)
                         }
                         
                         //Events Page
@@ -406,6 +416,10 @@ struct Button_: View{
     @Binding var other2: Bool
     @Binding var other3: Bool
     
+    let screenRect = UIScreen.main.bounds
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
+    
     var body: some View{
         Button{
             state = true
@@ -414,9 +428,16 @@ struct Button_: View{
             other3 = false
         } label: {
             
-            ZStack{
+            VStack{
                 Text(text)
-                    .foregroundColor(state ? Color.green:Color.white)
+                    .foregroundColor(state ? Color.white:Color.gray)
+                    .font(.system(size: 20)).bold().multilineTextAlignment(.center)
+                    .background(RoundedRectangle(cornerRadius: 4).fill(Color.green).opacity(state ? 1:0).frame(width: 80, height: 30))
+                
+                Divider()
+                    .frame(width: width/6, height:3)
+                    .background(state ? Color.green:Color.gray)
+                
                     
                    
             }
@@ -596,5 +617,32 @@ struct CustomShape: Shape {
 
         }
         
+    }
+}
+
+
+struct LabelledDivider: View {
+
+    let label: String
+    let horizontalPadding: CGFloat
+    let color: Color
+
+    init(label: String, horizontalPadding: CGFloat = 5, color: Color = .gray) {
+        self.label = label
+        self.horizontalPadding = horizontalPadding
+        self.color = color
+    }
+
+    var body: some View {
+        HStack {
+            line
+            line
+            line
+            line
+        }
+    }
+
+    var line: some View {
+        VStack { Divider().background(color).frame(maxHeight:20) }.padding(horizontalPadding)
     }
 }
