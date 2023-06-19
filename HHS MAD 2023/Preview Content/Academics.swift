@@ -82,10 +82,10 @@ struct Academics: View {
                                 .frame(width: width/1.2, height: height/20)
                             
                             HStack(spacing: 20){
-                                Button_ (text: $Math, state: $math, other1: $science, other2: $socialstudies, other3: $other)
-                                Button_ (text: $Science, state: $science, other1: $math, other2: $socialstudies, other3: $other)
-                                Button_ (text: $SocialStudies, state: $socialstudies, other1: $math, other2: $science, other3: $other)
-                                Button_ (text: $Other, state: $other, other1: $math, other2: $science, other3: $socialstudies)
+//                                Button_ (text: $Math, state: $math, other1: $science, other2: $socialstudies, other3: $other)
+//                                Button_ (text: $Science, state: $science, other1: $math, other2: $socialstudies, other3: $other)
+//                                Button_ (text: $SocialStudies, state: $socialstudies, other1: $math, other2: $science, other3: $other)
+//                                Button_ (text: $Other, state: $other, other1: $math, other2: $science, other3: $socialstudies)
                             }
                             
                         }

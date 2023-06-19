@@ -35,11 +35,11 @@ struct PhotoSharing: View {
             {
                 VStack(spacing: -height/1.2){
                     ZStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(width: width, height: height/2)
-                            .foregroundColor(Color.gray)
-                            .opacity(0.25)
-                            .offset(y: -310.0)
+//                        RoundedRectangle(cornerRadius: 10)
+//                            .frame(width: width, height: height/2)
+//                            .foregroundColor(Color.gray)
+//                            .opacity(0.25)
+//                            .offset(y: -310.0)
                         ScrollView{
                             if selectedImageData.count > 0{
                                 // Show Image
@@ -75,7 +75,7 @@ struct PhotoSharing: View {
                             }
                             
                             
-                        }.offset(y: 70)
+                        }.offset(y: 50)
                         
                         
                     }
@@ -327,7 +327,7 @@ struct test: View {
                         }
                         
                         
-                    }.offset(y: 20)
+                    }.offset(y: -10)
                     
                     
                 }
