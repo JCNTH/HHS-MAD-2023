@@ -54,12 +54,13 @@ struct MessagePage: View {
                         ScrollView{
                             ForEach(messageArray, id: \.self) { text in MessageBubble(
                                 message: Message(id: "123", text: text, received: true, timestamp: Date()))
+                                    .offset(x: width/2)
                             }
                             
                             if(!messageArray.isEmpty)
                             {
                                 MessageBubble( message: Message(id: "123", text: "Thank you for reporting the bug! Our moderation team will review it as soon as possible! We will get back to you soon.", received: true, timestamp: Date()))
-                                    .offset(x: 30)
+//                                    .offset(x: 30)
                             }
                            
                             

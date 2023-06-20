@@ -41,23 +41,23 @@ struct Messages: View {
             // Top section
             Group {
                 //Background color
-                Color(red: 231/255, green: 255/255, blue: 231/255)
+                Color(red: 255/255, green: 255/255, blue: 255/255)
                     .ignoresSafeArea()
                 // Introductory Section
                 
                 if(!showPage){
                     VStack {
                         Text("Messages")
-                            .font(.system(size: 35, weight: .medium, design: .rounded))
-                            .offset(x: -80)
+                            .font(.system(size: 30, weight: .medium, design: .rounded))
+                            .offset(x: -100)
                             .foregroundColor(Color.black)
                         
                         Image ("hot")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .clipShape(Circle())
-                            .frame(width:60.0, height: 60.0, alignment: .center)
-                            .offset(x:width/3.3, y: -80)
+                            .frame(width:45.0, height: 50.0, alignment: .center)
+                            .offset(x:width/2.7, y: -60)
                         
                         CustomTextField2(placeholder: Text("Search"), text: $name3)
                             .frame(height: 52)
@@ -88,7 +88,7 @@ struct Messages: View {
 //                            EnterChat(image: $image, name: $name, showPage: $showPage)
 //                                .padding(.vertical, 5)
                         }
-                        .offset(y: -10)
+                        .offset(y: -30)
               
                        
                     }.offset(y: 50)
@@ -163,7 +163,7 @@ struct EnterChat: View{
                 AsyncImage(url: imageUrl) { image in
                     image.resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 50, height: 50)
+                        .frame(width: 60, height: 60)
                         .cornerRadius(50)
                     
                 } placeholder: {
@@ -173,32 +173,34 @@ struct EnterChat: View{
                 VStack(alignment: .leading)
                 {
                     Text(name)
-                        .font(.title)
+                        .font(.system(size: 25)).bold()
                         .foregroundColor(Color.black)
                     
                     Text("Online")
                         .font(.caption)
                         .foregroundColor(.gray)
-                }.frame(maxWidth: .infinity, alignment: .leading)
+                }.frame(maxWidth: width/2, alignment: .leading)
                 
-                Image(systemName: "phone.fill")
-                    .foregroundColor(.gray)
-                    .padding(10)
-                    .background(.white)
-                    .cornerRadius(50)
+                
+//                Image(systemName: "phone.fill")
+//                    .foregroundColor(.gray)
+//                    .padding(10)
+//                    .background(.white)
+//                    .cornerRadius(50)
             }
+            .padding(.trailing, 60.0)
             .background(RoundedRectangle(cornerRadius: 0)
-                .fill(Color(red: 200/255, green: 255/255, blue: 200/255))
-                .frame(width: width/1.1, height: height/10))
-            .padding()
+                .fill(Color(red: 255/255, green: 255/255, blue: 255/255))
+                .frame(width: width/1.2, height: height/10))
+//            .padding()
             
-            Spacer()
-          
-            
-            
-                
-
+        
         }
+        
+        Divider()
+            .frame(width: width, height:1)
+            .background(Color.green)
+            .opacity(0.5)
     }
 }
 
@@ -220,18 +222,28 @@ struct CustomTextField2: View {
             // If text is empty, show the placeholder on top of the TextField
             if text.isEmpty {
                 placeholder
-                    .offset(x: 40)
-                .opacity(0.5)
+                .font(.system(size: 20))
+                .offset(x: 80)
+//                .opacity(0.5)
             }
             
         
-            
-            TextField("", text: $text, onEditingChanged: editingChanged, onCommit: commit)
-                .offset(x: 40)
-        }.background(RoundedRectangle(cornerRadius: 25, style: .continuous)
-            .fill(Color.white)
+            HStack{
+                Image(systemName: "magnifyingglass")
+                    .resizable()
+                    .frame(width: 22, height: 22)
+                    .offset(x: 45)
+//                    .opacity(0.8)
+                
+                TextField("", text: $text, onEditingChanged: editingChanged, onCommit: commit)
+                    .offset(x: 50)
+            }
+           
+        }.background(RoundedRectangle(cornerRadius: 10, style: .continuous)
+            .fill(Color(red: 197/255, green: 196/255, blue: 196/255))
             .frame(width: width/1.1, height: height/15))
         .offset(y: -50)
-        .shadow(radius: 5)
+        .opacity(0.4)
+
     }
 }
