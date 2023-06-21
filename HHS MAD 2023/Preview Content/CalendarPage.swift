@@ -70,6 +70,21 @@ struct CalendarPage: View {
             
     }
     }
+
+struct CalendarWrapper : View {
+    @State var activeEvent = "none";
+    var body: some View {
+        CalendarPage(activeEvent: $activeEvent);
+    }
+}
+
+struct CalendarPage_Previews : PreviewProvider {
+    static var previews: some View {
+        CalendarWrapper();
+    }
+}
+
+
     
     
 

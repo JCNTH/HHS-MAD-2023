@@ -14,14 +14,18 @@ struct Day: View {
 
 
     var body: some View {
-        VStack{
+        VStack(spacing: 0){
             HStack{
                 Text(date)
-                .font(.system(size: 25, weight: .bold, design: .rounded))
-                .foregroundColor(Color(red: 85/255, green: 172/255, blue: 85/255))
-                .padding([.top, .leading])
+                    .font(.system(size: 25, weight: .bold, design: .rounded))
+                .foregroundColor(Color.black)
+                .padding([.top, .leading, .trailing])
                 Spacer()
             }
+            RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Corner Radius@*/3.0/*@END_MENU_TOKEN@*/)
+                .frame(height: 5.0)
+                .foregroundColor(Color(red: 85/255, green: 172/255, blue: 85/255))
+                .scaleEffect(0.9)
             VStack(){
                 ForEach(events, id: \.self) { event in
                     HStack {
@@ -31,11 +35,14 @@ struct Day: View {
                         } label: {
                             Text(event)
                                 .font(.system(size: 20, weight: .medium, design: .rounded))
-                                .foregroundColor(Color(red: 85/255, green: 172/255, blue: 85/255))
+                                .foregroundColor(Color.black)
+                                
                         }
                         .padding(1.0)
                     }
                 }
+                .offset(x: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/, y: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                
                 
 //                HStack {
 //                    Spacer()
@@ -55,17 +62,30 @@ struct Day: View {
 //                    }
 //                    .padding(5.0)
 //                }.background(Color(hue: 0.335, saturation: 0.378, brightness: 0.681))
-            }.padding([.leading, .bottom, .trailing], 20.0).background(Color(hue: 0.335, saturation: 0.189, brightness: 0.897))
-        }.background(Color(hue: 0.335, saturation: 0.35, brightness: 0.83))
+            }.padding([.leading, .bottom, .trailing], 20.0).background(Color.white)
+        }.background(Color.white)
         .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-        .shadow(color:.gray, radius: 8, x:4, y:4).fontDesign(.serif)
+        .shadow(color:.gray, radius: 8, x:4, y:4)
+        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/3/*@END_MENU_TOKEN@*/)
+        
+        
     }
 }
 
 
-//struct Day_Preview: PreviewProvider {
-//    static var previews: some View {
-//        let random = "CAASPP";
-//        Day(date:"Mon 13", events:[], activeEvent:"Baseball Game")
-//    }
-//}
+
+
+
+struct DayWrapper : View {
+    @State var activeEvent = "none";
+    var body: some View {
+        Day(date:"Mon 13", events:["Bike for Boba", "Robotics Workshops"], activeEvent:$activeEvent)
+    }
+}
+
+struct Day_Previews : PreviewProvider {
+    static var previews: some View {
+        DayWrapper();
+    }
+}
+
