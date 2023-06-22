@@ -476,6 +476,51 @@ struct Button_: View{
     }
 }
 
+//Button with resiable image and size
+struct Button_Large: View{
+    @Binding var text: String
+    @Binding var state: Bool
+    @Binding var image: String
+
+    let screenRect = UIScreen.main.bounds
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
+
+    var body: some View{
+        Button{
+            state = true
+        } label: {
+
+            ZStack{
+                VStack(spacing: 6){
+                    Image(image)
+                        .resizable().aspectRatio(contentMode: .fit).frame(width: 90, height: 90)
+                        .foregroundColor(state ? Color.white:Color.black)
+                        .background(RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray, lineWidth: 1)
+                            .background(
+                                RoundedRectangle(cornerRadius: 10, style: .continuous).fill(state ? Color.green:Color.gray)
+                            )
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10, style: .continuous).fill(state ? Color.green:Color.white)
+
+                            )
+                            .frame(width: 115, height: 105))
+
+                    Text(text)
+                        .foregroundColor(state ? Color.green:Color.black)
+                        .font(.system(size: 14)).bold().multilineTextAlignment(.center)
+                        .offset(x: 0, y: 11)
+
+
+                }.offset(x: 5, y: -14)
+            }
+
+        }
+    }
+}
+
+
 //Button menu
 struct Button_Menu: View{
     @Binding var text: String
