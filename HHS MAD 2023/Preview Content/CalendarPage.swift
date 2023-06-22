@@ -10,7 +10,7 @@ import SwiftUI
 struct CalendarPage: View {
     
     @Binding var activeEvent: String;
-    @State var dayShift = 0;
+    @EnvironmentObject var calendarHandler : CalendarPageViewModel;
   
     var body: some View {
        
@@ -25,44 +25,67 @@ struct CalendarPage: View {
                 Spacer()
                 HStack {
                     Button {
-                        dayShift = dayShift - 7;
+                        calendarHandler.shift(shift:-1, unit: .month);
                     } label: {
-                        Image(systemName: "arrow.left")
+                        Image(systemName: "arrowtriangle.backward.fill")
+                            .foregroundColor(Color.gray)
                     }
+                    Text(calendarHandler.getCurrentMonth())
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.white)
+                        .padding(/*@START_MENU_TOKEN@*/.all, 12.0/*@END_MENU_TOKEN@*/)
+                        .background(Capsule().foregroundColor(Color(red: 85/255, green: 172/255, blue: 85/255)))
                     Button {
-                        dayShift = dayShift + 7;
+                        calendarHandler.shift(shift:1, unit: .month);
                     } label: {
-                        Image(systemName: "arrow.right")
+                        Image(systemName: "arrowtriangle.forward.fill")
+                            .foregroundColor(Color.gray)
                     }
                 }
             }
             .padding(.top, 50.0)
            
-            ScrollView{
-                VStack{
-//                    var daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"]
-//                    for i in 0...6 {
-//                        Day(date:(daysOfWeek[i] + " " + 23 + dayShift, events:[""]), activeEvent:$activeEvent)
-//                    }
-                    if (dayShift == 0) {
-                        Day(date:"Sun " + String(23 + dayShift), events:["Robotics Workshops", "FBLA Panda Express Fundraiser"], activeEvent:$activeEvent)
-                        Day(date:"Mon " + String(23 + dayShift + 1), events:["Varsity BBall Game @ MV"], activeEvent:$activeEvent)
-                        Day(date:"Tues " + String(23 + dayShift + 2), events:["Robotics Workshops"], activeEvent:$activeEvent)
-                        Day(date:"Wed " + String(23 + dayShift + 3), events:["Senior Sunrise"], activeEvent:$activeEvent)
-                        Day(date:"Thurs " + String(23 + dayShift + 4), events:["Bike for Boba", "Robotics Workshops"], activeEvent:$activeEvent)
-                        Day(date:"Fri " + String(23 + dayShift + 5), events:["Multicultural Night"], activeEvent:$activeEvent)
-                        Day(date:"Sat " + String(23 + dayShift + 6), events:[""], activeEvent:$activeEvent)
-                    } else {
-                        Day(date:"Sun " + String(23 + dayShift), events:["Robotics Workshops", "Quiz Bowl MOD Fundraiser"], activeEvent:$activeEvent)
-                        Day(date:"Mon " + String(23 + dayShift + 1), events:["JV Badminton @ BCP"], activeEvent:$activeEvent)
-                        Day(date:"Tues " + String(23 + dayShift + 2), events:["Robotics Workshops"], activeEvent:$activeEvent)
-                        Day(date:"Wed " + String(23 + dayShift + 3), events:[""], activeEvent:$activeEvent)
-                        Day(date:"Thurs " + String(23 + dayShift + 4), events:["Robotics Workshops"], activeEvent:$activeEvent)
-                        Day(date:"Fri " + String(23 + dayShift + 5), events:["Mustang Homecoming"], activeEvent:$activeEvent)
-                        Day(date:"Sat " + String(23 + dayShift + 6), events:[""], activeEvent:$activeEvent)
-                    }
-                    
-                }.padding(.vertical, -80.0).scaleEffect(x:0.8, y:0.8)
+            HStack(spacing: 0) {
+                Button {
+                    calendarHandler.shift(shift:-7, unit: .day);
+                } label : {
+                    Image(systemName: "arrowtriangle.backward.fill")
+                        .foregroundColor(Color.gray)
+                }
+                ScrollView{
+                    VStack{
+                        Text(calendarHandler.currentWeek[0].formatted())
+                        
+                        ForEach((0...6), id: \.self) { day in
+                            Day(day: day, events: ["Robotics Workshops"], activeEvent:$activeEvent).environmentObject(calendarHandler);
+                        }
+
+//                        Day(date:calendarHandler.currentWeek[0], events:["Robotics Workshops", "FBLA Panda Express Fundraiser"], activeEvent:$activeEvent)
+//                            Day(date:calendarHandler.currentWeek[1], events:["Varsity BBall Game @ MV"], activeEvent:$activeEvent)
+//                            Day(date:calendarHandler.currentWeek[2], events:["Robotics Workshops"], activeEvent:$activeEvent)
+//                            Day(date:calendarHandler.currentWeek[3], events:["Senior Sunrise"], activeEvent:$activeEvent)
+//                            Day(date:calendarHandler.currentWeek[4], events:["Bike for Boba", "Robotics Workshops"], activeEvent:$activeEvent)
+//                            Day(date: calendarHandler.currentWeek[5], events:["Multicultural Night"], activeEvent:$activeEvent)
+//                            Day(date:calendarHandler.currentWeek[6], events:[""], activeEvent:$activeEvent)
+    //                    }
+    //                    else {
+    //                        Day(date:"Sun " + String(23 + dayShift), events:["Robotics Workshops", "Quiz Bowl MOD Fundraiser"], activeEvent:$activeEvent)
+    //                        Day(date:"Mon " + String(23 + dayShift + 1), events:["JV Badminton @ BCP"], activeEvent:$activeEvent)
+    //                        Day(date:"Tues " + String(23 + dayShift + 2), events:["Robotics Workshops"], activeEvent:$activeEvent)
+    //                        Day(date:"Wed " + String(23 + dayShift + 3), events:[""], activeEvent:$activeEvent)
+    //                        Day(date:"Thurs " + String(23 + dayShift + 4), events:["Robotics Workshops"], activeEvent:$activeEvent)
+    //                        Day(date:"Fri " + String(23 + dayShift + 5), events:["Mustang Homecoming"], activeEvent:$activeEvent)
+    //                        Day(date:"Sat " + String(23 + dayShift + 6), events:[""], activeEvent:$activeEvent)
+    //                    }
+                    }.padding(.vertical, -80.0).scaleEffect(x:0.8, y:0.8)
+                }
+                Button {
+                    calendarHandler.shift(shift:7, unit: .day);
+                } label : {
+                    Image(systemName: "arrowtriangle.forward.fill")
+                        .foregroundColor(Color.gray)
+                }
+
             }
             
         }.padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/).background(Color(red: 231/255, green: 255/255, blue: 231/255)
@@ -74,7 +97,7 @@ struct CalendarPage: View {
 struct CalendarWrapper : View {
     @State var activeEvent = "none";
     var body: some View {
-        CalendarPage(activeEvent: $activeEvent);
+        CalendarPage(activeEvent: $activeEvent).environmentObject(CalendarPageViewModel());
     }
 }
 

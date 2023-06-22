@@ -9,6 +9,8 @@ import SwiftUI
 
 struct Activities: View {
     
+    @State var calendarVM = CalendarPageViewModel();
+    
     //Boolean variables for activities page
     @State var photos = false
     @State var events = false
@@ -343,7 +345,7 @@ struct Activities: View {
                         EventPage(eventName:"Robotics Workshops", time:"4 PM", date:"4/28/23", location:"IHUB", description:"Come out to help build the robot!", headerImage: "robotics", images: ["mechKids", "techKids"], activeEvent: $activeEvent)
                     }
                 } else {
-                    CalendarPage(activeEvent: $activeEvent)
+                    CalendarPage(activeEvent: $activeEvent).environmentObject(calendarVM)
                 }
             }
             

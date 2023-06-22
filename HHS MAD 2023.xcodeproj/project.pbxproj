@@ -27,6 +27,7 @@
 		390AD92B2A43718B003C2A35 /* MessageBubble .swift in Sources */ = {isa = PBXBuildFile; fileRef = 390AD9242A43718A003C2A35 /* MessageBubble .swift */; };
 		390AD92F2A437227003C2A35 /* TitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390AD92E2A437227003C2A35 /* TitleRow.swift */; };
 		390AD9312A4384BB003C2A35 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 390AD9302A4384BB003C2A35 /* GoogleService-Info.plist */; };
+		392FAFAF2A442B0D00A20EA8 /* CalendarPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392FAFAE2A442B0D00A20EA8 /* CalendarPageViewModel.swift */; };
 		A6B08EDD29EF9A55006D3A63 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A6B08EDC29EF9A55006D3A63 /* FirebaseAnalytics */; };
 		A6D2235529ADC8C200B4B953 /* EventPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D2235429ADC8C200B4B953 /* EventPage.swift */; };
 		A6E5E04729A7FB7F00B3E026 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E5E04629A7FB7F00B3E026 /* Day.swift */; };
@@ -76,6 +77,7 @@
 		390AD9272A43718B003C2A35 /* MessageField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageField.swift; sourceTree = "<group>"; };
 		390AD92E2A437227003C2A35 /* TitleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleRow.swift; sourceTree = "<group>"; };
 		390AD9302A4384BB003C2A35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		392FAFAE2A442B0D00A20EA8 /* CalendarPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPageViewModel.swift; sourceTree = "<group>"; };
 		A6D2235429ADC8C200B4B953 /* EventPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPage.swift; sourceTree = "<group>"; };
 		A6E5E04629A7FB7F00B3E026 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		BD141D9429BFA9E800885DD0 /* PhotoSharing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSharing.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				BD141D9429BFA9E800885DD0 /* PhotoSharing.swift */,
 				2BD961A029BFBD07009C6AE0 /* CalendarPage.swift */,
 				390AD92E2A437227003C2A35 /* TitleRow.swift */,
+				392FAFAE2A442B0D00A20EA8 /* CalendarPageViewModel.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				2BD9619029BD2221009C6AE0 /* MessagePage.swift in Sources */,
 				A6D2235529ADC8C200B4B953 /* EventPage.swift in Sources */,
 				2BD9618E29BD1168009C6AE0 /* ActivitesPage.swift in Sources */,
+				392FAFAF2A442B0D00A20EA8 /* CalendarPageViewModel.swift in Sources */,
 				390AD9282A43718B003C2A35 /* Extensions.swift in Sources */,
 				2B82C67A29FBA4D60032E23B /* ViewController.swift in Sources */,
 				BD141D9529BFA9E800885DD0 /* PhotoSharing.swift in Sources */,
