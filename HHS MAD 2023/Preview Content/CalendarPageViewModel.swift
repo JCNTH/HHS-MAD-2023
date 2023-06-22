@@ -7,6 +7,14 @@
 
 import Foundation
 
+class Event : Identifiable, Decodable {
+    var id = UUID();
+    var name : String;
+    var location : String;
+    var date : Date;
+    var description : String;
+}
+
 class CalendarPageViewModel : ObservableObject{
     
     init () {
@@ -14,6 +22,7 @@ class CalendarPageViewModel : ObservableObject{
     }
     
     @Published var currentWeek : [Date] = [];
+    @Published var events: [Event] = [];
     
     func fetchCurrentWeek() {
         let today = Date();
