@@ -54,8 +54,6 @@ struct CalendarPage: View {
                 }
                 ScrollView{
                     VStack{
-                        Text(calendarHandler.currentWeek[0].formatted())
-                        
                         ForEach((0...6), id: \.self) { day in
                             Day(day: day, events: ["Robotics Workshops"], activeEvent:$activeEvent).environmentObject(calendarHandler);
                         }
@@ -77,8 +75,10 @@ struct CalendarPage: View {
     //                        Day(date:"Fri " + String(23 + dayShift + 5), events:["Mustang Homecoming"], activeEvent:$activeEvent)
     //                        Day(date:"Sat " + String(23 + dayShift + 6), events:[""], activeEvent:$activeEvent)
     //                    }
-                    }.padding(.vertical, -80.0).scaleEffect(x:0.8, y:0.8)
+                    }
+                    .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
                 }
+                
                 Button {
                     calendarHandler.shift(shift:7, unit: .day);
                 } label : {

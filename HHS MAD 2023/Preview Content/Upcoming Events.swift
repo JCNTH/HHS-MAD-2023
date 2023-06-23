@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 struct CalendarUI: View {
+    @EnvironmentObject var calendarVM : CalendarPageViewModel;
     @State var numDates: Int
     @State var button1 = true
     @State var button2 = false
@@ -19,13 +20,10 @@ struct CalendarUI: View {
     let screenRect = UIScreen.main.bounds
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
-  
-//    let inactive = Color(red: 217/255, green: 217/255, blue: 217/255)
     let inactive = Color.black
     let active = Color(red: 85/255, green: 172/255, blue: 85/255)
     
     @State var fromDate = 0
-   
     
     var body: some View {
    
@@ -58,9 +56,6 @@ struct CalendarUI: View {
                         }
                         
                     }
-                  
-                  
-                     
                 }
                 
                 Button{

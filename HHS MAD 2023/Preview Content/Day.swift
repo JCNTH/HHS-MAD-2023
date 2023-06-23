@@ -9,7 +9,6 @@ import SwiftUI
 
 struct Day: View {
     @State var day: Int
-    @State var today = Date().formatted(date: .complete, time: .omitted);
     @State var events:Array<String>
     @Binding var activeEvent: String
     @EnvironmentObject var calendarVM : CalendarPageViewModel
@@ -17,19 +16,19 @@ struct Day: View {
 
     var body: some View {
         let date = calendarVM.currentWeek[day];
-        let formattedDate = date.formatted(date: .complete, time: .omitted);
+        let isToday = CalendarPageViewModel.isToday(date: date);
         VStack(spacing: 0){
             HStack{
                 Text(date.formatted(Date.FormatStyle().day(.twoDigits).weekday(.abbreviated)))
                     .font(.system(size: 25, weight: .bold, design: .rounded))
-                    .foregroundColor(formattedDate == today ? Color.white : Color.black)
+                    .foregroundColor(isToday ? Color.white : Color.black)
                 .padding([.top, .leading, .trailing])
                 
                 Spacer()
             }
             RoundedRectangle(cornerRadius: 3)
                 .frame(height: 5.0)
-                .foregroundColor(formattedDate == today ? Color.white : Color(red: 85/255, green: 172/255, blue: 85/255))
+                .foregroundColor(isToday ? Color.white : Color(red: 85/255, green: 172/255, blue: 85/255))
                 .scaleEffect(0.9)
             VStack(){
                 ForEach(events, id: \.self) { event in
@@ -40,7 +39,7 @@ struct Day: View {
                         } label: {
                             Text(event)
                                 .font(.system(size: 20, weight: .medium, design: .rounded))
-                                .foregroundColor(formattedDate == today ? Color.white : Color.black)
+                                .foregroundColor(isToday ? Color.white : Color.black)
                                 
                         }
                         .padding(1.0)
@@ -67,11 +66,11 @@ struct Day: View {
 //                    }
 //                    .padding(5.0)
 //                }.background(Color(hue: 0.335, saturation: 0.378, brightness: 0.681))
-            }.padding([.leading, .bottom, .trailing], 20.0).background(formattedDate == today ? Color(red: 85/255, green: 172/255, blue: 85/255) : Color.white)
-        }.background(formattedDate == today ? Color(red: 85/255, green: 172/255, blue: 85/255) : Color.white )
+            }.padding([.leading, .bottom, .trailing], 20.0).background(isToday ? Color(red: 85/255, green: 172/255, blue: 85/255) : Color.white)
+        }.background(isToday ? Color(red: 85/255, green: 172/255, blue: 85/255) : Color.white )
         .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
         .shadow(color:.gray, radius: 8, x:4, y:4)
-        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: formattedDate == today ? 0 : /*@START_MENU_TOKEN@*/3/*@END_MENU_TOKEN@*/)
+        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: isToday ? 0 : /*@START_MENU_TOKEN@*/3/*@END_MENU_TOKEN@*/)
         
         
     }

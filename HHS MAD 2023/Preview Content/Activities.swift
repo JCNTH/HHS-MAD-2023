@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct Activities: View {
     
@@ -98,6 +99,7 @@ struct Activities: View {
                                 .padding()
                                 .font(.system(size: 17, design: .rounded))
                                 .offset(x: -width/5.2, y: -330)
+
                             
                             Image ("hot")
                                 .resizable()
@@ -105,8 +107,21 @@ struct Activities: View {
                                 .offset(y: 10)
                                 .frame(width:60.0, height: 60.0, alignment: .center)
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
-                                .offset(x:width/2.8, y: -355)
+                                .offset(x:width/3, y: -355)
+                            Button {
+                                do {
+                                    try Auth.auth().signOut();
+                                } catch {
+                                    print("Sign out error!")
+                                }
+                            } label: {
+                                Image(systemName: "rectangle.portrait.and.arrow.right")
+                                    .foregroundColor(.black)
+                                    .frame(width: 10.0, height: 10.0)
+                                    .bold()
+                            }.offset(x: width/2.2, y: -355)
                         }
+                        
                         
                         //School image and weather section
                         Group {
@@ -195,7 +210,7 @@ struct Activities: View {
                         
                         //Events Page
                         if(events){
-                            CalendarUI(numDates: 5)
+                            CalendarUI(numDates: 5).environmentObject(calendarVM)
                                 .padding(.top, height/2.4)
                         }
                         

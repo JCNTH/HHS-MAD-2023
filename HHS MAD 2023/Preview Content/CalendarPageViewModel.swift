@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 class Event : Identifiable, Decodable {
     var id = UUID();
@@ -21,8 +22,13 @@ class CalendarPageViewModel : ObservableObject{
         fetchCurrentWeek()
     }
     
+    var todaysWeek : [Date] = [];
     @Published var currentWeek : [Date] = [];
     @Published var events: [Event] = [];
+    
+    func fetchEvents() {
+//        let db = Firestore.firestore();
+    }
     
     func fetchCurrentWeek() {
         let today = Date();
@@ -37,6 +43,7 @@ class CalendarPageViewModel : ObservableObject{
         (1...7).forEach { day in
             if let weekDay = calendar.date(byAdding: .day, value: day, to: firstWeekDay) {
                 currentWeek.append(weekDay);
+                todaysWeek.append(weekDay);
             }
             
         }
@@ -52,14 +59,23 @@ class CalendarPageViewModel : ObservableObject{
         }
         print(currentWeek[0].formatted());
     }
+   
+    func getCurrentMonth() -> String {
+        return currentWeek[0].formatted(Date.FormatStyle().month(.wide));
+    }
+    
+    func getTodaysMonth() -> String {
+        return todaysWeek[0].formatted(Date.FormatStyle().month(.wide));
+    }
+    
+    static func isToday(date: Date) -> Bool {
+        return date.formatted(date: .complete, time: .omitted) == Date().formatted(date: .complete, time: .omitted);
+    }
     
     static func formatDate(date: Date) -> String {
         return date.formatted(Date.FormatStyle().day(.twoDigits).weekday(.abbreviated))
     }
     
-    func getCurrentMonth() -> String {
-        return currentWeek[0].formatted(Date.FormatStyle().month(.wide));
-    }
     
 
 }
