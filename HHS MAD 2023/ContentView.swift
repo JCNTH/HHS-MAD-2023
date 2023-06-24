@@ -8,13 +8,21 @@
 import SwiftUI
 import FirebaseAuth
 
+
 struct ContentView: View {
     @State var userLoggedIn = false;
+    @State var loginBtnText  = "Login";
+    @State var showLoginAlert = false;
+    @State var showCreationPage = false;
+    @State var errorText = "";
     @State var email = "";
     @State var password = "";
+    @State var firstName = "";
+    @State var lastName = "";
+    @State var name = "User";
     var body: some View {
         if userLoggedIn {
-            Activities();
+            Activities(name: self.name);
         } else {
             loginPage;
         }
@@ -28,24 +36,47 @@ struct ContentView: View {
                     .resizable()
                     .frame(width: 210, height: 225)
                 ZStack {
-//                    Rectangle()
-//                        .foregroundStyle(
-//                            LinearGradient(
-//                                colors: [Color(red: 85/255, green: 172/255, blue: 85/255), Color(red: 50/255, green: 75/255, blue: 50/255)],
-//                                startPoint: .topLeading,
-//                                endPoint: .bottomTrailing
-//                            )
-//                        )
-//                        .frame(width: 400, height: 450)
-//        //                .rotationEffect(.degrees(-25))
-//        //                .offset(y: -100)
-                    
                     VStack(spacing: 20) {
-
-                        Text("Welcome")
+                        
+                        let welcomeText = showCreationPage ? "Create Account" : "Welcome";
+                        Text(welcomeText)
+                            .fontWeight(.semibold)
                             .foregroundColor(.white)
-                            .font(.system(size: 40, weight: .bold, design: .rounded))
-                            .offset(x: -100)
+                            .font(.largeTitle)
+                            .multilineTextAlignment(.center)
+                            .italic()
+                        
+                        if (showCreationPage) {
+                            HStack {
+                                VStack {
+                                    TextField("First Name", text: $firstName)
+                                        .foregroundColor(.white)
+                                        .textFieldStyle(.plain)
+                                        .placeholder(when: firstName.isEmpty) {
+                                            Text("First Name")
+                                                .foregroundColor(.white)
+                                                .bold()
+                                    }
+                                    Rectangle()
+                                        .frame(width: 175, height: 1)
+                                        .foregroundColor(.white)
+                                }
+                                
+                                VStack {
+                                    TextField("Last Name", text: $lastName)
+                                        .foregroundColor(.white)
+                                        .textFieldStyle(.plain)
+                                        .placeholder(when: lastName.isEmpty) {
+                                            Text("Last Name")
+                                                .foregroundColor(.white)
+                                                .bold()
+                                    }
+                                    Rectangle()
+                                        .frame(width: 175, height: 1)
+                                        .foregroundColor(.white)
+                                }
+                            }
+                        }
                         
                         TextField("Email", text: $email)
                             .foregroundColor(.white)
@@ -54,7 +85,7 @@ struct ContentView: View {
                                 Text("Email")
                                     .foregroundColor(.white)
                                     .bold()
-                            }
+                        }
                         
                         Rectangle()
                             .frame(width: 350, height: 1)
@@ -73,10 +104,11 @@ struct ContentView: View {
                             .frame(width: 350, height: 1)
                             .foregroundColor(.white)
                         
+                        
                         Button {
-                            login()
+                            showCreationPage ? signUp() : login()
                         } label: {
-                            Text("Login")
+                            Text(loginBtnText)
                                 .bold()
                                 .frame(width: 200, height: 40)
                                 .background(Capsule()
@@ -84,10 +116,12 @@ struct ContentView: View {
                                 .foregroundColor(.black)
                         }
                         
+                        
+                        let subText = showCreationPage ? "Already have an account? Login" : "Don't have an account? Sign up"
                         Button {
-                            signUp()
+                            showCreationPage.toggle();
                         } label: {
-                            Text("Don't have an account? Sign up")
+                            Text(subText)
                                 .bold()
                         }
                         
@@ -97,32 +131,104 @@ struct ContentView: View {
                         .onAppear {
                             Auth.auth().addStateDidChangeListener { auth, user in
                                 userLoggedIn = (user != nil)
+                                if (!userLoggedIn) {
+                                    loginBtnText  = "Login";
+                                    showCreationPage = false;
+                                    errorText = "";
+                                    email = "";
+                                    password = "";
+                                    firstName = "";
+                                    lastName = "";
+                                }
                             }
                         }
                 }.ignoresSafeArea()
             }
         }
         .padding(/*@START_MENU_TOKEN@*/.all, -50.0/*@END_MENU_TOKEN@*/)
-        
-//        .background(LinearGradient(
-//            colors: [Color(red: 85/255, green: 172/255, blue: 85/255), Color(red: 50/255, green: 75/255, blue: 50/255)],
-//            startPoint: .topLeading,
-//            endPoint: .bottomTrailing)
-//        )
+        .alert(isPresented: $showLoginAlert) { () -> Alert in
+            Alert(title: Text(errorText))
+        }
     }
     
     func login() {
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-            if (error != nil) {
-                print(error!.localizedDescription)
+        loginBtnText = "Logging in..."
+        Auth.auth().signIn(withEmail: email, password: password) { auth, error in
+            if let x = error {
+                loginBtnText = "Login"
+                showLoginAlert = true;
+                  let err = x as NSError
+                  switch err.code {
+                      case AuthErrorCode.wrongPassword.rawValue:
+                      print("Incorrect Password")
+                      errorText = "Incorrect Password";
+                      break;
+                      case AuthErrorCode.invalidEmail.rawValue:
+                          print("Invalid email")
+                      errorText = "Invalid Email";
+                      break;
+                      case AuthErrorCode.accountExistsWithDifferentCredential.rawValue:
+                          print("Account already exists")
+                      errorText = "Account already exists";
+                      break;
+                  default:
+                      print("\(err.localizedDescription)")
+                      errorText = "Unknown error \(err.localizedDescription)";
+                  }
+            } else {
+                showLoginAlert = false;
+                if let _ = auth?.user {
+                    userLoggedIn = true;
+                    name = Auth.auth().currentUser?.displayName ?? "User"
+                  print("Authenticated")
+                } else {
+                  print("No authenticated user")
+                }
             }
         }
     }
     
     func signUp() {
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if (error != nil) {
-                print(error!.localizedDescription)
+        loginBtnText = "Signing in..."
+        showCreationPage = true;
+        Auth.auth().createUser(withEmail: email, password: password) { auth, error in
+            if let x = error {
+                loginBtnText = "Login"
+                showLoginAlert = true;
+                  let err = x as NSError
+                  switch err.code {
+                      case AuthErrorCode.invalidEmail.rawValue:
+                      print("Invalid email")
+                      errorText = "Invalid Email";
+                      break;
+                      case AuthErrorCode.emailAlreadyInUse.rawValue:
+                      print("Email already in use")
+                      errorText = "Email already in use";
+                      break;
+                      case AuthErrorCode.weakPassword.rawValue:
+                      print("Weak password")
+                      errorText = "Weak password: \(err.localizedDescription)";
+                      break;
+                  default:
+                      print("\(err.localizedDescription)")
+                      errorText = "Unknown error \(err.localizedDescription)";
+                  }
+            } else {
+                showLoginAlert = false;
+                if let _ = auth?.user {
+                    let changeRequest = auth?.user.createProfileChangeRequest()
+                    changeRequest?.displayName = firstName + " " + lastName;
+                    changeRequest?.commitChanges { error in
+                        if (error != nil) {
+                            print(error!.localizedDescription)
+                        }
+                    }
+                    userLoggedIn = true;
+                    name = firstName + " " + lastName
+                  print("Authenticated")
+                } else {
+                  print("No authenticated user")
+                }
             }
         }
     }

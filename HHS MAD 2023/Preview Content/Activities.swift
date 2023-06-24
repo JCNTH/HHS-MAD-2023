@@ -64,12 +64,13 @@ struct Activities: View {
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
 
-    @State var name = "Julian"
     @State var activitiesCurrent = ActivityManager()
     
     @State private var currentIndex = 0
     let images = ["homestead1", "homestead2", "homestead3"]
     
+    @State var name : String;
+        
     var body: some View {
         ZStack{
             //Start page, home page
@@ -89,8 +90,10 @@ struct Activities: View {
                         // Creates the profile picture of the user and also displays the user's name.
                         // Additional information is displayed such as the current weather at the school.
                         // as well as a picture.
+//                        var currentUser = Auth.auth().currentUser;
+//                        var name = currentUser != nil ? currentUser.displayName : "Julian"
                         Group {
-                            Text("Hi, " + name + "!")
+                            Text("Hi, " + name.split(separator: " ")[0] + "!")
                                 .padding()
                                 .font(.system(size: 25, weight: .bold, design: .rounded))
                                 .offset(x: -width/3.4, y: -360)
@@ -425,7 +428,7 @@ struct Activities: View {
 
 struct Activities_Previews: PreviewProvider {
     static var previews: some View {
-        Activities()
+        Activities(name: "Julian NTH")
     }
 }
 
