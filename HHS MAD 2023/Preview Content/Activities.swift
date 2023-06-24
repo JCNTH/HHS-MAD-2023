@@ -494,6 +494,74 @@ struct Button_: View{
     }
 }
 
+struct Button_Forum: View{
+    @Binding var text: String
+    @Binding var state: Bool
+    @Binding var other1: Bool
+    @Binding var other2: Bool
+    @Binding var other3: Bool
+    @Binding var image: String
+    
+    let screenRect = UIScreen.main.bounds
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
+    
+    var body: some View{
+        Button{
+            state = true
+            other1 = false
+            other2 = false
+            other3 = false
+        } label: {
+            
+            ZStack{
+                VStack(spacing: 6){
+                    if (!state){
+                        Image("Rect-White")
+                            .resizable()
+                            .frame(width: 9*width/39, height: 9*width/39)
+                            .offset(x:0, y:72)
+                           
+                        Image(image)
+                            .resizable().aspectRatio(contentMode: .fit).frame(width: 5*width/39, height: 5*width/39)
+                            .foregroundColor(state ? Color.white:Color.black)
+                            .offset(x:0, y:-5)
+                        
+                    } else {
+                        Image("Rect-Gradient")
+                            .resizable()
+                            .frame(width: 9*width/39, height: 9*width/39)
+                            .offset(x:0, y:72)
+                        
+                        Image(image)
+                            .resizable()
+                            .renderingMode(.template)
+                            .foregroundColor(.white)
+                            .aspectRatio(contentMode: .fit).frame(width: 5*width/39, height:5*width/39)
+                            .offset(x:0, y:-5)
+                            
+                    }
+                    
+                    Text(text)
+                        .foregroundColor(state ? Color.green:Color.gray)
+                        .font(.system(size: 14)).multilineTextAlignment(.center)
+                        .offset(x: 0, y: -(19+7*width/39))
+                    
+                
+                
+                }.offset(x: 5, y: -14)
+            }
+            
+            
+          
+            
+            
+                
+
+        }
+    }
+}
+
 //Button with resiable image and size
 struct Button_Large: View{
     @Binding var text: String
