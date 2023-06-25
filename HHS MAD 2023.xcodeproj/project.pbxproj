@@ -39,6 +39,7 @@
 		A6E5E04729A7FB7F00B3E026 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E5E04629A7FB7F00B3E026 /* Day.swift */; };
 		BD141D9529BFA9E800885DD0 /* PhotoSharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD141D9429BFA9E800885DD0 /* PhotoSharing.swift */; };
 		BD434E5C29BE5867007F74EF /* Academics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD434E5B29BE5867007F74EF /* Academics.swift */; };
+		BD4EC4BA2A48E7A2009C61BA /* ForumPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4EC4B92A48E7A2009C61BA /* ForumPost.swift */; };
 		BD7DD1F32A44EC46007C70AB /* ForumPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7DD1F22A44EC46007C70AB /* ForumPage.swift */; };
 		BDC1607029FA15CD00AF6981 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC1606F29FA15CD00AF6981 /* Activities.swift */; };
 /* End PBXBuildFile section */
@@ -90,6 +91,7 @@
 		A6E5E04629A7FB7F00B3E026 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		BD141D9429BFA9E800885DD0 /* PhotoSharing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSharing.swift; sourceTree = "<group>"; };
 		BD434E5B29BE5867007F74EF /* Academics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Academics.swift; sourceTree = "<group>"; };
+		BD4EC4B92A48E7A2009C61BA /* ForumPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumPost.swift; sourceTree = "<group>"; };
 		BD7DD1F22A44EC46007C70AB /* ForumPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumPage.swift; sourceTree = "<group>"; };
 		BDC1606F29FA15CD00AF6981 /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -189,6 +191,7 @@
 				390AD92E2A437227003C2A35 /* TitleRow.swift */,
 				392FAFAE2A442B0D00A20EA8 /* CalendarPageViewModel.swift */,
 				BD7DD1F22A44EC46007C70AB /* ForumPage.swift */,
+				BD4EC4B92A48E7A2009C61BA /* ForumPost.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				A6E5E04729A7FB7F00B3E026 /* Day.swift in Sources */,
 				BD7DD1F32A44EC46007C70AB /* ForumPage.swift in Sources */,
 				BD434E5C29BE5867007F74EF /* Academics.swift in Sources */,
+				BD4EC4BA2A48E7A2009C61BA /* ForumPost.swift in Sources */,
 				2B80F5782993666000B7E671 /* HomeScreen.swift in Sources */,
 				2BD9619029BD2221009C6AE0 /* MessagePage.swift in Sources */,
 				A6D2235529ADC8C200B4B953 /* EventPage.swift in Sources */,

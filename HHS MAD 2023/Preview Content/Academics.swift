@@ -54,7 +54,6 @@ struct Academics: View {
 
     @State private var TopImage = "math"
     
-    
     @State var state1 = true;
     @State var state2 = false;
     @State var state3 = false;
@@ -64,8 +63,18 @@ struct Academics: View {
         if (math){
             ForumPage(subject: "Math Forums", menu: ["Algebra", "Calculus", "Geometry", "Statistics"], state:[state1, state2, state3, state4], active: math)
         } else if (science){
-            
-        } else {
+            ForumPage(subject: "Science Forums", menu: ["Biology", "Chemistry", "Physics", "Earth"], state:[state1, state2, state3, state4], active: science)
+        } else if (history){
+            ForumPage(subject: "History Forums", menu: ["USH", "World", "Econ", "Gov"], state:[state1, state2, state3, state4], active: history)
+        } else if (language){
+            ForumPage(subject: "Language Forums", menu: ["Spanish", "French", "Japanese", "Other"], state:[state1, state2, state3, state4], active: language)
+        } else if (literature){
+            ForumPage(subject: "Literature Forums", menu: ["Reading", "Poetry", "Japanese", "Analyze"], state:[state1, state2, state3, state4], active: literature)
+        } else if (cs){
+            ForumPage(subject: "CS Forums", menu: ["Java", "Python", "Csharp", "JS"], state:[state1, state2, state3, state4], active: cs)
+        } else if (design){
+            ForumPage(subject: "Design Forums", menu: ["Art", "Ceramics", "Modeling", "Photography"], state:[state1, state2, state3, state4], active: design)
+        }else {
             ZStack {
                 //Background color
                 Color(red: 255/255, green: 255/255, blue: 255/255)
