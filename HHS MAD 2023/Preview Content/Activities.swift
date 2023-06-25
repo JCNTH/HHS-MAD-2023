@@ -96,7 +96,7 @@ struct Activities: View {
                             Text("Hi, " + name.split(separator: " ")[0] + "!")
                                 .padding()
                                 .font(.system(size: 25, weight: .medium, design: .rounded))
-                                .offset(x: -width/4, y: -310)
+                                .offset(x: -width/4, y: -295)
                                 
 //                            Text("Welcome to HHS Connect")
 //                                .padding()
@@ -110,7 +110,7 @@ struct Activities: View {
                                 .offset(y: 10)
                                 .frame(width:60.0, height: 60.0, alignment: .center)
                                 .clipShape(Circle())
-                                .offset(x:-width/3, y: -365)
+                                .offset(x:-width/3.3, y: -355)
                             
                             Button {
                                 do {
@@ -137,10 +137,10 @@ struct Activities: View {
                                 Image(images[currentIndex])
                                     .resizable ()
                                     .aspectRatio(contentMode: .fill)
-                                    .frame(width: width-(width/7), height: 145)
+                                    .frame(width: width-(width/7), height: 150)
                                     .cornerRadius(20)
                                     .shadow(color: .black, radius: 2, x: 0, y: 0)
-                                    .offset(x:0, y:180)
+                                    .offset(x:0, y:195)
                                 
 //
                                 
