@@ -93,13 +93,13 @@ struct Activities: View {
                         Group {
                             Text("Hi, " + name.split(separator: " ")[0] + "!")
                                 .padding()
-                                .font(.system(size: 25, weight: .bold, design: .rounded))
-                                .offset(x: -width/3.4, y: -360)
+                                .font(.system(size: 25, weight: .medium, design: .rounded))
+                                .offset(x: -width/4, y: -310)
                                 
-                            Text("Welcome to HHS Connect")
-                                .padding()
-                                .font(.system(size: 17, design: .rounded))
-                                .offset(x: -width/5.2, y: -330)
+//                            Text("Welcome to HHS Connect")
+//                                .padding()
+//                                .font(.system(size: 17, design: .rounded))
+//                                .offset(x: -width/5.2, y: -330)
 
                             
                             Image ("hot")
@@ -107,8 +107,9 @@ struct Activities: View {
                                 .aspectRatio(contentMode: .fill)
                                 .offset(y: 10)
                                 .frame(width:60.0, height: 60.0, alignment: .center)
-                                .clipShape(RoundedRectangle(cornerRadius: 20))
-                                .offset(x:width/3, y: -355)
+                                .clipShape(Circle())
+                                .offset(x:-width/3, y: -365)
+                            
                             Button {
                                 do {
                                     try Auth.auth().signOut();
@@ -116,11 +117,15 @@ struct Activities: View {
                                     print("Sign out error!")
                                 }
                             } label: {
-                                Image(systemName: "rectangle.portrait.and.arrow.right")
-                                    .foregroundColor(.black)
-                                    .frame(width: 10.0, height: 10.0)
+                                
+                                Image("menu")
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .foregroundColor(.white)
+                                    .frame(width: 30.0, height: 30.0)
                                     .bold()
-                            }.offset(x: width/2.2, y: -355)
+                                    .background(RoundedRectangle(cornerRadius: 10, style: .continuous).frame(width: 45, height: 45).foregroundColor(Color.green).opacity(0.75))
+                            }.offset(x: width/2.8, y: -355)
                         }
                         
                         
@@ -130,10 +135,10 @@ struct Activities: View {
                                 Image(images[currentIndex])
                                     .resizable ()
                                     .aspectRatio(contentMode: .fill)
-                                    .frame(width: width-(width/9), height: 160)
+                                    .frame(width: width-(width/7), height: 145)
                                     .cornerRadius(20)
                                     .shadow(color: .black, radius: 2, x: 0, y: 0)
-                                    .offset(x:0, y:160)
+                                    .offset(x:0, y:180)
                                 
 //
                                 
@@ -143,7 +148,7 @@ struct Activities: View {
                                             .fill (self.currentIndex == index ? Color.green : Color.brown)
                                             .frame (width: 12, height: 12)
                                     }
-                                } .offset(x: 0, y:130)
+                                } .offset(x: 0, y:140)
                                 
                                 Spacer ()
                             }
@@ -199,7 +204,7 @@ struct Activities: View {
                                
                                   
                             }
-                            .padding(.bottom, height/6.3)
+                            .padding(.bottom, height/7.5)
                         }
                         
                         
@@ -394,7 +399,7 @@ struct Activities: View {
                     .offset(y: -65)
                     
 
-            }.offset(y: 400)
+            }.offset(y: 410)
 
         }
         

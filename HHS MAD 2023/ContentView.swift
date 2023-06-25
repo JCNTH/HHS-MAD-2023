@@ -21,11 +21,15 @@ struct ContentView: View {
     @State var lastName = "";
     @State var name = "User";
     var body: some View {
-        if userLoggedIn {
-            Activities(name: self.name);
-        } else {
-            loginPage;
-        }
+
+//        if userLoggedIn {
+//            Activities();
+//        } else {
+//            loginPage;
+//        }
+        
+        Activities(name: name)
+
     }
     
     var loginPage: some View {
