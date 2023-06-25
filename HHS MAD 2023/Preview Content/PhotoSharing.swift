@@ -242,11 +242,11 @@ struct test: View {
             
            
             ZStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(width: width, height: height/2)
-                    .foregroundColor(Color.gray)
-                    .opacity(images.count > 0 ? 0:0.25)
-                    .offset(y: -60)
+//                RoundedRectangle(cornerRadius: 10)
+//                    .frame(width: width, height: height/2)
+//                    .foregroundColor(Color.gray)
+//                    .opacity(images.count > 0 ? 0:0.25)
+//                    .offset(y: -60)
                    
             
             
@@ -327,7 +327,7 @@ struct test: View {
                         }
                         
                         
-                    }.offset(y: -10)
+                    }.offset(y: 10)
                     
                     
                 }
@@ -381,7 +381,7 @@ struct test: View {
                             .font(.system(size: 20)).bold().multilineTextAlignment(.center)
                     }
                 }
-            }.offset(y: 90)
+            }.offset(y: 80)
        
            
             

@@ -30,22 +30,23 @@ struct MessagePage: View {
             VStack{
                 HStack{
                     
-                    //                    Button{
-                    //                        chat = false
-                    //                        showPage = false
-                    //                    } label:
-                    //                    {
-                    //                        Image(systemName: "chevron.backward")
-                    //                            .resizable()
-                    //                            .frame(width: 15, height: 25)
-                    //                            .background(Color("Green"))
-                    //                    }
+                  Button{
+                         chat = false
+                         showPage = false
+                         } label:
+                         {
+                             Image(systemName: "chevron.backward")
+                               .resizable()
+                               .frame(width: 12, height: 20)
+                               .foregroundColor(Color.white)
+                               .background(RoundedRectangle(cornerRadius: 10, style: .continuous).frame(width: 30, height: 30).foregroundColor(Color.black).opacity(0.75))
+                         }
                     
                     TitleRow(imageUrl: $image, name: $name)
-                        .offset(y: 20)
+                     
 //                        .background(Color("Green"))
                     
-                }.padding(.top, 22)
+                }.padding(.top, 22).offset(x: 20, y: 20)
                   
 //                }.padding(.leading, 10)
        
