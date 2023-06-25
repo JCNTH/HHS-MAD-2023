@@ -54,29 +54,18 @@ struct Academics: View {
 
     @State private var TopImage = "math"
     
-    /*
-    @State var mathImage1 =
-    @State var mathImage2 =
-    @State var mathImage3 =
-     
-    @State var scienceImage1 =
-    @State var scienceImage2 =
-    @State var scienceImage3 =
-
-     @State var ssImage1 =
-     @State var ssImage2 =
-     @State var ssImage3 =
-      
-     @State var otherImage1 =
-     @State var otherImage2 =
-     @State var otherImage3 =
-     
-
-     
-     */
     
+    @State var state1 = true;
+    @State var state2 = false;
+    @State var state3 = false;
+    @State var state4 = false;
+
     var body: some View {
-        if (!forumnpost){
+        if (math){
+            ForumPage(subject: "Math Forums", menu: ["Algebra", "Calculus", "Geometry", "Statistics"], state:[state1, state2, state3, state4], active: math)
+        } else if (science){
+            
+        } else {
             ZStack {
                 //Background color
                 Color(red: 255/255, green: 255/255, blue: 255/255)
@@ -88,20 +77,20 @@ struct Academics: View {
                     Group {
                         Text("Academic Forums")
                             .padding()
-                            .font(.system(size: 30, weight: .bold, design: .rounded))
+                            .font(.system(size: 30, weight: .bold, design:.rounded))
                             .offset(x: 0, y: -5*height/12)
                     }
                     
                     
                     // Activities topic selector
                     Group {
-
+                        
                         VStack(spacing: 45){
                             HStack(spacing: 80){
                                 Button_Large (text: $Math, state: $math, image: $MathImage)
                                 Button_Large (text: $Science, state: $science, image: $ScienceImage)
                             }
-
+                            
                             HStack(spacing: 80){
                                 Button_Large (text: $History, state: $history,  image: $HistoryImage)
                                 Button_Large (text: $Literature, state: $literature,  image: $LiteratureImage)
@@ -120,13 +109,7 @@ struct Academics: View {
                         }
                         .padding()
                         .offset(x: 0, y:0)
-                                    
-                        
                     }
-                    
-                    
-                    
-                    
                 }
                 
                 
@@ -134,23 +117,7 @@ struct Academics: View {
             
         }
         
-        if (math) {
-            
-        } else if (science) {
-            
-        } else if (history) {
-            
-        } else if (literature) {
-            
-        } else if (cs) {
-            
-        } else if (language) {
-            
-        } else if (design) {
-            
-        } else if (other){
-            
-        }
+        
         
         if (forumnpost){
             Color(red: 231/255, green: 255/255, blue: 231/255)

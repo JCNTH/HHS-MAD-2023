@@ -64,12 +64,13 @@ struct Activities: View {
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
 
-    @State var name = "Julian"
     @State var activitiesCurrent = ActivityManager()
     
     @State private var currentIndex = 0
     let images = ["homestead1", "homestead2", "homestead3"]
     
+    @State var name : String;
+        
     var body: some View {
         ZStack{
             //Start page, home page
@@ -89,8 +90,10 @@ struct Activities: View {
                         // Creates the profile picture of the user and also displays the user's name.
                         // Additional information is displayed such as the current weather at the school.
                         // as well as a picture.
+//                        var currentUser = Auth.auth().currentUser;
+//                        var name = currentUser != nil ? currentUser.displayName : "Julian"
                         Group {
-                            Text("Hi, " + name + "!")
+                            Text("Hi, " + name.split(separator: " ")[0] + "!")
                                 .padding()
                                 .font(.system(size: 25, weight: .bold, design: .rounded))
                                 .offset(x: -width/3.4, y: -360)
@@ -425,7 +428,7 @@ struct Activities: View {
 
 struct Activities_Previews: PreviewProvider {
     static var previews: some View {
-        Activities()
+        Activities(name: "Julian NTH")
     }
 }
 
@@ -476,6 +479,74 @@ struct Button_: View{
                         .frame(width: width/6, height:3)
                         .background(state ? Color.green:Color.gray)
                         .offset(x: 0, y: 5)
+                
+                
+                }.offset(x: 5, y: -14)
+            }
+            
+            
+          
+            
+            
+                
+
+        }
+    }
+}
+
+struct Button_Forum: View{
+    @Binding var text: String
+    @Binding var state: Bool
+    @Binding var other1: Bool
+    @Binding var other2: Bool
+    @Binding var other3: Bool
+    @Binding var image: String
+    
+    let screenRect = UIScreen.main.bounds
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
+    
+    var body: some View{
+        Button{
+            state = true
+            other1 = false
+            other2 = false
+            other3 = false
+        } label: {
+            
+            ZStack{
+                VStack(spacing: 6){
+                    if (!state){
+                        Image("Rect-White")
+                            .resizable()
+                            .frame(width: 9*width/39, height: 9*width/39)
+                            .offset(x:0, y:72)
+                           
+                        Image(image)
+                            .resizable().aspectRatio(contentMode: .fit).frame(width: 5*width/39, height: 5*width/39)
+                            .foregroundColor(state ? Color.white:Color.black)
+                            .offset(x:0, y:-5)
+                        
+                    } else {
+                        Image("Rect-Gradient")
+                            .resizable()
+                            .frame(width: 9*width/39, height: 9*width/39)
+                            .offset(x:0, y:72)
+                        
+                        Image(image)
+                            .resizable()
+                            .renderingMode(.template)
+                            .foregroundColor(.white)
+                            .aspectRatio(contentMode: .fit).frame(width: 5*width/39, height:5*width/39)
+                            .offset(x:0, y:-5)
+                            
+                    }
+                    
+                    Text(text)
+                        .foregroundColor(state ? Color.green:Color.gray)
+                        .font(.system(size: 14)).multilineTextAlignment(.center)
+                        .offset(x: 0, y: -(19+7*width/39))
+                    
                 
                 
                 }.offset(x: 5, y: -14)
