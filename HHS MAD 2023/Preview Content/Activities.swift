@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseAuth
+//import NSApplication
 
 struct Activities: View {
     
@@ -55,6 +56,7 @@ struct Activities: View {
     @State var DATA_STATE = false
     
     @State var showDescription = false
+    @State var showMenu = false
     private let defaults = UserDefaults.standard
     
     //Screen Length & Width to adjust for different phone sizes
@@ -80,6 +82,8 @@ struct Activities: View {
                     
                     Color(red: 255/255, green: 255/255, blue: 255/255)
                         .ignoresSafeArea()
+                    
+                    
                  
                     // Top section
                     Group {
@@ -94,38 +98,44 @@ struct Activities: View {
                             Text("Hi, " + name.split(separator: " ")[0] + "!")
                                 .padding()
                                 .font(.system(size: 25, weight: .medium, design: .rounded))
-                                .offset(x: -width/4, y: -295)
+                                .offset(x: -width/3.6, y: -355)
                                 
-//                            Text("Welcome to HHS Connect")
-//                                .padding()
-//                                .font(.system(size: 17, design: .rounded))
-//                                .offset(x: -width/5.2, y: -330)
+                            Text("Welcome to HHS Connect")
+                                .padding()
+                                .font(.system(size: 20, design: .rounded))
+                                .offset(x: -width/7.6, y: -320)
 
                             
-                            Image ("hot")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .offset(y: 10)
-                                .frame(width:60.0, height: 60.0, alignment: .center)
-                                .clipShape(Circle())
-                                .offset(x:-width/3.3, y: -355)
+                           
                             
                             Button {
-                                do {
-                                    try Auth.auth().signOut();
-                                } catch {
-                                    print("Sign out error!")
+//                                do {
+//                                    try Auth.auth().signOut();
+//                                } catch {
+//                                    print("Sign out error!")
+//                                }
+                                withAnimation {
+                                    showMenu = true
                                 }
+                           
                             } label: {
+                                Image ("hot")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .offset(y: 10)
+                                    .frame(width:70.0, height: 70.0, alignment: .center)
+                                    .clipShape(Circle())
+                                    .offset(x: width/7.2, y: -27)
                                 
                                 Image("menu")
                                     .resizable()
                                     .renderingMode(.template)
                                     .foregroundColor(.white)
-                                    .frame(width: 30.0, height: 30.0)
+                                    .frame(width: 20.0, height: 20.0)
                                     .bold()
-                                    .background(RoundedRectangle(cornerRadius: 10, style: .continuous).frame(width: 45, height: 45).foregroundColor(Color.green).opacity(0.75))
-                            }.offset(x: width/2.8, y: -355)
+                                    .background(RoundedRectangle(cornerRadius: 10, style: .continuous).frame(width: 25, height: 25).foregroundColor(Color.green).opacity(0.75))
+                                    .offset(x: -22)
+                            }.offset(x: width/4.1, y: -335)
                         }
                         
                         
@@ -135,10 +145,10 @@ struct Activities: View {
                                 Image(images[currentIndex])
                                     .resizable ()
                                     .aspectRatio(contentMode: .fill)
-                                    .frame(width: width-(width/7), height: 150)
+                                    .frame(width: width-(width/7), height: 160)
                                     .cornerRadius(20)
-                                    .shadow(color: .black, radius: 2, x: 0, y: 0)
-                                    .offset(x:0, y:195)
+                                    .shadow(color: .black, radius: 4, x: 0, y: 0)
+                                    .offset(x:0, y:165)
                                 
 //
                                 
@@ -148,7 +158,7 @@ struct Activities: View {
                                             .fill (self.currentIndex == index ? Color.green : Color.brown)
                                             .frame (width: 12, height: 12)
                                     }
-                                } .offset(x: 0, y:140)
+                                } .offset(x: 0, y:130)
                                 
                                 Spacer ()
                             }
@@ -233,7 +243,7 @@ struct Activities: View {
 
                                     }
                                     
-                                }.padding(.top, height/2)
+                                }.padding(.top, height/1.9)
                                 
                                 if(showDescription)
                                 {
@@ -338,7 +348,7 @@ struct Activities: View {
                         //Acitivites page
                         if(social) {
                             ActivitiesPage(newActivity: $activitiesCurrent)
-                                .padding(.top, 20)
+                                .padding(.top, 35)
 //                                .onChange(of: activitiesCurrent) {_ in save()  }
                                   
                         }
@@ -374,9 +384,14 @@ struct Activities: View {
                 HHS_MAD_2023.Academics()
             }
             
-           
+            if(showMenu){
+                exitPage(showMenu: $showMenu)
+            }
+        
             
-            MenuScreen(home: $home, messages: $messages, calendar: $calendar, academics2: $academics2)
+            MenuScreen(home: $home, messages: $messages, calendar: $calendar, academics2: $academics2) .zIndex(3)
+            
+         
             
             ZStack{
                 
@@ -397,9 +412,10 @@ struct Activities: View {
                     .frame(width: 105, height: 112.5)
                     .foregroundColor(Color(red: 231/255, green: 255/255, blue: 231/255))
                     .offset(y: -65)
-                    
+      
+         
 
-            }.offset(y: 410)
+            }.offset(y: 410)              .zIndex(4)
 
         }
         
@@ -423,6 +439,7 @@ struct Activities: View {
 //        activitiesCurrent = activity_saved
 //
 //      }
+    
 }
 
 struct Activities_Previews: PreviewProvider {
@@ -800,5 +817,71 @@ struct LabelledDivider: View {
 
     var line: some View {
         VStack { Divider().background(color).frame(maxHeight:20) }.padding(horizontalPadding)
+    }
+}
+
+extension AnyTransition {
+    static var moveAndFade: AnyTransition {
+        .asymmetric(
+                   insertion: .move(edge: .trailing).combined(with: .opacity),
+                   removal: .move(edge: .trailing).combined(with: .opacity)
+               )
+        
+    }
+}
+
+struct VisualEffectView: UIViewRepresentable {
+    var effect: UIVisualEffect?
+    func makeUIView(context: UIViewRepresentableContext<Self>) -> UIVisualEffectView { UIVisualEffectView() }
+    func updateUIView(_ uiView: UIVisualEffectView, context: UIViewRepresentableContext<Self>) { uiView.effect = effect }
+}
+
+struct exitPage: View {
+    @Binding var showMenu: Bool
+    let screenRect = UIScreen.main.bounds
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
+    
+    var body: some View {
+        
+        VisualEffectView(effect: UIBlurEffect(style: .dark))
+            .opacity(0.5)
+            .transition(.moveAndFade)
+        
+        ZStack{
+            RoundedRectangle(cornerRadius: 10, style: .continuous).frame(width: width/2.5, height: height).foregroundColor(Color.green)
+                .position(x: 330, y: 400)
+            
+            ZStack{
+                
+           
+                
+                HStack{
+                    
+                    Button{
+                        withAnimation(){
+                            
+                        }
+                           } label:
+                           {
+                              
+                               
+                               Image("signout")
+                                   .background(RoundedRectangle(cornerRadius: 0, style: .continuous).frame(width: width/2.5, height: height/15).foregroundColor(Color.gray))
+                               
+                               Text("Sign Out")
+                                   .foregroundColor(Color("Green"))
+                                   .font(.system(size: 14)).multilineTextAlignment(.center)
+                           }
+                }
+            }.position(x: 330, y: 130)
+     
+              
+            
+           
+        }  .transition(.moveAndFade)
+            .zIndex(2)
+
+        
     }
 }
