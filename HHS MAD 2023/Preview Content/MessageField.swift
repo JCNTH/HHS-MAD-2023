@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MessageField: View {
+    @EnvironmentObject var messagesManager: MessagesManager
     @Binding var messageArray: Array<String>
     @Binding var message: String
 
@@ -15,12 +16,12 @@ struct MessageField: View {
         HStack {
             // Custom text field created below
             CustomTextField(placeholder: Text("Enter your message here"), text: $message)
-                .frame(height: 52)
-                .disableAutocorrection(true)
+//                .frame(height: 52)
+//                .disableAutocorrection(true)
 
             Button {
-                messageArray.append(message)
-                
+               
+                messagesManager.sendMessage(text: message)
                 message = ""
             } label: {
                 Image(systemName: "paperplane.fill")
@@ -32,8 +33,7 @@ struct MessageField: View {
         }
         .padding(.horizontal)
         .padding(.vertical, 10)
-        .background(Color.gray)
-//        .ignoresSafeArea(.all)
+        .background(Color("Gray"))
         .cornerRadius(50)
         .padding()
     }

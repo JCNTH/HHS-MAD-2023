@@ -13,11 +13,13 @@ struct ContentView: View {
     @State var email = "";
     @State var password = "";
     var body: some View {
-        if userLoggedIn {
-            Activities();
-        } else {
-            loginPage;
-        }
+//        if userLoggedIn {
+//            Activities();
+//        } else {
+//            loginPage;
+//        }
+        
+        Activities();
     }
     
     var loginPage: some View {

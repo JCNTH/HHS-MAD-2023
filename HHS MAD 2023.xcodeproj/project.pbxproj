@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2B382F1029AEE55A001430D0 /* Upcoming Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B382F0F29AEE55A001430D0 /* Upcoming Events.swift */; };
+		2B7469FD2A4615CD007EB639 /* MessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7469FC2A4615CD007EB639 /* MessagesManager.swift */; };
+		2B746A002A4616C9007EB639 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B7469FF2A4616C9007EB639 /* FirebaseFirestoreSwift */; };
 		2B80F5782993666000B7E671 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B80F5772993666000B7E671 /* HomeScreen.swift */; };
 		2B82C67A29FBA4D60032E23B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B82C67929FBA4D60032E23B /* ViewController.swift */; };
 		2BD60E48298603E200349CB8 /* HHS_MAD_2023App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD60E47298603E200349CB8 /* HHS_MAD_2023App.swift */; };
@@ -60,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		2B382F0F29AEE55A001430D0 /* Upcoming Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Upcoming Events.swift"; sourceTree = "<group>"; };
+		2B7469FC2A4615CD007EB639 /* MessagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesManager.swift; sourceTree = "<group>"; };
 		2B80F5772993666000B7E671 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		2B82C67929FBA4D60032E23B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2BD60E44298603E200349CB8 /* HHS MAD 2023.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HHS MAD 2023.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +104,7 @@
 				391B4FB32A45302700D2B55E /* FirebaseFunctions in Frameworks */,
 				391B4FAF2A45302700D2B55E /* FirebaseAuth in Frameworks */,
 				391B4FAB2A45302700D2B55E /* FirebaseAnalytics in Frameworks */,
+				2B746A002A4616C9007EB639 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +125,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B7469FE2A4616C9007EB639 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2BD60E3B298603E200349CB8 = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +139,7 @@
 				2BD60E57298603E400349CB8 /* HHS MAD 2023Tests */,
 				2BD60E61298603E400349CB8 /* HHS MAD 2023UITests */,
 				2BD60E45298603E200349CB8 /* Products */,
+				2B7469FE2A4616C9007EB639 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,6 +162,7 @@
 				2B82C67929FBA4D60032E23B /* ViewController.swift */,
 				2BD60E4B298603E400349CB8 /* Assets.xcassets */,
 				2BD60E4D298603E400349CB8 /* Preview Content */,
+				2B7469FC2A4615CD007EB639 /* MessagesManager.swift */,
 			);
 			path = "HHS MAD 2023";
 			sourceTree = "<group>";
@@ -219,6 +232,7 @@
 				391B4FAE2A45302700D2B55E /* FirebaseAuth */,
 				391B4FB02A45302700D2B55E /* FirebaseFirestore */,
 				391B4FB22A45302700D2B55E /* FirebaseFunctions */,
+				2B7469FF2A4616C9007EB639 /* FirebaseFirestoreSwift */,
 			);
 			productName = "HHS MAD 2023";
 			productReference = 2BD60E44298603E200349CB8 /* HHS MAD 2023.app */;
@@ -357,6 +371,7 @@
 				2B82C67A29FBA4D60032E23B /* ViewController.swift in Sources */,
 				BD141D9529BFA9E800885DD0 /* PhotoSharing.swift in Sources */,
 				390AD9292A43718B003C2A35 /* Message.swift in Sources */,
+				2B7469FD2A4615CD007EB639 /* MessagesManager.swift in Sources */,
 				BDC1607029FA15CD00AF6981 /* Activities.swift in Sources */,
 				2B382F1029AEE55A001430D0 /* Upcoming Events.swift in Sources */,
 			);
@@ -694,6 +709,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2B7469FF2A4616C9007EB639 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 391B4FA92A45302700D2B55E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
 		391B4FAA2A45302700D2B55E /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 391B4FA92A45302700D2B55E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
