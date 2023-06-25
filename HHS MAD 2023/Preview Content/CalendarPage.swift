@@ -9,12 +9,14 @@ import SwiftUI
 
 struct CalendarPage: View {
     
-    @Binding var activeEvent: String;
-    @EnvironmentObject var calendarHandler : CalendarPageViewModel;
+    @EnvironmentObject var calendarVM : CalendarPageViewModel;
   
     var body: some View {
        
         VStack {
+//            List(calendarVM.events) { event in
+//                Text(event.describe())
+//            }
             // Introductory Section
             HStack {
                 Text("Calendar")
@@ -25,18 +27,18 @@ struct CalendarPage: View {
                 Spacer()
                 HStack {
                     Button {
-                        calendarHandler.shift(shift:-1, unit: .month);
+                        calendarVM.shift(shift:-1, unit: .month);
                     } label: {
                         Image(systemName: "arrowtriangle.backward.fill")
                             .foregroundColor(Color.gray)
                     }
-                    Text(calendarHandler.getCurrentMonth())
+                    Text(calendarVM.getCurrentMonth())
                         .fontWeight(.bold)
                         .foregroundColor(Color.white)
                         .padding(/*@START_MENU_TOKEN@*/.all, 12.0/*@END_MENU_TOKEN@*/)
                         .background(Capsule().foregroundColor(Color(red: 85/255, green: 172/255, blue: 85/255)))
                     Button {
-                        calendarHandler.shift(shift:1, unit: .month);
+                        calendarVM.shift(shift:1, unit: .month);
                     } label: {
                         Image(systemName: "arrowtriangle.forward.fill")
                             .foregroundColor(Color.gray)
@@ -47,7 +49,7 @@ struct CalendarPage: View {
            
             HStack(spacing: 0) {
                 Button {
-                    calendarHandler.shift(shift:-7, unit: .day);
+                    calendarVM.shift(shift:-7, unit: .day);
                 } label : {
                     Image(systemName: "arrowtriangle.backward.fill")
                         .foregroundColor(Color.gray)
@@ -55,16 +57,17 @@ struct CalendarPage: View {
                 ScrollView{
                     VStack{
                         ForEach((0...6), id: \.self) { day in
-                            Day(day: day, events: ["Robotics Workshops"], activeEvent:$activeEvent).environmentObject(calendarHandler);
+                            let events = calendarVM.fetchEventsForDate(day: day);
+                            Day(day: day, events: events).environmentObject(calendarVM);
                         }
 
-//                        Day(date:calendarHandler.currentWeek[0], events:["Robotics Workshops", "FBLA Panda Express Fundraiser"], activeEvent:$activeEvent)
-//                            Day(date:calendarHandler.currentWeek[1], events:["Varsity BBall Game @ MV"], activeEvent:$activeEvent)
-//                            Day(date:calendarHandler.currentWeek[2], events:["Robotics Workshops"], activeEvent:$activeEvent)
-//                            Day(date:calendarHandler.currentWeek[3], events:["Senior Sunrise"], activeEvent:$activeEvent)
-//                            Day(date:calendarHandler.currentWeek[4], events:["Bike for Boba", "Robotics Workshops"], activeEvent:$activeEvent)
-//                            Day(date: calendarHandler.currentWeek[5], events:["Multicultural Night"], activeEvent:$activeEvent)
-//                            Day(date:calendarHandler.currentWeek[6], events:[""], activeEvent:$activeEvent)
+//                        Day(date:calendarVM.currentWeek[0], events:["Robotics Workshops", "FBLA Panda Express Fundraiser"], activeEvent:$activeEvent)
+//                            Day(date:calendarVM.currentWeek[1], events:["Varsity BBall Game @ MV"], activeEvent:$activeEvent)
+//                            Day(date:calendarVM.currentWeek[2], events:["Robotics Workshops"], activeEvent:$activeEvent)
+//                            Day(date:calendarVM.currentWeek[3], events:["Senior Sunrise"], activeEvent:$activeEvent)
+//                            Day(date:calendarVM.currentWeek[4], events:["Bike for Boba", "Robotics Workshops"], activeEvent:$activeEvent)
+//                            Day(date: calendarVM.currentWeek[5], events:["Multicultural Night"], activeEvent:$activeEvent)
+//                            Day(date:calendarVM.currentWeek[6], events:[""], activeEvent:$activeEvent)
     //                    }
     //                    else {
     //                        Day(date:"Sun " + String(23 + dayShift), events:["Robotics Workshops", "Quiz Bowl MOD Fundraiser"], activeEvent:$activeEvent)
@@ -80,7 +83,7 @@ struct CalendarPage: View {
                 }
                 
                 Button {
-                    calendarHandler.shift(shift:7, unit: .day);
+                    calendarVM.shift(shift:7, unit: .day);
                 } label : {
                     Image(systemName: "arrowtriangle.forward.fill")
                         .foregroundColor(Color.gray)
@@ -95,9 +98,9 @@ struct CalendarPage: View {
     }
 
 struct CalendarWrapper : View {
-    @State var activeEvent = "none";
+//    @State var activeEvent = Event(name: "Bike for Boba", location: "Your mom's house", date: Date(), details: "Let's bike!")
     var body: some View {
-        CalendarPage(activeEvent: $activeEvent).environmentObject(CalendarPageViewModel());
+        CalendarPage().environmentObject(CalendarPageViewModel());
     }
 }
 

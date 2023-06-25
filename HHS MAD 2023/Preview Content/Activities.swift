@@ -18,8 +18,6 @@ struct Activities: View {
     @State var clubs = false
     @State var social = true
     
-    @State var activeEvent = "none";
-    
     //Text variables
     @State var Social = "Social"
     @State var Clubs = "Clubs"
@@ -361,14 +359,10 @@ struct Activities: View {
             
             //Calendar page
             if (calendar) {
-                if (!self.activeEvent.elementsEqual("none")) {
-                    if (self.activeEvent.elementsEqual("Senior Sunrise")) {
-                        EventPage(eventName:"Senior Sunrise", time:"7 AM", date:"4/29/23", location:"Quad", description:"Come out to enjoy the sunrise and make some amazing memories!", headerImage: "seniorSunrise", images: ["sunrise", "sunrise2"], activeEvent: $activeEvent)
-                    } else {
-                        EventPage(eventName:"Robotics Workshops", time:"4 PM", date:"4/28/23", location:"IHUB", description:"Come out to help build the robot!", headerImage: "robotics", images: ["mechKids", "techKids"], activeEvent: $activeEvent)
-                    }
+                if (!(calendarVM.activeEventID == "")) {
+                    Text("Hello World")
                 } else {
-                    CalendarPage(activeEvent: $activeEvent).environmentObject(calendarVM)
+                    CalendarPage().environmentObject(calendarVM)
                 }
             }
             
