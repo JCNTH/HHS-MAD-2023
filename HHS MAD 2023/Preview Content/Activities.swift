@@ -11,7 +11,7 @@ import FirebaseAuth
 
 struct Activities: View {
     
-    @State var calendarVM = CalendarPageViewModel();
+    @EnvironmentObject var calendarVM : CalendarPageViewModel
     
     //Boolean variables for activities page
     @State var photos = false
@@ -369,8 +369,20 @@ struct Activities: View {
             
             //Calendar page
             if (calendar) {
-                if (!(calendarVM.activeEventID == "")) {
-                    Text("Hello World")
+                if (!(calendarVM.activeEventID.isEmpty)) {
+                    VStack {
+                        HStack {
+                            Button(action: {
+                                calendarVM.activeEventID = "";
+                            }) {
+                                Image(systemName: "arrow.backward")
+                                    .padding([.leading, .bottom]).scaleEffect(2).foregroundColor(.black)
+                                    
+                            }
+                            Spacer()
+                        }
+                        EventPage(event: calendarVM.getActiveEvent());
+                    }
                 } else {
                     CalendarPage().environmentObject(calendarVM)
                 }
@@ -444,7 +456,7 @@ struct Activities: View {
 
 struct Activities_Previews: PreviewProvider {
     static var previews: some View {
-        Activities(name: "Julian NTH")
+        Activities(name: "Julian NTH").environmentObject(CalendarPageViewModel())
     }
 }
 

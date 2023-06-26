@@ -36,7 +36,7 @@ struct Day: View {
                         Button {
                             calendarVM.activeEventID = event.id.uuidString;
                         } label: {
-                            Text(event.getName())
+                            Text(event.name)
                                 .font(.system(size: 20, weight: .medium, design: .rounded))
                                 .foregroundColor(isToday ? Color.white : Color.black)
                                 
