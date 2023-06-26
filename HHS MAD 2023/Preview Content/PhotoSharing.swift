@@ -209,6 +209,62 @@ struct PhotoSharing_Previews: PreviewProvider {
     }
 }
 
+struct photoExample: View{
+    let image: UIImage
+    
+    @State var liked = false
+    @State var share = false
+    
+    let screenRect = UIScreen.main.bounds
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
+    
+    var body: some View{
+        VStack{
+            VStack{
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: width, height: 280)
+                    .clipped()
+            }
+            
+            
+            
+            HStack(spacing: 270){
+                Button{
+                    liked.toggle()
+                } label : {
+                    Image(systemName: liked ? "heart.fill":"heart")
+                        .resizable()
+                        .foregroundColor(liked ? Color.red: Color.black)
+                        .frame(width: 35, height: 33)
+                }
+                
+               
+                    Button{
+                        share = true
+//                                                        InstagramSharingUtils.shareToInstagramStories(uiImage2!)
+                    } label : {
+                        Image(systemName: "square.and.arrow.up.fill")
+                            .resizable()
+                            .frame(width: 33, height: 40)
+                            .foregroundColor(Color.black)
+                            .offset(y: -4)
+                    }.sheet(isPresented: $share) {
+                        ShareSheet(activityItems: [image])
+                    }
+                
+                
+                
+                
+            }
+            .padding(.trailing, 10.0)
+            
+        }
+    }
+}
+
 struct test: View {
     @Binding var image: UIImage
     @Binding var share: Bool
@@ -222,22 +278,11 @@ struct test: View {
     
     @State var liked = false
 
-    
+    //Create UNIQUE structs for each
     var body: some View {
 //        let image2: UIImage = image.asUIImage() // Works Perfectly
         ZStack{
-            
-            
-           
             ZStack {
-//                RoundedRectangle(cornerRadius: 10)
-//                    .frame(width: width, height: height/2)
-//                    .foregroundColor(Color.gray)
-//                    .opacity(images.count > 0 ? 0:0.25)
-//                    .offset(y: -60)
-                   
-            
-            
             ScrollView{
                
                     ScrollView{
@@ -250,56 +295,7 @@ struct test: View {
                                     
                                     ZStack{
                                         
-                                        
-                                        VStack{
-                                         
-                                            
-                                            VStack{
-                                                
-                                                
-                                                
-                                                
-                                                Image(uiImage: uiImage2!)
-                                                    .resizable()
-                                                    .aspectRatio(contentMode: .fit)
-                                                    .frame(width: width, height: 280)
-                                                    .clipped()
-                                            }
-                                            
-                                            
-                                            
-                                            HStack(spacing: 270){
-                                                Button{
-                                                    liked.toggle()
-                                                } label : {
-                                                    Image(systemName: liked ? "heart.fill":"heart")
-                                                        .resizable()
-                                                        .foregroundColor(liked ? Color.red: Color.black)
-                                                        .frame(width: 35, height: 33)
-                                                }
-                                                
-                                               
-                                                    Button{
-                                                        share = true
-//                                                        InstagramSharingUtils.shareToInstagramStories(uiImage2!)
-                                                    } label : {
-                                                        Image(systemName: "square.and.arrow.up.fill")
-                                                            .resizable()
-                                                            .frame(width: 33, height: 40)
-                                                            .foregroundColor(Color.black)
-                                                            .offset(y: -4)
-                                                    }.sheet(isPresented: $share) {
-                                                        ShareSheet(activityItems: [uiImage2])
-                                                    }
-                                                
-                                                
-                                                
-                                                
-                                            }
-                                            .padding(.trailing, 10.0)
-                                            
-                                        }
-                                        
+                                        photoExample(image: uiImage2!)
                                         
                                         
                                     }
@@ -323,13 +319,7 @@ struct test: View {
                     
                     
                 }
-                
-                
-                
-   
-               
-                
-                
+
             }
             .padding(.top, 70.0)
             
