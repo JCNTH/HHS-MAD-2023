@@ -25,8 +25,7 @@ struct CalendarUI: View {
     
     @State var fromDate = 0
     
-    var body: some View {
-   
+    var body: some View {   
         VStack{
 //            Text("Upcoming Events")
 //                .font(.system(size: 40, weight: .bold, design: .rounded))
@@ -48,10 +47,10 @@ struct CalendarUI: View {
                             .foregroundColor(button1 ? active:inactive)
                             .shadow(radius: button1 ? 5:0)
                         VStack{
-                            Text(String(Int(getDate())!-4))
+                            Text(String(Int(getDay(day:0))))
                                 .foregroundColor(Color.white)
                             
-                            Text(getMonth().prefix(3))
+                            Text(calendarVM.getTodaysMonth().prefix(3))
                                 .foregroundColor(Color.white)
                         }
                         
@@ -73,10 +72,10 @@ struct CalendarUI: View {
                             .foregroundColor(button2 ? active:inactive)
                             .shadow(radius: button2 ? 5:0)
                         VStack{
-                            Text(String(Int(getDate())!-3))
+                            Text(String(Int(getDay(day:1))))
                                 .foregroundColor(Color.white)
                             
-                            Text(getMonth().prefix(3))
+                            Text(calendarVM.getTodaysMonth().prefix(3))
                                 .foregroundColor(Color.white)
                         }
                         
@@ -98,10 +97,10 @@ struct CalendarUI: View {
                             .foregroundColor(button3 ? active:inactive)
                             .shadow(radius: button3 ? 5:0)
                         VStack{
-                            Text(String(Int(getDate())!-2))
+                            Text(String(Int(getDay(day:2))))
                                 .foregroundColor(Color.white)
                             
-                            Text(getMonth().prefix(3))
+                            Text(calendarVM.getTodaysMonth().prefix(3))
                                 .foregroundColor(Color.white)
                         }
                         
@@ -123,10 +122,10 @@ struct CalendarUI: View {
                             .foregroundColor(button4 ? active:inactive)
                             .shadow(radius: button4 ? 5:0)
                         VStack{
-                            Text(String(Int(getDate())!-1))
+                            Text(String(Int(getDay(day:3))))
                                 .foregroundColor(Color.white)
                             
-                            Text(getMonth().prefix(3))
+                            Text(calendarVM.getTodaysMonth().prefix(3))
                                 .foregroundColor(Color.white)
                         }
                         
@@ -149,10 +148,10 @@ struct CalendarUI: View {
                             .foregroundColor(button5 ? active:inactive)
                             .shadow(radius: button5 ? 5:0)
                         VStack{
-                            Text(String(Int(getDate())!))
+                            Text(String(Int(getDay(day:4))))
                                 .foregroundColor(Color.white)
                             
-                            Text(getMonth().prefix(3))
+                            Text(calendarVM.getTodaysMonth().prefix(3))
                                 .foregroundColor(Color.white)
                         }
                         
@@ -160,115 +159,87 @@ struct CalendarUI: View {
                 }
             }.frame(width: width, height: height/12)
             
-            ZStack{
-                RoundedRectangle( cornerRadius: 13, style: .continuous)
-                    .frame(width: width, height: height/2.5)
-                    .foregroundColor(Color(red: 208/255, green: 240/255, blue: 214/255))
-
-                Text(getMonth() + " " + String(Int(getDate())! + fromDate))
+            VStack{
+                Text(calendarVM.getTodaysMonth() + " " + String(Int(getDay(day: fromDate))))
                     .foregroundColor(Color(red: 85/255, green: 172/255, blue: 85/255))
                     .font(.system(size: 25, weight: .bold, design: .rounded))
-                    .offset(y: -height/7)
+                    .padding(.top)
                 
-                
-                
-                Button{
-                   
-                } label: {
-                    
+                if (calendarVM.eventsForTodaysWeek[fromDate].count == 0) {
                     HStack(spacing: 20){
-                        
-                        
-                        VStack(alignment: .leading)
-                        {
-                            Text("Multicultural Week")
+                        VStack(alignment: .leading){
+                            Text("No events for this day!")
                                 .font(.title).bold()
-                            
-//                            Text("Whole Day")
-//                                .font(.caption)
-//                                .foregroundColor(.gray)
                         }.frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        Image(systemName: "timer")
-                            .foregroundColor(.gray)
-                            .padding(10)
-                            .background(.white)
-                            .cornerRadius(50)
                     }
                     .padding()
-                  
-                    
-                    
-                        
-
+                } else {
+                    ForEach(calendarVM.eventsForTodaysWeek[fromDate], id:\.self) { event in
+                        Button{
+                           let _ = print("Hello World!")
+                        } label: {
+                            HStack(spacing: 20){
+                                VStack(alignment: .leading){
+                                    Text(event.getName())
+                                        .font(.title).bold()
+                                }.frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                Image(systemName: "timer")
+                                    .foregroundColor(.gray)
+                                    .padding(10)
+                                    .background(.white)
+                                    .cornerRadius(50)
+                            }
+                            .padding()
+                        }
+                    }
                 }
-//                Text(String(getDay(days: 1).day!))
-
-                
             }
+            .background(RoundedRectangle( cornerRadius: 13, style: .continuous).foregroundColor((Color(red: 208/255, green: 240/255, blue: 214/255))))
            
                
         }
         
     }
+    
+    func getDay(day : Int) -> Int {
+        let day: Int = Int(calendarVM.todaysWeek[day].formatted(Date.FormatStyle().day(.twoDigits))) ?? 0;
+        return day;
+    }
 }
 
 struct CalendarUI_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarUI(numDates: 5)
+        CalendarUI(numDates: 5).environmentObject(CalendarPageViewModel())
     }
 }
 
 
 
-func getDate() -> String
-{
-    let date = Date()
-    let dateFormatter = DateFormatter()
-     
-    dateFormatter.dateFormat = "dd"
-     
-    let result = dateFormatter.string(from: date)
-    print(result)
-    
-    
-    return result
-}
+//func getDay(days: Int) -> DateComponents
+//{
+//    // Get right now as it's `DateComponents`.
+//
+//    let now = Calendar.current.dateComponents(in: .current, from: Date())
+//
+//
+//
+//    // Create the start of the day in `DateComponents` by leaving off the time.
+//    let today = DateComponents(year: now.year, month: now.month, day: now.day! + days)
+//    let dateToday = Calendar.current.date(from: today)!
+//    print(dateToday.timeIntervalSince1970)
+//
+//    // Add 1 to the day to get tomorrow.
+//    // Don't worry about month and year wraps, the API handles that.
+//    let tomorrow = DateComponents(year: now.year, month: now.month, day: now.day! + 1)
+////    let dateTomorrow = Calendar.current.date(from: tomorrow)!
+//
+//
+//
+//    return today
+//}
 
-func getMonth() -> String
-{
-    let now = Date()
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "LLLL"
-    let nameOfMonth = dateFormatter.string(from: now)
-    
-  
-    
-    return nameOfMonth
-}
 
-func getDay(days: Int) -> DateComponents
-{
-    // Get right now as it's `DateComponents`.
-
-    let now = Calendar.current.dateComponents(in: .current, from: Date())
-   
-
-    
-    // Create the start of the day in `DateComponents` by leaving off the time.
-    let today = DateComponents(year: now.year, month: now.month, day: now.day! + days)
-    let dateToday = Calendar.current.date(from: today)!
-    print(dateToday.timeIntervalSince1970)
-
-    // Add 1 to the day to get tomorrow.
-    // Don't worry about month and year wraps, the API handles that.
-    let tomorrow = DateComponents(year: now.year, month: now.month, day: now.day! + 1)
-//    let dateTomorrow = Calendar.current.date(from: tomorrow)!
-   
-    
-
-    return today
-}
 
 //extension Date {
 //    static var yesterday: Date { return Date().dayBefore }

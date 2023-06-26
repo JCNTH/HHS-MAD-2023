@@ -22,13 +22,13 @@ struct ContentView: View {
     @State var name = "User";
     var body: some View {
 
-//        if userLoggedIn {
-//            Activities();
-//        } else {
-//            loginPage;
-//        }
+        if userLoggedIn {
+            Activities(name: name);
+        } else {
+            loginPage;
+        }
         
-        Activities(name: name)
+//        Activities(name: name)
 
     }
     

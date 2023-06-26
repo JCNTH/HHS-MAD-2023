@@ -8,11 +8,12 @@
 import Foundation
 import Firebase
 
-struct Event : Identifiable, Decodable {
+struct Event : Identifiable, Decodable, Hashable {
     var id = UUID();
     var name : String;
     var location : String;
     var date : Date;
+    var repeatDay : String;
     var details : String;
     
     public func describe() -> String {
@@ -32,11 +33,17 @@ class CalendarPageViewModel : ObservableObject{
     init () {
         fetchCurrentWeek()
         fetchEvents()
+        fetchEventsForWeek()
+        eventsForTodaysWeek = eventsForWeek;
     }
     
-    var todaysWeek : [Date] = [];
+    @Published var todaysWeek : [Date] = [];
+    @Published var eventsForTodaysWeek: [[Event]] = [[], [], [], [], [], [], []];
+    
     @Published var currentWeek : [Date] = [];
+    @Published var eventsForWeek: [[Event]] = [[], [], [], [], [], [], []];
     @Published var events: [Event] = [];
+    
     @Published var activeEventID: String = "";
     
     func fetchEvents() {
@@ -56,10 +63,10 @@ class CalendarPageViewModel : ObservableObject{
                     let location = data["location"] as? String ?? ""
                     let date = (data["date"] as? Timestamp)?.dateValue() ?? Date()
                     let description = data["description"] as? String ?? ""
-
+                    let repeatDay = data["repeat"] as? String ?? ""
 
                     
-                    let event = Event(name: name, location: location, date: date, details: description);
+                    let event = Event(name: name, location: location, date: date, repeatDay: repeatDay, details: description);
                     self.events.append(event);
                 }
             }
@@ -69,12 +76,26 @@ class CalendarPageViewModel : ObservableObject{
     func fetchEventsForDate(day : Int) -> [Event] {
         var foundEvents : [Event] = [];
         events.forEach { event in
-            if (CalendarPageViewModel.isMatching(date1: currentWeek[day], date2: event.date)) {
-                foundEvents.append(event);
-                print(event.getName());
+            if (event.repeatDay != "none") {
+                if (event.repeatDay == currentWeek[day].formatted(Date.FormatStyle().weekday(.wide))) {
+                    foundEvents.append(event);
+                }
+            } else {
+                if (CalendarPageViewModel.isMatching(date1: currentWeek[day], date2: event.date)) {
+                    foundEvents.append(event);
+                }
             }
+
         }
+        eventsForWeek[day] = foundEvents
         return foundEvents;
+    }
+    
+    func fetchEventsForWeek() {
+        (0...6).forEach { day in
+            let dayEvents = fetchEventsForDate(day: day)
+            eventsForWeek[day] = dayEvents
+        }
     }
     
     func fetchCurrentWeek() {
@@ -87,7 +108,7 @@ class CalendarPageViewModel : ObservableObject{
             return
         }
         
-        (1...7).forEach { day in
+        (0...6).forEach { day in
             if let weekDay = calendar.date(byAdding: .day, value: day, to: firstWeekDay) {
                 currentWeek.append(weekDay);
                 todaysWeek.append(weekDay);
@@ -103,6 +124,10 @@ class CalendarPageViewModel : ObservableObject{
             if let newDay = calendar.date(byAdding: unit, value: shift, to: currentWeek[index]) {
                 currentWeek[index] = newDay;
             }
+        }
+        fetchEventsForWeek()
+        if (currentWeek == todaysWeek) {
+            eventsForTodaysWeek = eventsForWeek;
         }
         print(currentWeek[0].formatted());
     }

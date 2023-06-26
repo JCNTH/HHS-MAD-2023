@@ -217,7 +217,7 @@ struct Activities: View {
                         //Events Page
                         if(events){
                             CalendarUI(numDates: 5).environmentObject(calendarVM)
-                                .padding(.top, height/2.4)
+                                .padding(.top, height/4)
                         }
                         
                         //Clubs Page

@@ -9,12 +9,12 @@ import SwiftUI
 
 struct Day: View {
     @State var day: Int
-    @State var events: [Event]
     @EnvironmentObject var calendarVM : CalendarPageViewModel
 
 
     var body: some View {
         let date = calendarVM.currentWeek[day];
+        let events = calendarVM.eventsForWeek[day];
         let isToday = CalendarPageViewModel.isMatching(date1: date, date2: Date());
         VStack(spacing: 0){
             HStack{
@@ -30,7 +30,7 @@ struct Day: View {
                 .foregroundColor(isToday ? Color.white : Color(red: 85/255, green: 172/255, blue: 85/255))
                 .scaleEffect(0.9)
             VStack(){
-                List(events) { event in
+                ForEach(events, id: \.self) { event in
                     HStack {
                         Spacer()
                         Button {
@@ -58,17 +58,16 @@ struct Day: View {
 
 
 
-//
-//struct DayWrapper : View {
-//    @State var activeEvent = "none";
-//    var body: some View {
-//        Day(day:0, events:["Bike for Boba", "Robotics Workshops"], activeEvent:$activeEvent).environmentObject(CalendarPageViewModel())
-//    }
-//}
-//
-//struct Day_Previews : PreviewProvider {
-//    static var previews: some View {
-//        DayWrapper();
-//    }
-//}
+
+struct DayWrapper : View {
+    var body: some View {
+        Day(day:6).environmentObject(CalendarPageViewModel())
+    }
+}
+
+struct Day_Previews : PreviewProvider {
+    static var previews: some View {
+        DayWrapper();
+    }
+}
 
