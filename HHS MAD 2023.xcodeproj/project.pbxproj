@@ -10,6 +10,7 @@
 		2B382F1029AEE55A001430D0 /* Upcoming Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B382F0F29AEE55A001430D0 /* Upcoming Events.swift */; };
 		2B7469FD2A4615CD007EB639 /* MessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7469FC2A4615CD007EB639 /* MessagesManager.swift */; };
 		2B746A002A4616C9007EB639 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B7469FF2A4616C9007EB639 /* FirebaseFirestoreSwift */; };
+		2B746A062A4919E6007EB639 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B746A052A4919E5007EB639 /* GoogleService-Info.plist */; };
 		2B80F5782993666000B7E671 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B80F5772993666000B7E671 /* HomeScreen.swift */; };
 		2B82C67A29FBA4D60032E23B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B82C67929FBA4D60032E23B /* ViewController.swift */; };
 		2BD60E48298603E200349CB8 /* HHS_MAD_2023App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD60E47298603E200349CB8 /* HHS_MAD_2023App.swift */; };
@@ -28,7 +29,6 @@
 		390AD92A2A43718B003C2A35 /* MessageField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390AD9272A43718B003C2A35 /* MessageField.swift */; };
 		390AD92B2A43718B003C2A35 /* MessageBubble .swift in Sources */ = {isa = PBXBuildFile; fileRef = 390AD9242A43718A003C2A35 /* MessageBubble .swift */; };
 		390AD92F2A437227003C2A35 /* TitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390AD92E2A437227003C2A35 /* TitleRow.swift */; };
-		390AD9312A4384BB003C2A35 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 390AD9302A4384BB003C2A35 /* GoogleService-Info.plist */; };
 		391B4FAB2A45302700D2B55E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 391B4FAA2A45302700D2B55E /* FirebaseAnalytics */; };
 		391B4FAD2A45302700D2B55E /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 391B4FAC2A45302700D2B55E /* FirebaseAppCheck */; };
 		391B4FAF2A45302700D2B55E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 391B4FAE2A45302700D2B55E /* FirebaseAuth */; };
@@ -64,6 +64,8 @@
 /* Begin PBXFileReference section */
 		2B382F0F29AEE55A001430D0 /* Upcoming Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Upcoming Events.swift"; sourceTree = "<group>"; };
 		2B7469FC2A4615CD007EB639 /* MessagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesManager.swift; sourceTree = "<group>"; };
+		2B746A042A49199C007EB639 /* HHS-MAD-2023-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "HHS-MAD-2023-Info.plist"; sourceTree = SOURCE_ROOT; };
+		2B746A052A4919E5007EB639 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B80F5772993666000B7E671 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		2B82C67929FBA4D60032E23B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2BD60E44298603E200349CB8 /* HHS MAD 2023.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HHS MAD 2023.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +87,6 @@
 		390AD9262A43718B003C2A35 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		390AD9272A43718B003C2A35 /* MessageField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageField.swift; sourceTree = "<group>"; };
 		390AD92E2A437227003C2A35 /* TitleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleRow.swift; sourceTree = "<group>"; };
-		390AD9302A4384BB003C2A35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		392FAFAE2A442B0D00A20EA8 /* CalendarPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPageViewModel.swift; sourceTree = "<group>"; };
 		A6D2235429ADC8C200B4B953 /* EventPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPage.swift; sourceTree = "<group>"; };
 		A6E5E04629A7FB7F00B3E026 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
@@ -158,7 +159,8 @@
 		2BD60E46298603E200349CB8 /* HHS MAD 2023 */ = {
 			isa = PBXGroup;
 			children = (
-				390AD9302A4384BB003C2A35 /* GoogleService-Info.plist */,
+				2B746A042A49199C007EB639 /* HHS-MAD-2023-Info.plist */,
+				2B746A052A4919E5007EB639 /* GoogleService-Info.plist */,
 				2BD60E47298603E200349CB8 /* HHS_MAD_2023App.swift */,
 				2BD60E49298603E200349CB8 /* ContentView.swift */,
 				2B82C67929FBA4D60032E23B /* ViewController.swift */,
@@ -329,8 +331,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BD60E4F298603E400349CB8 /* Preview Assets.xcassets in Resources */,
+				2B746A062A4919E6007EB639 /* GoogleService-Info.plist in Resources */,
 				2BD60E4C298603E400349CB8 /* Assets.xcassets in Resources */,
-				390AD9312A4384BB003C2A35 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,6 +541,7 @@
 				DEVELOPMENT_TEAM = VX94UJV87E;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "HHS-MAD-2023-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -567,6 +570,7 @@
 				DEVELOPMENT_TEAM = VX94UJV87E;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "HHS-MAD-2023-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

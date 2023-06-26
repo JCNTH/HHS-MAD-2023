@@ -125,16 +125,24 @@ struct PhotoSharing: View {
                                 }
                             }.offset(y: -80.0)
                             
-                        
-                            Button{
-                               share = true
-                            } label : {
-                                Image(systemName: "square.and.arrow.up.fill")
-                                    .resizable()
-                                    .frame(width: 50, height: 60)
-                            }.sheet(isPresented: $share) {
-                                ShareSheet(activityItems: ["Selected Image"])
-                            }
+//                            if(InstagramSharingUtils.canOpenInstagramStories){
+                                Button{
+                                    share = true
+                                } label : {
+                                    Image(systemName: "square.and.arrow.up.fill")
+                                        .resizable()
+                                        .frame(width: 50, height: 60)
+                                }
+//                            }
+//                            Button{
+//                               share = true
+//                            } label : {
+//                                Image(systemName: "square.and.arrow.up.fill")
+//                                    .resizable()
+//                                    .frame(width: 50, height: 60)
+//                            }.sheet(isPresented: $share) {
+//                                ShareSheet(activityItems: ["Selected Image"])
+//                            }
                     }
                 }
             }
@@ -164,27 +172,7 @@ struct PhotoSharing: View {
   
 }
 
-struct ShareSheet: UIViewControllerRepresentable {
-    typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
-    
-    let activityItems: [Any]
-    let applicationActivities: [UIActivity]? = nil
-    let excludedActivityTypes: [UIActivity.ActivityType]? = nil
-    let callback: Callback? = nil
-    
-    func makeUIViewController(context: Context) -> UIActivityViewController {
-        let controller = UIActivityViewController(
-                   activityItems: activityItems,
-                   applicationActivities: applicationActivities)
-               controller.excludedActivityTypes = excludedActivityTypes
-               controller.completionWithItemsHandler = callback
-               return controller
-    }
-    
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
-        // nothing to do here
-    }
-}
+
 
 enum NoFlipEdge {
     case left, right
@@ -288,21 +276,25 @@ struct test: View {
                                                         .resizable()
                                                         .foregroundColor(liked ? Color.red: Color.black)
                                                         .frame(width: 35, height: 33)
-                                                }.sheet(isPresented: $share) {
-                                                    ShareSheet(activityItems: ["Selected Image"])
                                                 }
                                                 
-                                                Button{
-                                                    share = true
-                                                } label : {
-                                                    Image(systemName: "square.and.arrow.up.fill")
-                                                        .resizable()
-                                                        .frame(width: 33, height: 40)
-                                                        .foregroundColor(Color.black)
-                                                        .offset(y: -4)
-                                                }.sheet(isPresented: $share) {
-                                                    ShareSheet(activityItems: ["Selected Image"])
-                                                }
+                                               
+                                                    Button{
+                                                        share = true
+//                                                        InstagramSharingUtils.shareToInstagramStories(uiImage2!)
+                                                    } label : {
+                                                        Image(systemName: "square.and.arrow.up.fill")
+                                                            .resizable()
+                                                            .frame(width: 33, height: 40)
+                                                            .foregroundColor(Color.black)
+                                                            .offset(y: -4)
+                                                    }.sheet(isPresented: $share) {
+                                                        ShareSheet(activityItems: [uiImage2])
+                                                    }
+                                                
+                                                
+                                                
+                                                
                                             }
                                             .padding(.trailing, 10.0)
                                             
@@ -381,7 +373,7 @@ struct test: View {
                             .font(.system(size: 20)).bold().multilineTextAlignment(.center)
                     }
                 }
-            }.offset(y: 80)
+            }.offset(y: 62)
        
            
             
@@ -399,3 +391,68 @@ struct test: View {
 
 
 
+
+//struct InstagramSharingUtils {
+//
+//  // Returns a URL if Instagram Stories can be opened, otherwise returns nil.
+//  private static var instagramStoriesUrl: URL? {
+//    if let url = URL(string: "instagram-stories://share?source_application=com.mad.hhsconnect") {
+//      if UIApplication.shared.canOpenURL(url) {
+//        return url
+//      }
+//    }
+//    return nil
+//  }
+//
+//  // Convenience wrapper to return a boolean for `instagramStoriesUrl`
+//  static var canOpenInstagramStories: Bool {
+//    return instagramStoriesUrl != nil
+//  }
+//
+//  // If Instagram Stories is available, writes the image to the pasteboard and
+//  // then opens Instagram.
+//  static func shareToInstagramStories(_ image: UIImage) {
+//
+//    // Check that Instagram Stories is available.
+//    guard let instagramStoriesUrl = instagramStoriesUrl else {
+//      return
+//    }
+//
+//    // Convert the image to data that can be written to the pasteboard.
+//    let imageDataOrNil = UIImage.pngData(image)
+//    guard let imageData = imageDataOrNil() else {
+//      print("🙈 Image data not available.")
+//      return
+//    }
+//    let pasteboardItem = ["com.instagram.sharedSticker.backgroundImage": imageData]
+//    let pasteboardOptions = [UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(60 * 5)]
+//
+//    // Add the image to the pasteboard. Instagram will read the image from the pasteboard when it's opened.
+//    UIPasteboard.general.setItems([pasteboardItem], options: pasteboardOptions)
+//
+//    // Open Instagram.
+//    UIApplication.shared.open(instagramStoriesUrl, options: [:], completionHandler: nil)
+//  }
+//}
+
+struct ShareSheet: UIViewControllerRepresentable {
+    typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
+    
+    let activityItems: [Any]
+    let applicationActivities: [UIActivity]? = nil
+    let excludedActivityTypes: [UIActivity.ActivityType]? = nil
+    let callback: Callback? = nil
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(
+                   activityItems: activityItems,
+                   applicationActivities: applicationActivities)
+               controller.excludedActivityTypes = excludedActivityTypes
+               controller.completionWithItemsHandler = callback
+               return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        // nothing to do here
+    }
+}

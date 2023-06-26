@@ -235,9 +235,9 @@ struct Activities: View {
                             ZStack {
                                 VStack{
                                     ScrollView{
-                                        ClubDescription(image: $FBLA_IMAGE, name: $FBLA_NAME, showDescription: $showDescription, state: $FBLA_STATE)
-                                        ClubDescription(image: $ROBOTICS_IMAGE, name: $ROBOTICS_NAME, showDescription: $showDescription, state: $ROBOTICS_STATE)
-                                        ClubDescription(image: $CHESS_IMAGE, name: $CHESS_NAME, showDescription: $showDescription, state: $CHESS_STATE)
+                                        ClubDescription2(image: $FBLA_IMAGE, name: $FBLA_NAME, showDescription: $showDescription, state: $FBLA_STATE)
+                                        ClubDescription2(image: $ROBOTICS_IMAGE, name: $ROBOTICS_NAME, showDescription: $showDescription, state: $ROBOTICS_STATE)
+                                        ClubDescription2(image: $CHESS_IMAGE, name: $CHESS_NAME, showDescription: $showDescription, state: $CHESS_STATE)
                                         ClubDescription(image: $SHOGI_IMAGE, name: $SHOGI_NAME, showDescription: $showDescription, state: $SHOGI_STATE)
                                         ClubDescription(image: $DATA_IMAGE, name: $DATA_NAME, showDescription: $showDescription, state: $DATA_STATE)
 
@@ -707,7 +707,7 @@ struct MenuScreen: View{
                 HStack(spacing: 35){
                     Button_Menu(text: $Calendar, state: $calendar, other1: $messages, other2: $home, other3: $academics2 )
                     Button_Menu(text: $Academics, state: $academics2, other1: $messages, other2: $calendar, other3: $home )
-                } 
+                }
             }.offset(y: -30)
             
             
@@ -716,6 +716,58 @@ struct MenuScreen: View{
 
         }
     }
+
+//Club page
+struct ClubDescription2: View{
+    @Binding var image: String
+    @Binding var name: String
+    @Binding var showDescription: Bool
+    @Binding var state: Bool
+    
+    let screenRect = UIScreen.main.bounds
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
+    
+    var body: some View {
+        
+      
+        Button{
+            showDescription = true
+            state = true
+        } label: {
+            
+            ZStack {
+                RoundedRectangle( cornerRadius: 20, style: .continuous)
+                    .frame(width: width/1.1, height: height/10)
+                    .foregroundColor(Color.white)
+                
+                HStack(spacing: 20){
+                    Image(image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 100, height: 80)
+                        .cornerRadius(50)
+                    
+                    VStack(alignment: .leading)
+                    {
+                        Text(name)
+                            .font(.title).bold()
+                        
+                        Text("Click For More")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }.frame(maxWidth: .infinity, alignment: .leading)
+                    
+                  
+                }
+                .padding()
+            }
+          
+        }
+        
+       
+    }
+}
 
 //Club page
 struct ClubDescription: View{
@@ -849,36 +901,177 @@ struct exitPage: View {
             .transition(.moveAndFade)
         
         ZStack{
-            RoundedRectangle(cornerRadius: 10, style: .continuous).frame(width: width/2.5, height: height).foregroundColor(Color.green)
-                .position(x: 330, y: 400)
-            
+            RoundedRectangle(cornerRadius: 10, style: .continuous).frame(width: width/1.8, height: height).foregroundColor(Color.white)
+                .position(x: width/1.25, y: 400)
+        
             ZStack{
-                
-           
-                
-                HStack{
-                    
-                    Button{
-                        withAnimation(){
-                            
+               
+                VStack{
+                    HStack{
+                        Image ("hot")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .offset(y: 10)
+                            .frame(width:60.0, height: 60.0, alignment: .center)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                         
+                        VStack(spacing: 6){
+                            Text("Julian Ng")
+                                .foregroundColor(Color.green)
+                                .bold()
+                                .font(.system(size: 20)).multilineTextAlignment(.center)
+                                                            
+                            Text("Grade 11")
+                                .foregroundColor(Color.green)
+                                .bold()
+                                .font(.system(size: 15)).multilineTextAlignment(.center)
+                                .offset(y: -5)
                         }
-                           } label:
-                           {
-                              
-                               
-                               Image("signout")
-                                   .background(RoundedRectangle(cornerRadius: 0, style: .continuous).frame(width: width/2.5, height: height/15).foregroundColor(Color.gray))
-                               
-                               Text("Sign Out")
-                                   .foregroundColor(Color("Green"))
-                                   .font(.system(size: 14)).multilineTextAlignment(.center)
-                           }
-                }
-            }.position(x: 330, y: 130)
+                       
+                    }
+                   
+                    HStack{
+                        Button{
+                            withAnimation(){
+                                
+                            }
+                               } label:
+                               {
+                                   ZStack{
+                                      
+                                       
+                                       HStack(spacing: 18){
+                                           Image(systemName: "desktopcomputer")
+                                               .resizable()
+                                               .renderingMode(.template)
+                                               .frame(width: 35, height: 35)
+                                               .foregroundColor(Color.green)
+                                           
+                                           Text("Website")
+                                               .foregroundColor(Color.green)
+                                               .bold()
+                                               .font(.system(size: 17)).multilineTextAlignment(.center)
+                                       }
+                                   }
+                                  
+                               }
+            
+                    }.offset(y: 40)
+                    
+                    HStack{
+                        Button{
+                            withAnimation(){
+                                
+                            }
+                               } label:
+                               {
+                                   ZStack{
+                                      
+                                       
+                                       HStack(spacing: 34){
+                                           Image(systemName: "newspaper")
+                                               .resizable()
+                                               .renderingMode(.template)
+                                               .frame(width: 35, height: 35)
+                                               .foregroundColor(Color.green)
+                                           
+                                           Text("Epitah")
+                                               .foregroundColor(Color.green)
+                                               .bold()
+                                               .font(.system(size: 17)).multilineTextAlignment(.center)
+                                       }
+                                   }
+                                  
+                               }
+            
+                    }.offset(y: 60)
+                    
+                    HStack{
+                        Button{
+                            withAnimation(){
+                                
+                            }
+                               } label:
+                               {
+                                   ZStack{
+                                      
+                                       
+                                       HStack(spacing: 12){
+                                           Image("youtube")
+                                               .resizable()
+                                               .renderingMode(.template)
+                                               .frame(width: 45, height: 45)
+                                               .foregroundColor(Color.green)
+                                           
+                                           Text("YouTube")
+                                               .foregroundColor(Color.green)
+                                               .bold()
+                                               .font(.system(size: 17)).multilineTextAlignment(.center)
+                                       }
+                                   }
+                                  
+                               }
+            
+                    }.offset(y: 80)
+                    
+                    HStack{
+                        Button{
+                            withAnimation(){
+                                do {
+                                    try Auth.auth().signOut();
+                                } catch {
+                                    print("Sign out error!")
+                                }
+                            }
+                               } label:
+                               {
+                                   ZStack{
+                                      
+                                       
+                                       HStack(spacing: 2){
+                                           Image("signout")
+                                               .resizable()
+                                               .renderingMode(.template)
+                                               .frame(width: 55, height: 55)
+                                               .foregroundColor(Color.green)
+                                           
+                                           Text("Sign Out")
+                                               .foregroundColor(Color.green)
+                                               .bold()
+                                               .font(.system(size: 17)).multilineTextAlignment(.center)
+                                       }
+                                   }
+                                  
+                               }
+            
+                    }.offset(y: 380)
+                    
+                }.offset(x: 100, y: -240)
+            }
+                
+                
      
               
             
-           
+            Button{
+                withAnimation(){
+                    showMenu.toggle()
+                }
+                   } label:
+                   {
+                       ZStack{
+                           RoundedRectangle(cornerRadius: 10, style: .continuous).frame(width: 30, height: 30).foregroundColor(Color.black).opacity(0.75)
+                     
+                           
+                           Image(systemName: "chevron.backward")
+                             .resizable()
+                             .frame(width: 12, height: 20)
+                             .rotationEffect(.degrees(-180))
+                             .foregroundColor(Color.white)
+                   
+                       }.offset(x: 5, y: -20)
+                      
+                   }
         }  .transition(.moveAndFade)
             .zIndex(2)
 
