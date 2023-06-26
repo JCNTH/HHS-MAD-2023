@@ -69,41 +69,20 @@ struct ForumPage: View {
                 }.offset(x:-5, y:50 + (-5*height/12))
                 
                 ScrollView(){
-                    //Top Post
-                    Button(action: {
-                        discussionPage = true;
-                    }) {
-                        RoundedRectangle( cornerRadius: 13, style: .continuous)
-                            .frame(width: 360, height: 120)
-                            .offset(x: 0, y: -220)
-                        
-                        Image ("Homework")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .cornerRadius(10)
-                            .frame(width: 150, height: 120)
-                            .offset(x:-94, y:-220)
-                                            
-                        Text("AP Calculus BC")
-                            .padding()
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .offset(x: 50, y: -260)
-                            .foregroundColor(.white)
-                                                    
-                                                    
-                        Text("Need help on solving integral")
-                            .padding()
-                            .font(.system(size: 13, design: .rounded))
-                            .offset(x: 80, y: -240)
-                            .foregroundColor(.white)
-                                                    
-                        Text("↑ 5 ↓")
-                            .padding()
-                            .font(.system(size: 32, design: .rounded))
-                            .offset(x: 30, y: -200)
-                            .foregroundColor(.white)
+                    VStack(spacing: -20){
+                        //Top Post
+                        if (!discussionPage){
+                            ForumPost(postName: "Solving Integral", votes: 45, postBody: "I thought that we needed to solve the integral like this perilous hard work and determination.", image: "Homework", discussionPage: discussionPage)
+                            ForumPost(postName: "Area of Circle", votes: 23, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: discussionPage)
+                            ForumPost(postName: "Solving Integral", votes: 18, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: discussionPage)
+                            ForumPost(postName: "Solving Integral", votes: 11, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: discussionPage)
+                            ForumPost(postName: "Solving Integral", votes: 5, postBody: "I thought that we needed to solve the integral like this perilous hard work and determination.", image: "Homework", discussionPage: discussionPage)
+                            ForumPost(postName: "Solving Integral", votes: -11, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: discussionPage)
+                            ForumPost(postName: "Solving Integral", votes: -29, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: discussionPage)
+                            ForumPost(postName: "Solving Integral", votes: -56, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: discussionPage)
+                        }
                     }
-                }.offset (x:100, y:400)
+                }.offset(x:0, y:225)
                 
                 //Back button
                 Button(action: {
