@@ -27,6 +27,7 @@ struct ActivitiesPage: View {
     
     var body: some View {
         
+
        
         ZStack {
             //Background color
@@ -70,17 +71,7 @@ struct ActivitiesPage: View {
                                     
                                     
                                     ZStack{
-                                        
-//                                        AsyncImage(url: URL(string: newActivity.activities[value].image)) { image in
-//                                            image.resizable()
-//                                                .aspectRatio(contentMode: .fill)
-//                                                .frame(width: width/1.2, height: height/5)
-//                                                .cornerRadius(20)
-//
-//                                        } placeholder: {
-//                                            ProgressView()
-//                                        }
-                                        
+                                                                                
                                        newActivity.activities[value].image
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
@@ -211,16 +202,9 @@ struct createActivity: View {
                                 .scaleEffect(0.8)
                         }
                     
-                    
-
-                   
-//                        .frame(width: width, height: height/10)
-                    
-                
 
                     Button{
-//                        Activity.setName(name: name)
-//                        Activity.setDescription(description: description)
+
                         if(image == nil)
                         {
                             return

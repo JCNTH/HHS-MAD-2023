@@ -64,7 +64,7 @@ struct Activities: View {
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     
-    @State var activitiesCurrent = ActivityManager()
+    @Binding var activitiesCurrent: ActivityManager
     
     @State private var currentIndex = 0
     let images = ["homestead1", "homestead2", "homestead3"]
@@ -556,11 +556,11 @@ struct Activities: View {
     
 }
 
-struct Activities_Previews: PreviewProvider {
-    static var previews: some View {
-        Activities(name: "Julian NTH").environmentObject(CalendarPageViewModel())
-    }
-}
+//struct Activities_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Activities(name: "Julian NTH").environmentObject(CalendarPageViewModel())
+//    }
+//}
 
 //Button structure. Used for making the buttons of app.
 struct Button_: View{

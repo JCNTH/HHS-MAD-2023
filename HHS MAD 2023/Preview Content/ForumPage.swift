@@ -77,18 +77,45 @@ struct ForumPage: View {
                 
                 ScrollView(){
                     VStack(spacing: 10){
-                        //Top Post
+                        
                         if (discussionPage1){
-                            ForumPost(postName: "Solving Integral", votes: 45, postBody: "I thought that we needed to solve the integral like this perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage1)
+                            ForumPost(postName: "Solving Equation", votes: 45, postBody: "I thought that we needed to solve the integral like this perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage1).padding(.top)
                         } else if (discussionPage2){
-                            ForumPost(postName: "Area Under Curve", votes: 23, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage2)
+                            ForumPost(postName: "Simplifying", votes: 23, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage2)
                         } else if (discussionPage3){
-                            ForumPost(postName: "Solving Integral", votes: 18, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage3)
+                            ForumPost(postName: "Solving Square", votes: 18, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage3)
                         } else {
                             VStack(spacing: 10){
-                                ForumPost(postName: "Solving Integral", votes: 45, postBody: "I thought that we needed to solve the integral like this perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage1)
-                                ForumPost(postName: "Area Under Curve", votes: 23, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage2)
-                                ForumPost(postName: "Solving Integral", votes: 18, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage3)
+                                //Top Post
+                                HStack {
+                                    // Custom text field created below
+                                    Text("Click Here To Post")
+                        //                .frame(height: 52)
+                        //                .disableAutocorrection(true)
+                                        .offset(x:0, y:0)
+                                        .foregroundColor(Color.black)
+
+                                    Button {
+                                       
+                                    } label: {
+                                        
+                                    }
+                                    
+                                }.frame(width:width-20, height: height/20)
+                                    .background(Color("Gray"))
+                                    .cornerRadius(50)
+                                    .offset(x:0, y:5)
+                                
+//                                Divider()
+//                                    .frame(width: width, height:1)
+//                                    .background(Color.gray)
+//                                    .opacity(0.5)
+                                
+                                Divider()
+                                
+                                ForumPost(postName: "Solving Equation", votes: 45, postBody: "I thought that we needed to solve the integral like this perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage1)
+                                ForumPost(postName: "Simplifying", votes: 23, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage2)
+                                ForumPost(postName: "Solving Square", votes: 18, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage3)
                             }
                         }
                     }
@@ -110,9 +137,9 @@ struct ForumPage: View {
                     
                 }) {
                     Image(systemName: "arrow.backward")
-                        .padding(.leading).scaleEffect(3)
+                        .padding(.leading).scaleEffect(2)
                         
-                }.frame(width: 20.0, height: 20.0).offset(x: -width/3 - 25, y: -5*height/12 - 15)
+                }.offset(x: -width/3 - 25, y: -5*height/12 - 15).frame(width: 20.0, height: 20.0)
                 
                 if (createNewPost){
                     //createForumPost(create: $createNewPost, createdNew: $createdActivity)

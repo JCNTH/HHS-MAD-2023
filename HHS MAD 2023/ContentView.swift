@@ -21,10 +21,12 @@ struct ContentView: View {
     @State var firstName = "";
     @State var lastName = "";
     @State var name = "User";
+    
+    @State var activitiesCurrent = ActivityManager()
     var body: some View {
 
         if userLoggedIn {
-            Activities(name: name).environmentObject(calendarVM);
+            Activities(activitiesCurrent: $activitiesCurrent, name: name).environmentObject(calendarVM);
         } else {
             loginPage;
         }

@@ -59,7 +59,7 @@ Upon opening the app for the first time, follow these steps to maximize your exp
 3. Navigate the app using the bottom menu bar to access the Social Feed, Calendar, Messaging System, and Academics.
 4. You can post academic questions, as well as photos to share with peers, and approved accounts (such as teachers or club officers) are able to post events that can be seen and accessed by students. 
 
-## CodeSnippet
+## CodeSnippets
 
 Here is a code snippet from the project and its explanation:
 
@@ -84,6 +84,92 @@ db.collection("event_page").order(by: "timestamp", descending: true).getDocument
 ```
 
 The above code snippet shows the implementation of the retrieval of event feed posts from Firestore in the `getPosts` function. The function queries the `event_page` collection in Firestore and orders the results by timestamp in descending order. The data is then converted into `Event` objects and returned in a `success` result, otherwise an `error` is returned in a `failure` result.
+
+### Messaging Firebase and Firestore
+
+```swift
+// Read message from Firestore in real-time with the addSnapShotListener
+    func getMessages() {
+        db.collection("messages").addSnapshotListener { querySnapshot, error in
+            
+            // If we don't have documents, exit the function
+            guard let documents = querySnapshot?.documents else {
+                print("Error fetching documents: \(String(describing: error))")
+                return
+            }
+            
+            // Mapping through the documents
+            self.messages = documents.compactMap { document -> Message? in
+                do {
+                    // Converting each document into the Message model
+                    // Note that data(as:) is a function available only in FirebaseFirestoreSwift package - remember to import it at the top
+                    return try document.data(as: Message.self)
+                } catch {
+                    // If we run into an error, print the error in the console
+                    print("Error decoding document into Message: \(error)")
+
+                    // Return nil if we run into an error - but the compactMap will not include it in the final array
+                    return nil
+                }
+            }
+            
+            // Sorting the messages by sent date
+            self.messages.sort { $0.timestamp < $1.timestamp }
+            
+            // Getting the ID of the last message so we automatically scroll to it in ContentView
+            if let id = self.messages.last?.id {
+                self.lastMessageId = id
+            }
+        }
+    }
+    
+    // Read message from Firestore in real-time with the addSnapShotListener
+    func getMessagesBugs() {
+        db.collection("bugs").addSnapshotListener { querySnapshot, error in
+            
+            // If we don't have documents, exit the function
+            guard let documents = querySnapshot?.documents else {
+                print("Error fetching documents: \(String(describing: error))")
+                return
+            }
+            
+            // Mapping through the documents
+            self.messages = documents.compactMap { document -> Message? in
+                do {
+                    // Converting each document into the Message model
+                    // Note that data(as:) is a function available only in FirebaseFirestoreSwift package - remember to import it at the top
+                    return try document.data(as: Message.self)
+                } catch {
+                    // If we run into an error, print the error in the console
+                    print("Error decoding document into Message: \(error)")
+
+                    // Return nil if we run into an error - but the compactMap will not include it in the final array
+                    return nil
+                }
+            }
+            
+            // Sorting the messages by sent date
+            self.messages.sort { $0.timestamp < $1.timestamp }
+            
+            // Getting the ID of the last message so we automatically scroll to it in ContentView
+            if let id = self.messages.last?.id {
+                self.lastMessageId = id
+            }
+        }
+    }
+```
+The code snippet showcases the implementation of real-time message retrieval from Firestore in the HHS-MAD 2023 mobile app. It demonstrates the use of the addSnapshotListener method to listen for updates in the Firestore collection named "messages" and "bugs". Whenever changes occur in the collection, the code within the closure is executed to fetch and process the updated documents.
+
+The getMessages() function reads messages from the "messages" collection, while the getMessagesBugs() function reads messages from the "bugs" collection. Both functions follow a similar structure.
+
+Within the closure, the code first checks if there are any documents retrieved from the Firestore query. If documents are present, the closure proceeds to map over the retrieved documents and convert them into instances of the Message model. This conversion utilizes the data(as:) function provided by the FirebaseFirestoreSwift package, which allows the conversion from Firestore documents to strongly-typed objects.
+
+After mapping and converting the documents into Message objects, the messages are sorted by their timestamp property to ensure they are displayed in the correct order. Finally, the ID of the last message is extracted and stored in a variable for further use.
+
+It's important to note that the code handles any errors that may occur during the conversion or sorting process. If an error occurs, it is printed to the console.
+
+This code snippet demonstrates how the HHS-MAD 2023 app leverages Firestore's real-time updates to provide a dynamic messaging feature.
+
 
 ## Contributing
 
