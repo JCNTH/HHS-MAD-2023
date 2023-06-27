@@ -99,17 +99,17 @@ struct Messages: View {
                     
                     if(administration)
                     {
-                        MessagePage(messageArray: [String](), showPage: $showPage, name: $name2, image: $image2, chat: $administration)
+                        MessagePage(messageArray: [String](), showPage: $showPage, name: $name2, image: $image2, chat: $administration, type: "admin")
                          
                     }
                   
                     else if(bugReports)
                     {
-                        MessagePage(messageArray: [String](), showPage: $showPage, name: $name4, image: $image4, chat: $bugReports)
+                        MessagePage(messageArray: [String](), showPage: $showPage, name: $name4, image: $image4, chat: $bugReports, type: "bug")
                                
                     }
                     else{
-                        MessagePage(messageArray: [String](), showPage: $showPage, name: $name, image: $image, chat: $bugReports)
+                        MessagePage(messageArray: [String](), showPage: $showPage, name: $name, image: $image, chat: $bugReports, type: "asd")
                                
                     }
                     

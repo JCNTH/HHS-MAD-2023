@@ -6,15 +6,22 @@
 // https://www.youtube.com/watch?v=Zz9XQy8PRpQ
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
 
 struct MessagePage: View {
     @StateObject var messagesManager = MessagesManager()
+    @StateObject var bugManager = BugManager()
+
+    @ObservedObject var vm = MainMessagesViewModel()
     @State var messageArray: Array<String>
     @State var message = ""
     @Binding var showPage: Bool
     @Binding var name: String
     @Binding var image: URL
     @Binding var chat: Bool
+    
+    let type: String
 //    @State 
     let screenRect = UIScreen.main.bounds
     let width = UIScreen.main.bounds.size.width
@@ -26,6 +33,7 @@ struct MessagePage: View {
             
         
         VStack {
+//            Text("CURRENT USER ID: \(vm.errorMessage)")
             
             VStack{
                 HStack{
@@ -59,6 +67,22 @@ struct MessagePage: View {
                    
                     ScrollViewReader { proxy in
                         ScrollView{
+                                
+                                
+                                if(type == "bug")
+                                {
+                                    ForEach(bugManager.messages, id: \.id) { message in MessageBubble(
+                                        message: message)
+                                        
+                                    }.onChange(of: messagesManager.lastMessageId) { id in
+                                        withAnimation{
+                                            proxy.scrollTo(id, anchor: .bottom)
+                                        }
+                                        
+                                    }
+
+                                }
+                            else {
                                 ForEach(messagesManager.messages, id: \.id) { message in MessageBubble(
                                     message: message)
                                 }.onChange(of: messagesManager.lastMessageId) { id in
@@ -67,15 +91,7 @@ struct MessagePage: View {
                                     }
                                     
                                 }
-                                           
-                                
-                                
-                                
-    //                            if(!messageArray.isEmpty)
-    //                            {
-    //                                MessageBubble( message: Message(id: "123", text: "Thank you for reporting the bug! Our moderation team will review it as soon as possible! We will get back to you soon.", received: true, timestamp: Date()))
-    ////                                    .offset(x: 30)
-    //                            }
+                            }
                                
                                 
                                 
@@ -93,9 +109,18 @@ struct MessagePage: View {
                     
                 }.offset(y: 22)
                
-                MessageField(messageArray: $messageArray, message: $message)
-                    .environmentObject(messagesManager)
-                    .background(Color.white)
+                if(type == "bug")
+                {
+                    BugMessageField(messageArray: $messageArray, message: $message)
+                        .environmentObject(bugManager)
+                        .background(Color.white)
+                }
+                else {
+                    MessageField(messageArray: $messageArray, message: $message)
+                        .environmentObject(messagesManager)
+                        .background(Color.white)
+                }
+              
                 
                 
 
@@ -113,5 +138,49 @@ struct MessagePage: View {
 //            
 //    }
 //}
+
+
+class MainMessagesViewModel: ObservableObject {
+    
+    @Published var errorMessage = ""
+    
+    
+    init(){
+        fetchCurrentUser()
+    }
+    
+    private func fetchCurrentUser(){
+        let db = Firestore.firestore()
+
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        
+//    self.errorMessage = "\(userID)"
+
+      db.collection("Authentication")
+            .document(userID).getDocument { snapshot, error in
+                guard let snapshot = snapshot, error == nil else {
+                    self.errorMessage = "aw man"
+                     return
+                   }
+                
+                if let error = error {
+                    print("Failed to fetch current user", error)
+//                    self.errorMessage = "Could not find firebase uid"
+                    return
+                }
+                
+                
+                guard let data = snapshot.data() else {
+//                    self.errorMessage = "Could not find firebase uid"
+
+                    return }
+                print(data)
+                
+                self.errorMessage = "Data: \(data.description)"
+
+            }
+
+    }
+}
 
 
