@@ -13,13 +13,17 @@ struct CalendarPage: View {
     @State var showSportEvents = true;
     @State var showSchoolEvents = true;
     @State var showClubEvents = true;
+    @State var filter = false;
     
+    let screenRect = UIScreen.main.bounds
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
     
     var body: some View {
         
         VStack {
-            HStack {
-                
+            HStack(spacing: 50) {
+              
                
                 HStack {
                     Button {
@@ -40,7 +44,27 @@ struct CalendarPage: View {
                             .foregroundColor(Color.gray)
                     }
                 }
+                
+                Button {
+                    withAnimation{
+                        filter.toggle()
+                    }
+                
+                } label : {
+                    HStack{
+                        Image(systemName: "line.3.horizontal.decrease.circle")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(Color.green)
+                    }
+                   
+                       
+               
+                     
+                }
+                
             }
+            .padding(.leading, 90)
             .padding(.top, 80.0)
             
             HStack(spacing: 0) {
@@ -68,29 +92,34 @@ struct CalendarPage: View {
                 }
                 
             }
-            
-            VStack {
-                Toggle(isOn: $showSportEvents) {
-                    Text("Sports")
+            if(filter)
+            {
+                VStack {
+                    Toggle(isOn: $showSportEvents) {
+                        Text("Sports")
+                    }
+                    Toggle(isOn: $showClubEvents) {
+                        Text("Clubs")
+                    }
+                    Toggle(isOn: $showSchoolEvents) {
+                        Text("School Events")
+                    }
                 }
-                Toggle(isOn: $showClubEvents) {
-                    Text("Clubs")
-                }
-                Toggle(isOn: $showSchoolEvents) {
-                    Text("School Events")
-                }
+                    .padding()
+                    .background(.white)
+                    .cornerRadius(20) /// make the background rounded
+                    .overlay( /// apply a rounded border
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(.black, lineWidth: 5)
+                    )
+                    .frame(width: 300, height: 100)
+                    .font(.system(size: 20, design: .rounded))
+                    .bold()
+                    .offset(y: -160)
+                    .transition(.moveUp)
+                    .zIndex(2)
             }
-                .padding()
-                .background(.white)
-                .cornerRadius(20) /// make the background rounded
-                .overlay( /// apply a rounded border
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(.black, lineWidth: 5)
-                )
-                .frame(width: 300, height: 100)
-                .font(.system(size: 20, design: .rounded))
-                .bold()
-                .offset(y: -160)
+            
                 
                 
             }.padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/).background(Color(red: 231/255, green: 255/255, blue: 231/255)

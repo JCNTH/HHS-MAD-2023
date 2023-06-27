@@ -966,7 +966,16 @@ extension AnyTransition {
         )
         
     }
+    
+    static var moveUp: AnyTransition {
+        .asymmetric(
+            insertion: .move(edge: .bottom).combined(with: .opacity),
+            removal: .move(edge: .bottom).combined(with: .opacity)
+        )
+        
+    }
 }
+
 
 struct VisualEffectView: UIViewRepresentable {
     var effect: UIVisualEffect?
