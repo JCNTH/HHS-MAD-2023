@@ -12,7 +12,7 @@ import FirebaseStorage
 struct EventPage: View {
     
     @State var event:Event;
-    @State var headerImage = UIImage(systemName: "photo.fill");
+    @State var headerImage = UIImage(systemName: "photo.fill")
     @State var uploads = [UIImage(systemName: "photo.fill"), UIImage(systemName: "photo.fill")];
     
     var body: some View {

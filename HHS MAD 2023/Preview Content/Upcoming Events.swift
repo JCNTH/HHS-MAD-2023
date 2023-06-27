@@ -34,10 +34,13 @@ struct CalendarUI: View {
 //            Text("Upcoming Events")
 //                .font(.system(size: 40, weight: .bold, design: .rounded))
 //                .foregroundColor(Color(red: 36/255, green: 120/255, blue: 36/255))
-            Text(calendarVM.getTodaysMonth() + " " + String(Int(getDay(day: fromDate))))
-                .foregroundColor(Color(red: 85/255, green: 172/255, blue: 85/255))
-                .font(.system(size: 25, weight: .bold, design: .rounded))
-                .offset(x:0, y:-30)
+
+            
+//
+//            Text(calendarVM.getTodaysMonth() + " " + String(Int(getDay(day: fromDate))))
+//                .foregroundColor(Color(red: 85/255, green: 172/255, blue: 85/255))
+//                .font(.system(size: 25, weight: .bold, design: .rounded))
+//                .offset(x:0, y:-30)
             
             HStack(alignment: .center, spacing: width/20){
                 Button{
@@ -48,6 +51,7 @@ struct CalendarUI: View {
                     button4 = false
                     button5 = false
                 } label: {
+                    
                     ZStack{
                         Image(systemName: "rectangle.fill")
                             .resizable()
@@ -55,10 +59,10 @@ struct CalendarUI: View {
                             .foregroundColor(button1 ? active:inactive)
                             .shadow(radius: button1 ? 5:0)
                         VStack{
-                            Text(String(Int(getDay(day:0))))
+                            Text(getTwoDigitDay(day:0))
                                 .foregroundColor(Color.white)
                             
-                            Text(day[2])
+                            Text(getWeekDay(day:0))
                                 .foregroundColor(Color.white)
                         }
                         
@@ -80,10 +84,10 @@ struct CalendarUI: View {
                             .foregroundColor(button2 ? active:inactive)
                             .shadow(radius: button2 ? 5:0)
                         VStack{
-                            Text(String(Int(getDay(day:1))))
+                            Text(getTwoDigitDay(day:1))
                                 .foregroundColor(Color.white)
                             
-                            Text(day[3])
+                            Text(getWeekDay(day:1))
                                 .foregroundColor(Color.white)
                         }
                         
@@ -105,10 +109,10 @@ struct CalendarUI: View {
                             .foregroundColor(button3 ? active:inactive)
                             .shadow(radius: button3 ? 5:0)
                         VStack{
-                            Text(String(Int(getDay(day:2))))
+                            Text(getTwoDigitDay(day:2))
                                 .foregroundColor(Color.white)
                             
-                            Text(day[4])
+                            Text(getWeekDay(day:2))
                                 .foregroundColor(Color.white)
                         }
                         
@@ -130,10 +134,10 @@ struct CalendarUI: View {
                             .foregroundColor(button4 ? active:inactive)
                             .shadow(radius: button4 ? 5:0)
                         VStack{
-                            Text(String(Int(getDay(day:3))))
+                            Text(getTwoDigitDay(day:3))
                                 .foregroundColor(Color.white)
                             
-                            Text(day[5])
+                            Text(getWeekDay(day:3))
                                 .foregroundColor(Color.white)
                         }
                         
@@ -156,10 +160,10 @@ struct CalendarUI: View {
                             .foregroundColor(button5 ? active:inactive)
                             .shadow(radius: button5 ? 5:0)
                         VStack{
-                            Text(String(Int(getDay(day:4))))
+                            Text(getTwoDigitDay(day:4))
                                 .foregroundColor(Color.white)
                             
-                            Text(day[6])
+                            Text(getWeekDay(day:4))
                                 .foregroundColor(Color.white)
                         }
                         
@@ -208,11 +212,19 @@ struct CalendarUI: View {
         }
         
     }
-    
-    func getDay(day : Int) -> Int {
-        let day: Int = Int(calendarVM.todaysWeek[day].formatted(Date.FormatStyle().day(.twoDigits))) ?? 0;
-        return day;
+
+    func getTwoDigitDay(day : Int) -> String {
+        let calendar = Calendar.current;
+        let newDay = calendar.date(byAdding: .day, value: day, to: Date()) ?? Date();
+        return newDay.formatted(Date.FormatStyle().day(.twoDigits));
     }
+    
+    func getWeekDay(day : Int) -> String {
+        let calendar = Calendar.current;
+        let newDay = calendar.date(byAdding: .day, value: day, to: Date()) ?? Date();
+        return newDay.formatted(Date.FormatStyle().weekday(.abbreviated));
+    }
+    
 }
 
 struct CalendarUI_Previews: PreviewProvider {

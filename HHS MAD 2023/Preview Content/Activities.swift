@@ -486,6 +486,7 @@ struct Activities: View {
                     }
                 } else {
                     CalendarPage().environmentObject(calendarVM)
+                        
                 }
             }
             

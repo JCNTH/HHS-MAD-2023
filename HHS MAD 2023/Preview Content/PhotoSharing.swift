@@ -8,6 +8,8 @@
 
 import SwiftUI
 import PhotosUI
+import FirebaseStorage
+import FirebaseFirestore
 
 
 
@@ -105,6 +107,7 @@ struct PhotoSharing: View {
                                         for item in newItem {
                                             if let data = try? await item.loadTransferable(type: Data.self){
                                                 selectedImageData.append(data)
+                                                uploadPhoto(data: data)
                                             }
                                         }
                                     }
@@ -160,7 +163,64 @@ struct PhotoSharing: View {
                    
 
             }
+        }.onAppear {
+            retrievePhotos()
         }
+        
+        
+    }
+    
+    func uploadPhoto(data : Data) {
+        let storageRef = Storage.storage().reference();
+        
+        let path = "photos/\(UUID().uuidString).jpg";
+        
+        let fileRef = storageRef.child(path)
+        
+        fileRef.putData(data, metadata: nil) { metadata, error in
+            
+            if (error != nil) {
+                print(error!.localizedDescription);
+                
+                let db = Firestore.firestore()
+                db.collection("photos").document().setData(["url":path])
+            }
+        }
+        
+        
+        
+    }
+    
+    func retrievePhotos() {
+        let db = Firestore.firestore();
+        
+        db.collection("photos").getDocuments { snapshot, error in
+            
+            if (error == nil && snapshot != nil) {
+                var paths = [String]()
+                for doc in snapshot!.documents {
+                    paths.append(doc["url"] as! String)
+                }
+                
+                for path in paths {
+                    let storageRef = Storage.storage().reference()
+                    
+                    let fileRef = storageRef.child(path)
+                    
+                    fileRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
+                        
+                        if error == nil && data != nil {
+                            DispatchQueue.main.async {
+                                selectedImageData.append(data!)
+                            }
+                        }
+                    }
+                }
+                
+                
+            }
+        }
+        
         
         
     }

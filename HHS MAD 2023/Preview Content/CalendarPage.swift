@@ -19,12 +19,8 @@ struct CalendarPage: View {
         
         VStack {
             HStack {
-                Text("Calendar")
-                    .font(.system(size: 30, weight: .bold, design: .rounded))
-                    .foregroundColor(Color.green)
-                    .multilineTextAlignment(.leading)
-                    .padding()
-                Spacer()
+                
+               
                 HStack {
                     Button {
                         calendarVM.shift(shift:-1, unit: .month);
@@ -45,7 +41,7 @@ struct CalendarPage: View {
                     }
                 }
             }
-            .padding(.top, 50.0)
+            .padding(.top, 80.0)
             
             HStack(spacing: 0) {
                 Button {
@@ -94,6 +90,7 @@ struct CalendarPage: View {
                 .frame(width: 300, height: 100)
                 .font(.system(size: 20, design: .rounded))
                 .bold()
+                .offset(y: -160)
                 
                 
             }.padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/).background(Color(red: 231/255, green: 255/255, blue: 231/255)
