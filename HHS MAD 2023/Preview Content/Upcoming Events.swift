@@ -21,6 +21,10 @@ struct CalendarUI: View {
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     let inactive = Color.black
+    
+    @State var day = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
+    
+    
     let active = Color(red: 85/255, green: 172/255, blue: 85/255)
     
     @State var fromDate = 0
@@ -30,6 +34,10 @@ struct CalendarUI: View {
 //            Text("Upcoming Events")
 //                .font(.system(size: 40, weight: .bold, design: .rounded))
 //                .foregroundColor(Color(red: 36/255, green: 120/255, blue: 36/255))
+            Text(calendarVM.getTodaysMonth() + " " + String(Int(getDay(day: fromDate))))
+                .foregroundColor(Color(red: 85/255, green: 172/255, blue: 85/255))
+                .font(.system(size: 25, weight: .bold, design: .rounded))
+                .offset(x:0, y:-30)
             
             HStack(alignment: .center, spacing: width/20){
                 Button{
@@ -41,7 +49,7 @@ struct CalendarUI: View {
                     button5 = false
                 } label: {
                     ZStack{
-                        Image(systemName: "circle.fill")
+                        Image(systemName: "rectangle.fill")
                             .resizable()
                             .frame(width: 50, height: 50)
                             .foregroundColor(button1 ? active:inactive)
@@ -50,7 +58,7 @@ struct CalendarUI: View {
                             Text(String(Int(getDay(day:0))))
                                 .foregroundColor(Color.white)
                             
-                            Text(calendarVM.getTodaysMonth().prefix(3))
+                            Text(day[2])
                                 .foregroundColor(Color.white)
                         }
                         
@@ -66,7 +74,7 @@ struct CalendarUI: View {
                     button5 = false
                 } label: {
                     ZStack{
-                        Image(systemName: "circle.fill")
+                        Image(systemName: "rectangle.fill")
                             .resizable()
                             .frame(width: 50, height: 50)
                             .foregroundColor(button2 ? active:inactive)
@@ -75,7 +83,7 @@ struct CalendarUI: View {
                             Text(String(Int(getDay(day:1))))
                                 .foregroundColor(Color.white)
                             
-                            Text(calendarVM.getTodaysMonth().prefix(3))
+                            Text(day[3])
                                 .foregroundColor(Color.white)
                         }
                         
@@ -91,7 +99,7 @@ struct CalendarUI: View {
                     button5 = false
                 } label: {
                     ZStack{
-                        Image(systemName: "circle.fill")
+                        Image(systemName: "rectangle.fill")
                             .resizable()
                             .frame(width: 50, height: 50)
                             .foregroundColor(button3 ? active:inactive)
@@ -100,7 +108,7 @@ struct CalendarUI: View {
                             Text(String(Int(getDay(day:2))))
                                 .foregroundColor(Color.white)
                             
-                            Text(calendarVM.getTodaysMonth().prefix(3))
+                            Text(day[4])
                                 .foregroundColor(Color.white)
                         }
                         
@@ -116,7 +124,7 @@ struct CalendarUI: View {
                     button5 = false
                 } label: {
                     ZStack{
-                        Image(systemName: "circle.fill")
+                        Image(systemName: "rectangle.fill")
                             .resizable()
                             .frame(width: 50, height: 50)
                             .foregroundColor(button4 ? active:inactive)
@@ -125,7 +133,7 @@ struct CalendarUI: View {
                             Text(String(Int(getDay(day:3))))
                                 .foregroundColor(Color.white)
                             
-                            Text(calendarVM.getTodaysMonth().prefix(3))
+                            Text(day[5])
                                 .foregroundColor(Color.white)
                         }
                         
@@ -142,7 +150,7 @@ struct CalendarUI: View {
                 } label: {
                     
                     ZStack{
-                        Image(systemName: "circle.fill")
+                        Image(systemName: "rectangle.fill")
                             .resizable()
                             .frame(width: 50, height: 50)
                             .foregroundColor(button5 ? active:inactive)
@@ -151,26 +159,25 @@ struct CalendarUI: View {
                             Text(String(Int(getDay(day:4))))
                                 .foregroundColor(Color.white)
                             
-                            Text(calendarVM.getTodaysMonth().prefix(3))
+                            Text(day[6])
                                 .foregroundColor(Color.white)
                         }
                         
                     }
                 }
             }.frame(width: width, height: height/12)
+                .offset(x:0, y:-45)
+                
             
             VStack{
-                Text(calendarVM.getTodaysMonth() + " " + String(Int(getDay(day: fromDate))))
-                    .foregroundColor(Color(red: 85/255, green: 172/255, blue: 85/255))
-                    .font(.system(size: 25, weight: .bold, design: .rounded))
-                    .padding(.top)
+               
                 
                 if (calendarVM.eventsForTodaysWeek[fromDate].count == 0) {
                     HStack(spacing: 20){
                         VStack(alignment: .leading){
                             Text("No events for this day!")
                                 .font(.title).bold()
-                        }.frame(maxWidth: .infinity, alignment: .leading)
+                        }.frame(maxWidth: .infinity, alignment: .center)
                     }
                     .padding()
                 } else {
@@ -195,7 +202,7 @@ struct CalendarUI: View {
                     }
                 }
             }
-            .background(RoundedRectangle( cornerRadius: 13, style: .continuous).foregroundColor((Color(red: 208/255, green: 240/255, blue: 214/255))))
+            .background(RoundedRectangle( cornerRadius: 13, style: .continuous).foregroundColor((Color(red: 255/255, green: 255/255, blue: 255/255))))
            
                
         }
