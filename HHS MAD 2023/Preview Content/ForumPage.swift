@@ -110,9 +110,9 @@ struct ForumPage: View {
                     
                 }) {
                     Image(systemName: "arrow.backward")
-                        .padding(.leading).scaleEffect(3)
+                        .padding(.leading).scaleEffect(2)
                         
-                }.frame(width: 20.0, height: 20.0).offset(x: -width/3 - 25, y: -5*height/12 - 15)
+                }.offset(x: -width/3 - 25, y: -5*height/12 - 15).frame(width: 20.0, height: 20.0)
                 
                 if (createNewPost){
                     //createForumPost(create: $createNewPost, createdNew: $createdActivity)

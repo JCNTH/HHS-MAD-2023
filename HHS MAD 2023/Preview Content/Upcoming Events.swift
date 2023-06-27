@@ -34,10 +34,10 @@ struct CalendarUI: View {
 //            Text("Upcoming Events")
 //                .font(.system(size: 40, weight: .bold, design: .rounded))
 //                .foregroundColor(Color(red: 36/255, green: 120/255, blue: 36/255))
-            Text(calendarVM.getTodaysMonth() + " " + String(Int(getDay(day: fromDate))))
+            Text(calendarVM.getTodaysMonth())
                 .foregroundColor(Color(red: 85/255, green: 172/255, blue: 85/255))
                 .font(.system(size: 25, weight: .bold, design: .rounded))
-                .offset(x:0, y:-30)
+                .offset(x:0, y:-40)
             
             HStack(alignment: .center, spacing: width/20){
                 Button{
@@ -167,6 +167,8 @@ struct CalendarUI: View {
                 }
             }.frame(width: width, height: height/12)
                 .offset(x:0, y:-45)
+                .overlay(RoundedRectangle(cornerRadius:5).offset(x:0, y:-45).stroke(.black, lineWidth:2).foregroundColor(Color(red: 231/255, green: 231/255, blue: 255/255)).frame(width:width-width/12))
+                
                 
             
             VStack{

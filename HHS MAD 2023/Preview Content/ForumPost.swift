@@ -15,6 +15,8 @@ struct ForumPost: View {
     @Binding var discussionPage:Bool;
     @State var message = "";
     
+    @State var showLarge = false;
+    
     let screenRect = UIScreen.main.bounds
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
@@ -24,7 +26,24 @@ struct ForumPost: View {
     
     
     var body: some View {
-        if (discussionPage){
+        if (showLarge){
+            Button(action: {
+                showLarge = false;
+            }) {
+                ZStack() {
+                    VisualEffectView1(effect: UIBlurEffect(style: .dark))
+                        .opacity(0.75)
+                        .frame(width: width, height:height)
+                        .offset(x:0, y:-240)
+                    
+                    Image (image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: width, height: 400)
+                        .offset(x:0, y:-240)
+                }
+            }
+        } else if (discussionPage){
             
             VStack{
                 Text(postName)
@@ -32,14 +51,17 @@ struct ForumPost: View {
                     .font(.system(size: 40, weight: .bold, design: .rounded))
                     .offset(x: 0, y: 70)
                 
-                Image (image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .overlay(RoundedRectangle(cornerRadius: 10)
+                Button(action:{
+                    showLarge = true;
+                }) {
+                    Image (image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .overlay(RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.black, lineWidth: 4))
-                    .frame(width: width-width/10, height: 300)
-                    .offset(x:0, y:0)
-                
+                        .frame(width: width-width/10, height: 300)
+                        .offset(x:0, y:0)
+                }
                 
                 
                 
@@ -400,3 +422,10 @@ struct ForumPost_1: View {
     }
     
 }
+
+struct VisualEffectView1: UIViewRepresentable {
+    var effect: UIVisualEffect?
+    func makeUIView(context: UIViewRepresentableContext<Self>) -> UIVisualEffectView { UIVisualEffectView() }
+    func updateUIView(_ uiView: UIVisualEffectView, context: UIViewRepresentableContext<Self>) { uiView.effect = effect }
+}
+
