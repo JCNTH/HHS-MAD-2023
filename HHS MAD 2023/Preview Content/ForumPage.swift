@@ -38,10 +38,17 @@ struct ForumPage: View {
     @State var ClubImage = "person.2.fill"
     @State var PhotoImage = "camera"
     
-    @State var discussionPage = false;
+    @State var discussionPage1 = false;
+    @State var discussionPage2 = false;
+    @State var discussionPage3 = false;
     
+    @State var createNewPost = false;
+    
+    @State var active1 = false;
+    
+    @State var createdActivity = false
     var body: some View {
-        if (discussionPage){
+        if (active1){
             
         } else if (active){
             //Top Section
@@ -69,20 +76,33 @@ struct ForumPage: View {
                 }.offset(x:-5, y:50 + (-5*height/12))
                 
                 ScrollView(){
-                    VStack(spacing: -20){
+                    VStack(spacing: 10){
                         //Top Post
-                        if (!discussionPage){
-                            ForumPost(postName: "Solving Integral", votes: 45, postBody: "I thought that we needed to solve the integral like this perilous hard work and determination.", image: "Homework", discussionPage: discussionPage)
-                            ForumPost(postName: "Area of Circle", votes: 23, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: discussionPage)
-                            ForumPost(postName: "Solving Integral", votes: 18, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: discussionPage)
-                            ForumPost(postName: "Solving Integral", votes: 11, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: discussionPage)
-                            ForumPost(postName: "Solving Integral", votes: 5, postBody: "I thought that we needed to solve the integral like this perilous hard work and determination.", image: "Homework", discussionPage: discussionPage)
-                            ForumPost(postName: "Solving Integral", votes: -11, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: discussionPage)
-                            ForumPost(postName: "Solving Integral", votes: -29, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: discussionPage)
-                            ForumPost(postName: "Solving Integral", votes: -56, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: discussionPage)
+                        if (discussionPage1){
+                            ForumPost(postName: "Solving Integral", votes: 45, postBody: "I thought that we needed to solve the integral like this perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage1)
+                        } else if (discussionPage2){
+                            ForumPost(postName: "Area Under Curve", votes: 23, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage2)
+                        } else if (discussionPage3){
+                            ForumPost(postName: "Solving Integral", votes: 18, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage3)
+                        } else {
+                            VStack(spacing: 10){
+                                ForumPost(postName: "Solving Integral", votes: 45, postBody: "I thought that we needed to solve the integral like this perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage1)
+                                ForumPost(postName: "Area Under Curve", votes: 23, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage2)
+                                ForumPost(postName: "Solving Integral", votes: 18, postBody: "I thought that we needed to solve the integral through perilous hard work and determination.", image: "Homework", discussionPage: $discussionPage3)
+                            }
                         }
                     }
-                }.offset(x:0, y:225)
+                }.offset(x:0, y:240)
+                
+                //Plus button forums
+                Button(action: {
+                    createNewPost = true;
+                }) {
+                    Image(systemName: "plus")
+                        .padding(.leading).scaleEffect(3)
+                        
+                }.frame(width: 20.0, height: 20.0).offset(x: 0, y: height/3)
+                
                 
                 //Back button
                 Button(action: {
@@ -90,13 +110,135 @@ struct ForumPage: View {
                     
                 }) {
                     Image(systemName: "arrow.backward")
-                        .padding(.leading).scaleEffect(2)
-                }.offset(x: -width/3 - 25, y: -5*height/12 - 15)
+                        .padding(.leading).scaleEffect(3)
+                        
+                }.frame(width: 20.0, height: 20.0).offset(x: -width/3 - 25, y: -5*height/12 - 15)
+                
+                if (createNewPost){
+                    //createForumPost(create: $createNewPost, createdNew: $createdActivity)
+                }
             }
             
         } else {
             HHS_MAD_2023.Academics()
         }
         
+    }
+}
+
+struct createForumPost: View {
+    @Binding var create: Bool
+    @Binding var createdNew: Bool
+    
+    @State var description = ""
+    @State var name = ""
+    @State var showImagePicker = false
+    @State private var inputImage: UIImage?
+    @State private var image: Image?
+    
+    let screenRect = UIScreen.main.bounds
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
+    
+    @ObservedObject var Activity: ActivityManager
+
+    
+    var body: some View {
+        
+        ZStack{
+            RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
+                .foregroundColor(Color.white)
+                .frame(width: width/1.2, height: height/1.2, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .shadow(radius: 10)
+            
+            ScrollView {
+                VStack (spacing: 30){
+                    Image(systemName: "cube.transparent.fill")
+                        .resizable()
+                        .frame(width: 150, height: 150)
+                
+                    Text("Activity Name")
+                        .font(.largeTitle).bold()
+                        .foregroundColor(Color.green)
+                        .padding()
+                
+                    TextField("Fill in Text", text: $name)
+                        .background(Rectangle().fill(Color.white).shadow(radius: 3).frame(width: width/1.2, height: height/15))
+                        .foregroundColor(name.isEmpty ? Color.gray.opacity(0.3):Color.black)
+                        .font(.headline)
+                    
+                    Text("Post Body")
+                        .font(.largeTitle).bold()
+                        .foregroundColor(Color.green)
+                        .padding()
+                
+                    TextField("Fill in Text", text: $description)
+                        .background(Rectangle().fill(Color.white).shadow(radius: 3).frame(width: width/1.2, height: height/15))
+                        .foregroundColor(description.isEmpty ? Color.gray.opacity(0.3):Color.black)
+                        .font(.headline)
+                    
+                    Text("Image")
+                        .font(.largeTitle).bold()
+                        .foregroundColor(Color.green)
+                        .padding()
+              
+                        Text(image == nil ? "Click To Upload":"Click To Change")
+                            .background(Rectangle().fill(Color.blue).shadow(radius: 3).frame(width: width/1.2, height: height/15).opacity(0.7))
+                            .foregroundColor(Color.white)
+                            .font(.headline)
+                            .onTapGesture { showImagePicker = true }
+                        
+                        if(image != nil)
+                        {
+                            image?
+                                .resizable()
+                                .scaledToFit()
+                                .scaleEffect(0.8)
+                        }
+                    
+                    
+
+                   
+//                        .frame(width: width, height: height/10)
+                    
+                
+
+                    Button{
+//                        Activity.setName(name: name)
+//                        Activity.setDescription(description: description)
+                        if(image == nil)
+                        {
+                            return
+                        }
+                        
+                        
+
+                        createdNew = false
+                    } label: {
+                        Text("Create".uppercased())
+                            .padding()
+                            .background(Color.blue.opacity(1).cornerRadius(10))
+                            .foregroundColor(Color.white)
+                            .font(.headline)
+                           
+                    }.onChange(of: inputImage) {_ in loadImage()  }
+                        .sheet(isPresented: $showImagePicker){
+                            ImagePicker(image: $inputImage)
+                        }
+                    
+                    Spacer()
+                }
+                
+                
+            }.frame(width: width/1.2, height: height/1.2)
+            .background(Rectangle().fill(Color.white).shadow(radius: 3).frame(width: width/1.2, height: height/1.2))
+           
+
+        }
+    }
+    
+    func loadImage(){
+        guard let inputImage = inputImage else { return }
+        image = Image(uiImage: inputImage)
     }
 }
