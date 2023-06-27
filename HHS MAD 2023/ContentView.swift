@@ -10,6 +10,7 @@ import FirebaseAuth
 
 
 struct ContentView: View {
+    @State var calendarVM = CalendarPageViewModel();
     @State var userLoggedIn = false;
     @State var loginBtnText  = "Login";
     @State var showLoginAlert = false;
@@ -23,7 +24,7 @@ struct ContentView: View {
     var body: some View {
 
         if userLoggedIn {
-            Activities(name: name);
+            Activities(name: name).environmentObject(calendarVM);
         } else {
             loginPage;
         }
@@ -143,6 +144,8 @@ struct ContentView: View {
                                     password = "";
                                     firstName = "";
                                     lastName = "";
+                                } else {
+                                    name = auth.currentUser?.displayName ?? "User";
                                 }
                             }
                         }

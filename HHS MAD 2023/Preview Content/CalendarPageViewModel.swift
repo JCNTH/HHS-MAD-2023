@@ -9,21 +9,16 @@ import Foundation
 import Firebase
 
 struct Event : Identifiable, Decodable, Hashable {
-    var id = UUID();
-    var name : String;
-    var location : String;
-    var date : Date;
-    var repeatDay : String;
-    var details : String;
+    public var id = UUID();
+    public var name : String;
+    public var location : String;
+    public var date : Date;
+    public var repeatDay : String;
+    public var details : String;
     
     public func describe() -> String {
         return name + " at " + location + " on " + date.formatted();
     }
-    
-    public func getName() -> String {
-        return name;
-    }
-    
     
 }
 
@@ -139,6 +134,17 @@ class CalendarPageViewModel : ObservableObject{
     func getTodaysMonth() -> String {
         return todaysWeek[0].formatted(Date.FormatStyle().month(.wide));
     }
+    
+    func getActiveEvent() -> Event {
+        var activeEvent = events[0];
+        events.forEach { event in
+            if (event.id.uuidString.elementsEqual(activeEventID)) {
+                activeEvent = event;
+            }
+        }
+        return activeEvent;
+    }
+    
     
     static func isMatching(date1: Date, date2: Date) -> Bool {
         return date1.formatted(date: .complete, time: .omitted) == date2.formatted(date: .complete, time: .omitted);

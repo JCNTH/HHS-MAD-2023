@@ -176,11 +176,11 @@ struct CalendarUI: View {
                 } else {
                     ForEach(calendarVM.eventsForTodaysWeek[fromDate], id:\.self) { event in
                         Button{
-                           let _ = print("Hello World!")
+                            calendarVM.activeEventID = event.id.uuidString;
                         } label: {
                             HStack(spacing: 20){
                                 VStack(alignment: .leading){
-                                    Text(event.getName())
+                                    Text(event.name)
                                         .font(.title).bold()
                                 }.frame(maxWidth: .infinity, alignment: .leading)
                                 
