@@ -63,28 +63,30 @@ struct Activities: View {
     let screenRect = UIScreen.main.bounds
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
-
+    
     @State var activitiesCurrent = ActivityManager()
     
     @State private var currentIndex = 0
     let images = ["homestead1", "homestead2", "homestead3"]
     
+    let images2 = ["fbla1", "fbla1", "fbla1"]
+    
     @State var name : String;
-        
+    
     var body: some View {
         ZStack{
             //Start page, home page
             if (home) {
                 ZStack {
                     //Background color
-//                    Color(red: 231/255, green: 255/255, blue: 231/255)
-//                        .ignoresSafeArea()
+                    //                    Color(red: 231/255, green: 255/255, blue: 231/255)
+                    //                        .ignoresSafeArea()
                     
                     Color(red: 255/255, green: 255/255, blue: 255/255)
                         .ignoresSafeArea()
                     
                     
-                 
+                    
                     // Top section
                     Group {
                         
@@ -92,32 +94,32 @@ struct Activities: View {
                         // Creates the profile picture of the user and also displays the user's name.
                         // Additional information is displayed such as the current weather at the school.
                         // as well as a picture.
-//                        var currentUser = Auth.auth().currentUser;
-//                        var name = currentUser != nil ? currentUser.displayName : "Julian"
+                        //                        var currentUser = Auth.auth().currentUser;
+                        //                        var name = currentUser != nil ? currentUser.displayName : "Julian"
                         Group {
                             Text("Hi, " + name.split(separator: " ")[0] + "!")
                                 .padding()
                                 .font(.system(size: 25, weight: .medium, design: .rounded))
                                 .offset(x: -width/3.6, y: -355)
-                                
+                            
                             Text("Welcome to HHS Connect")
                                 .padding()
                                 .font(.system(size: 20, design: .rounded))
                                 .offset(x: -width/7.6, y: -320)
-
                             
-                           
+                            
+                            
                             
                             Button {
-//                                do {
-//                                    try Auth.auth().signOut();
-//                                } catch {
-//                                    print("Sign out error!")
-//                                }
+                                //                                do {
+                                //                                    try Auth.auth().signOut();
+                                //                                } catch {
+                                //                                    print("Sign out error!")
+                                //                                }
                                 withAnimation {
                                     showMenu = true
                                 }
-                           
+                                
                             } label: {
                                 Image ("hot")
                                     .resizable()
@@ -150,7 +152,7 @@ struct Activities: View {
                                     .shadow(color: .black, radius: 4, x: 0, y: 0)
                                     .offset(x:0, y:165)
                                 
-//
+                                //
                                 
                                 HStack{
                                     ForEach(0..<images.count, id: \.self){ index in
@@ -164,7 +166,7 @@ struct Activities: View {
                             }
                             .padding ()
                             .onAppear {
-                                print ("Appear")
+                                
                                 
                                 Timer.scheduledTimer(withTimeInterval: 3, repeats: true){ timer in
                                     if self.currentIndex + 1 == self.images.count {
@@ -175,13 +177,13 @@ struct Activities: View {
                                 }
                             }
                         }
-//                            Text("72° F ⛅")
-//                                .padding()
-//                                .font(.system(size: 18, weight: .bold, design: .rounded))
-//                                .offset(x: -width/3.3, y: -height/6)
-//                                .foregroundColor(.white)
-                        }
-                        
+                        //                            Text("72° F ⛅")
+                        //                                .padding()
+                        //                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                        //                                .offset(x: -width/3.3, y: -height/6)
+                        //                                .foregroundColor(.white)
+                    }
+                    
                     
                     
                     //Middle Section
@@ -191,28 +193,28 @@ struct Activities: View {
                         Group {
                             
                             ZStack{
-//                                RoundedRectangle( cornerRadius: 13, style: .continuous)
-//                                    .frame(width: width/1.2, height: height/20)
+                                //                                RoundedRectangle( cornerRadius: 13, style: .continuous)
+                                //                                    .frame(width: width/1.2, height: height/20)
                                 
                                 
-//                                Divider()
-//                                    .frame(width: width/1.1, height:3)
-//                                    .background(Color.gray)
-//                                    .offset(y: height/41)
-//                                @State var SocialImage = "person.badge.plus"
-//                                @State var EventImage = "clock"
-//                                @State var ClubImage = "person.2.fill"
-//                                @State var PhotoImage = "camera"
+                                //                                Divider()
+                                //                                    .frame(width: width/1.1, height:3)
+                                //                                    .background(Color.gray)
+                                //                                    .offset(y: height/41)
+                                //                                @State var SocialImage = "person.badge.plus"
+                                //                                @State var EventImage = "clock"
+                                //                                @State var ClubImage = "person.2.fill"
+                                //                                @State var PhotoImage = "camera"
                                 HStack(spacing: 20){
                                     Button_(text: $Social, state: $social, other1: $events, other2: $clubs, other3: $photos, image: $SocialImage)
                                     Button_(text: $Events, state: $events, other1: $social, other2: $clubs, other3: $photos, image: $EventImage)
                                     Button_(text: $Clubs, state: $clubs, other1: $events, other2: $social, other3: $photos, image: $ClubImage)
                                     Button_(text: $Photos, state: $photos, other1: $events, other2: $clubs, other3: $social, image: $PhotoImage)
                                     
-                               
-                            }
-                               
-                                  
+                                    
+                                }
+                                
+                                
                             }
                             .padding(.bottom, height/7.5)
                         }
@@ -240,93 +242,192 @@ struct Activities: View {
                                         ClubDescription2(image: $CHESS_IMAGE, name: $CHESS_NAME, showDescription: $showDescription, state: $CHESS_STATE)
                                         ClubDescription(image: $SHOGI_IMAGE, name: $SHOGI_NAME, showDescription: $showDescription, state: $SHOGI_STATE)
                                         ClubDescription(image: $DATA_IMAGE, name: $DATA_NAME, showDescription: $showDescription, state: $DATA_STATE)
-
+                                        
                                     }
                                     
                                 }.padding(.top, height/1.9)
                                 
                                 if(showDescription)
                                 {
+                                    VisualEffectView(effect: UIBlurEffect(style: .dark))
+                                        .opacity(0.5)
+                                        .transition(.moveAndFade)
                                     //If "FBLA" club is selected
                                     if(FBLA_STATE){
-                                            ZStack{
-                                                //FBLA club description
-                                                ScrollView{
-                                                    Button{
-                                                      FBLA_STATE = false
-                                                    showDescription = false
-                                                    } label: {
-                                                        Image(systemName: "xmark")
-                                                            .resizable()
-                                                            .frame(width: 20, height: 20)
-
-                                                        
+                                        ZStack{
                                             
-                                                    }.offset(x: -width/3, y: height/20)
-                                                      
+                                            //FBLA club description
+                                            ScrollView{
+                                                
+                                                
+                                                
+                                                VStack(alignment: .center, spacing: 20){
+                                                    //School image and weather section
                                                     
-                                                    VStack(alignment: .center, spacing: 20){
                                                     
-                                                        AsyncImage(url: URL(string: FBLA_IMAGE)) { image in
-                                                            image.resizable()
-                                                                .aspectRatio(contentMode: .fill)
-                                                                .frame(width: 100, height: 80)
-                                                                .cornerRadius(50)
-
-                                                        } placeholder: {
-                                                            ProgressView()
+                                                    VStack(spacing: 20){
+                                                        Text("About the Club")
+                                                            .font(.system(size: 22, weight: .medium, design: .default)).bold()
+                                                            .foregroundColor(Color.black)
+                                                            .multilineTextAlignment(.center)
+                                                            .padding(.trailing, 125)
+                                                        
+                                                        HStack{
+                                                            Divider()
+                                                                .frame(maxWidth: 2)
+                                                                .background(Color.gray)
+                                                            
+                                                            //                                                            .rotationEffect(.degrees(-90))
+                                                            
+                                                            
+                                                            Text("Homestead FBLA currently has 4 projects. The projects consist of the American Enterprise Project, the Community Service Project, the Partnership with Business Project, and the Software Ventures Project.")
+                                                                .fixedSize(horizontal: false, vertical: true)
+                                                                .font(.system(size: 17, weight: .light, design: .default))
+                                                                .multilineTextAlignment(.leading)
+                                                            
+                                                            
+                                                            
                                                         }
                                                         
                                                         
                                                         
-                                                        Text("FBLA")
-                                                            .font(.largeTitle).bold()
-                                                            .foregroundColor(Color.green)
-                                                        Text("Meetings: Monthly")
-                                                            .font(.system(size: 20, weight: .bold, design: .default))
-                                                        Text("Membership: Try-Out Based")
-                                                            .font(.system(size: 20, weight: .bold, design: .default))
-        //                                                padding()
+                                                        Text("Meeting Frequency")
+                                                            .font(.system(size: 22, weight: .medium, design: .default)).bold()
+                                                            .foregroundColor(Color.black)
+                                                            .multilineTextAlignment(.leading)
+                                                            .padding(.trailing, 80)
                                                         
-                                                        Text("About The Club")
-                                                            .foregroundColor(Color.blue)
-                                                            .font(.system(size: 30, weight: .bold, design: .default))
-                                                            .frame(width: 1000, height: 60)
+                                                        HStack{
+                                                            Divider()
+                                                                .frame(maxWidth: 2)
+                                                                .background(Color.gray)
+                                                            
+                                                            //                                                            .rotationEffect(.degrees(-90))
+                                                            
+                                                            
+                                                            Text("Homestead FBLA holds a general meeting at the beginning of every month")
+                                                                .fixedSize(horizontal: false, vertical: true)
+                                                                .font(.system(size: 17, weight: .light, design: .default))
+                                                                .multilineTextAlignment(.leading)
+                                                            
+                                                            
+                                                            
+                                                        }
                                                         
-                                                        Text("Homestead FBLA currently has 4 projects. The projects consist of the American Enterprise Project, the Community Service Project, the Partnership with Business Project, and the Software Ventures Project.")
-                                                            .fixedSize(horizontal: false, vertical: true)
-                                                            .font(.system(size: 18, weight: .bold, design: .default))
-                                                            .multilineTextAlignment(.center)
-
-//                                                        Spacer()
-
                                                         Text("Achievements")
-                                                            .foregroundColor(Color.blue)
-                                                            .font(.system(size: 30, weight: .bold, design: .default))
-                                                            .frame(width: 1000, height: 60)
+                                                            .font(.system(size: 22, weight: .medium, design: .default)).bold()
+                                                            .foregroundColor(Color.black)
+                                                            .multilineTextAlignment(.leading)
+                                                            .padding(.trailing, 135)
                                                         
-                                                        Text("23 Bay Section Championships")
-                                                            .font(.system(size: 18, weight: .bold, design: .default))
-
-                                                        Text("21 State Championships")
-                                                            .font(.system(size: 18, weight: .bold, design: .default))
-
-                                                        Text("20 National Championships")
-                                                            .font(.system(size: 18, weight: .bold, design: .default))
-
-                                                    }.padding(.top, height/10).frame(width: UIScreen.main.bounds.width/1.4, height: 500).offset(y: 80)
-                                                   
-                                                }.frame(width: width/1.2, height: height/1.2)
-                                                .background(Rectangle().fill(Color.white).shadow(radius: 3).frame(width: width/1.2, height: height/1.2))
-
-                                               
-
+                                                        HStack{
+                                                            Divider()
+                                                                .frame(maxWidth: 2)
+                                                                .background(Color.gray)
+                                                            
+                                                            //                                                            .rotationEffect(.degrees(-90))
+                                                            
+                                                            
+                                                            Text("Homestead FBLA 23 consecutive Bay Section Championships, 21 consecutive state championships, and 20 national championships.")
+                                                                .fixedSize(horizontal: false, vertical: true)
+                                                                .font(.system(size: 17, weight: .light, design: .default))
+                                                                .multilineTextAlignment(.leading)
+                                                            
+                                                            
+                                                            
+                                                        }
+                                                        
+                                                    }
+                                                    
+                                                    
+                                                }.frame(width: UIScreen.main.bounds.width/1.4, height: 450)
                                                 
-
-                                            }.aspectRatio(1, contentMode: .fit)
-
-//                                        }
-                                       
+                                            }.frame(width: width/1.2, height: height/2.5)
+                                                .offset(x: 0, y:95)
+                                                .background(
+                                                    
+                                                    
+                                                    ZStack(){
+                                                        RoundedRectangle(cornerRadius: 5).fill(Color.white).shadow(radius: 3).frame(width: width/1.2, height: height/1.3)
+                                                        
+                                                        Group {
+                                                            
+                                                            
+                                                            Image(images2[currentIndex])
+                                                                .resizable()
+                                                                .aspectRatio(contentMode: .fill)
+                                                                .frame(width: width/1.2, height: 180)   .scaleEffect(x: 1.1, y: 1)
+                                                                .cornerRadius(1)
+                                                                .mask(LinearGradient(gradient:
+                                                                                        Gradient(stops: [
+                                                                                            .init(color: Color.white, location: 0),
+                                                                                            .init(color: Color.white, location: 0.8),
+                                                                                            .init(color: Color.white.opacity(0), location: 1.0)]), startPoint: .top, endPoint: .bottom))
+                                                                .offset(x:0, y:-238)
+                                                            
+                                                            Button{
+                                                                FBLA_STATE = false
+                                                                showDescription = false
+                                                            } label: {
+                                                                Image(systemName: "xmark")
+                                                                    .resizable()
+                                                                    .frame(width: 15, height: 15)
+                                                                    .background(RoundedRectangle(cornerRadius: 10, style: .continuous).frame(width: 30, height: 30).foregroundColor(Color.black).opacity(0.75))
+                                                                
+                                                                
+                                                                
+                                                            }.offset(x: -130, y: -280)
+                                                            
+                                                            Text("FBLA")
+                                                                .font(.system(size: 30, weight: .medium, design: .default)).bold()
+                                                                .foregroundColor(Color.black)
+                                                                .multilineTextAlignment(.center)
+                                                                .offset(x:0, y:-105)
+                                                            
+                                                            
+                                                            Image("FBLA_logo") .resizable()
+                                                                .aspectRatio(contentMode: .fill)
+                                                                .frame(width: 50, height: 80)
+                                                                .offset(x:0, y:-150)
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            VStack {
+                                                                Spacer ()
+                                                            }
+                                                            .padding ()
+                                                            .onAppear {
+                                                                
+                                                                
+                                                                Timer.scheduledTimer(withTimeInterval: 3, repeats: true){ timer in
+                                                                    if self.currentIndex + 1 == self.images.count {
+                                                                        self.currentIndex = 0
+                                                                    } else{
+                                                                        self.currentIndex += 1
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        
+                                                        
+                                                        
+                                                    }
+                                                    
+                                                    
+                                                    
+                                                )
+                                                .offset(y: -30)
+                                            
+                                            
+                                            
+                                            
+                                            
+                                        }.aspectRatio(1, contentMode: .fit)
+                                        
+                                        //                                        }
+                                        
                                     }
                                     else if(ROBOTICS_STATE) {
                                         
@@ -342,15 +443,15 @@ struct Activities: View {
                                     }
                                 }
                             }
-                           
-                        }
                             
+                        }
+                        
                         //Acitivites page
                         if(social) {
                             ActivitiesPage(newActivity: $activitiesCurrent)
                                 .padding(.top, 35)
-//                                .onChange(of: activitiesCurrent) {_ in save()  }
-                                  
+                            //                                .onChange(of: activitiesCurrent) {_ in save()  }
+                            
                         }
                         
                         
@@ -364,7 +465,7 @@ struct Activities: View {
             {
                 Messages()
                     .padding(.top, height/10)
-                  
+                
             }
             
             //Calendar page
@@ -387,58 +488,58 @@ struct Activities: View {
             if(showMenu){
                 exitPage(showMenu: $showMenu)
             }
-        
+            
             
             MenuScreen(home: $home, messages: $messages, calendar: $calendar, academics2: $academics2) .zIndex(3)
             
-         
+            
             
             ZStack{
                 
-               
-
                 
-//                Circle()
-//                    .trim(from: 0, to: 0.5)
-//                    .frame(width: 400, height: 80)
-//                    .foregroundColor(Color(red: 231/255, green: 255/255, blue: 231/255))
-//                    .offset(y: -65)
-//    //                .clipShape(Circle())
-//
-//
-//
+                
+                
+                //                Circle()
+                //                    .trim(from: 0, to: 0.5)
+                //                    .frame(width: 400, height: 80)
+                //                    .foregroundColor(Color(red: 231/255, green: 255/255, blue: 231/255))
+                //                    .offset(y: -65)
+                //    //                .clipShape(Circle())
+                //
+                //
+                //
                 Image("MAD_LOGOS-removebg-preview")
                     .resizable()
                     .frame(width: 105, height: 112.5)
                     .foregroundColor(Color(red: 231/255, green: 255/255, blue: 231/255))
                     .offset(y: -65)
-      
-         
-
+                
+                
+                
             }.offset(y: 410)              .zIndex(4)
-
+            
         }
         
         
-//        .onAppear(perform: load)
-//
-//        defaults.set(activitiesCurrent, forKey: "activities")
-
+        //        .onAppear(perform: load)
+        //
+        //        defaults.set(activitiesCurrent, forKey: "activities")
+        
     }
     
-//    func save() {
-//        defaults.set(forKey: "activities")
-//
-//        activitiesCurrent = activity_saved
-//
-//      }
-//
-//    func load() {
-//        let activity_saved = defaults(forKey: "activities")
-//
-//        activitiesCurrent = activity_saved
-//
-//      }
+    //    func save() {
+    //        defaults.set(forKey: "activities")
+    //
+    //        activitiesCurrent = activity_saved
+    //
+    //      }
+    //
+    //    func load() {
+    //        let activity_saved = defaults(forKey: "activities")
+    //
+    //        activitiesCurrent = activity_saved
+    //
+    //      }
     
 }
 
@@ -479,33 +580,33 @@ struct Button_: View{
                             .background(
                                 RoundedRectangle(cornerRadius: 10, style: .continuous).fill(state ? Color.green:Color.gray)
                             )
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10, style: .continuous).fill(state ? Color.green:Color.white)
-                                  
-                            )
-                            .frame(width: 65, height: 55))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10, style: .continuous).fill(state ? Color.green:Color.white)
+                                    
+                                )
+                                    .frame(width: 65, height: 55))
                     
                     Text(text)
                         .foregroundColor(state ? Color.green:Color.black)
                         .font(.system(size: 14)).bold().multilineTextAlignment(.center)
                         .offset(x: 0, y: 9)
-                       
+                    
                     
                     Divider()
                         .frame(width: width/6, height:3)
                         .background(state ? Color.green:Color.gray)
                         .offset(x: 0, y: 5)
-                
-                
+                    
+                    
                 }.offset(x: 5, y: -14)
             }
             
             
-          
             
             
-                
-
+            
+            
+            
         }
     }
 }
@@ -537,7 +638,7 @@ struct Button_Forum: View{
                             .resizable()
                             .frame(width: 9*width/39, height: 9*width/39)
                             .offset(x:0, y:72)
-                           
+                        
                         Image(image)
                             .resizable().aspectRatio(contentMode: .fit).frame(width: 5*width/39, height: 5*width/39)
                             .foregroundColor(state ? Color.white:Color.black)
@@ -555,7 +656,7 @@ struct Button_Forum: View{
                             .foregroundColor(.white)
                             .aspectRatio(contentMode: .fit).frame(width: 5*width/39, height:5*width/39)
                             .offset(x:0, y:-5)
-                            
+                        
                     }
                     
                     Text(text)
@@ -563,17 +664,17 @@ struct Button_Forum: View{
                         .font(.system(size: 14)).multilineTextAlignment(.center)
                         .offset(x: 0, y: -(19+7*width/39))
                     
-                
-                
+                    
+                    
                 }.offset(x: 5, y: -14)
             }
             
             
-          
             
             
-                
-
+            
+            
+            
         }
     }
 }
@@ -583,16 +684,16 @@ struct Button_Large: View{
     @Binding var text: String
     @Binding var state: Bool
     @Binding var image: String
-
+    
     let screenRect = UIScreen.main.bounds
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
-
+    
     var body: some View{
         Button{
             state = true
         } label: {
-
+            
             ZStack{
                 VStack(spacing: 6){
                     Image(image)
@@ -603,21 +704,21 @@ struct Button_Large: View{
                             .background(
                                 RoundedRectangle(cornerRadius: 10, style: .continuous).fill(state ? Color.green:Color.gray)
                             )
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10, style: .continuous).fill(state ? Color.green:Color.white)
-
-                            )
-                            .frame(width: 115, height: 105))
-
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10, style: .continuous).fill(state ? Color.green:Color.white)
+                                    
+                                )
+                                    .frame(width: 115, height: 105))
+                    
                     Text(text)
                         .foregroundColor(state ? Color.green:Color.black)
                         .font(.system(size: 14)).bold().multilineTextAlignment(.center)
                         .offset(x: 0, y: 11)
-
-
+                    
+                    
                 }.offset(x: 5, y: -14)
             }
-
+            
         }
     }
 }
@@ -633,8 +734,8 @@ struct Button_Menu: View{
     
     var body: some View{
         
-//        Image(uiImage: UIImage(systemName: "\(text).fill") ?? UIImage(systemName: "questionmark.square.fill")!)
-
+        //        Image(uiImage: UIImage(systemName: "\(text).fill") ?? UIImage(systemName: "questionmark.square.fill")!)
+        
         Button{
             state = true
             other1 = false
@@ -647,16 +748,16 @@ struct Button_Menu: View{
                     .resizable()
                     .frame(width: 35, height: 30)
                     .foregroundColor(state ? Color(red: 85/255, green: 172/255, blue: 85/255):Color.white)
-                    
-                    
-                    
-                   
-            }
-          
-            
-            
                 
-
+                
+                
+                
+            }
+            
+            
+            
+            
+            
         }
     }
 }
@@ -682,26 +783,26 @@ struct MenuScreen: View{
                     .shadow(radius: 10.0)
                     .rotationEffect(.radians(.pi/2))
                     .frame(width: 130, height: 150, alignment: .center)
-                  
+                
                 
                 RoundedRectangle( cornerRadius: 0, style: .continuous)
                     .frame(width: 150, height: 130)
                 
-              
-    //                .clipShape(Circle())
-           
+                
+                //                .clipShape(Circle())
+                
                 
             }  .offset(x: 75)
-        
-  
             
-                
+            
+            
+            
             
             HStack(spacing: 100){
                 HStack(spacing: 35){
                     Button_Menu(text: $Home, state: $home, other1: $messages, other2: $calendar, other3: $academics2 )
                     Button_Menu(text: $Messages, state: $messages, other1: $home, other2: $calendar, other3: $academics2 )
-                   
+                    
                 }
                 
                 HStack(spacing: 35){
@@ -713,9 +814,9 @@ struct MenuScreen: View{
             
         }.padding(.top, 800)
         
-
-        }
+        
     }
+}
 
 //Club page
 struct ClubDescription2: View{
@@ -730,7 +831,7 @@ struct ClubDescription2: View{
     
     var body: some View {
         
-      
+        
         Button{
             showDescription = true
             state = true
@@ -758,14 +859,14 @@ struct ClubDescription2: View{
                             .foregroundColor(.gray)
                     }.frame(maxWidth: .infinity, alignment: .leading)
                     
-                  
+                    
                 }
                 .padding()
             }
-          
+            
         }
         
-       
+        
     }
 }
 
@@ -782,7 +883,7 @@ struct ClubDescription: View{
     
     var body: some View {
         
-      
+        
         Button{
             showDescription = true
             state = true
@@ -799,7 +900,7 @@ struct ClubDescription: View{
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 100, height: 80)
                             .cornerRadius(50)
-
+                        
                     } placeholder: {
                         ProgressView()
                     }
@@ -814,14 +915,14 @@ struct ClubDescription: View{
                             .foregroundColor(.gray)
                     }.frame(maxWidth: .infinity, alignment: .leading)
                     
-                  
+                    
                 }
                 .padding()
             }
-          
+            
         }
         
-       
+        
     }
 }
 
@@ -833,31 +934,45 @@ struct CustomShape: Shape {
     
     func path(in rect: CGRect) -> Path {
         
-//        rect.setWidth = width
-//        rect.height = height
+        //        rect.setWidth = width
+        //        rect.height = height
         
         return Path { path in
             path.addArc(center: CGPoint(x: rect.minX/2, y: rect.midY), radius: rect.height/4, startAngle: Angle(degrees: 90), endAngle: Angle(degrees: 270), clockwise: true)
             path.addRect(CGRect(x: 0, y: rect.minY, width: rect.width, height: 2*width))
-
+            
         }
         
     }
 }
 
+struct Blur: UIViewRepresentable {
+    
+    var style: UIBlurEffect.Style = .systemMaterial
+    
+    func makeUIView(context: Context) -> UIVisualEffectView{
+        return UIVisualEffectView(effect: UIBlurEffect(style: style))
+    }
+    
+    func updateUIView(_ uiView: UIVisualEffectView, context: Context){
+        uiView.effect = UIBlurEffect(style: style)
+    }
+    
+}
+
 
 struct LabelledDivider: View {
-
+    
     let label: String
     let horizontalPadding: CGFloat
     let color: Color
-
+    
     init(label: String, horizontalPadding: CGFloat = 5, color: Color = .gray) {
         self.label = label
         self.horizontalPadding = horizontalPadding
         self.color = color
     }
-
+    
     var body: some View {
         HStack {
             line
@@ -866,7 +981,7 @@ struct LabelledDivider: View {
             line
         }
     }
-
+    
     var line: some View {
         VStack { Divider().background(color).frame(maxHeight:20) }.padding(horizontalPadding)
     }
@@ -875,9 +990,9 @@ struct LabelledDivider: View {
 extension AnyTransition {
     static var moveAndFade: AnyTransition {
         .asymmetric(
-                   insertion: .move(edge: .trailing).combined(with: .opacity),
-                   removal: .move(edge: .trailing).combined(with: .opacity)
-               )
+            insertion: .move(edge: .trailing).combined(with: .opacity),
+            removal: .move(edge: .trailing).combined(with: .opacity)
+        )
         
     }
 }
@@ -903,9 +1018,9 @@ struct exitPage: View {
         ZStack{
             RoundedRectangle(cornerRadius: 10, style: .continuous).frame(width: width/1.8, height: height).foregroundColor(Color.white)
                 .position(x: width/1.25, y: 400)
-        
+            
             ZStack{
-               
+                
                 VStack{
                     HStack{
                         Image ("hot")
@@ -914,48 +1029,48 @@ struct exitPage: View {
                             .offset(y: 10)
                             .frame(width:60.0, height: 60.0, alignment: .center)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
-                         
+                        
                         VStack(spacing: 6){
                             Text("Julian Ng")
                                 .foregroundColor(Color.green)
                                 .bold()
                                 .font(.system(size: 20)).multilineTextAlignment(.center)
-                                                            
+                            
                             Text("Grade 11")
                                 .foregroundColor(Color.green)
                                 .bold()
                                 .font(.system(size: 15)).multilineTextAlignment(.center)
                                 .offset(y: -5)
                         }
-                       
+                        
                     }
-                   
+                    
                     HStack{
                         Button{
                             withAnimation(){
                                 
                             }
-                               } label:
-                               {
-                                   ZStack{
-                                      
-                                       
-                                       HStack(spacing: 18){
-                                           Image(systemName: "desktopcomputer")
-                                               .resizable()
-                                               .renderingMode(.template)
-                                               .frame(width: 35, height: 35)
-                                               .foregroundColor(Color.green)
-                                           
-                                           Text("Website")
-                                               .foregroundColor(Color.green)
-                                               .bold()
-                                               .font(.system(size: 17)).multilineTextAlignment(.center)
-                                       }
-                                   }
-                                  
-                               }
-            
+                        } label:
+                        {
+                            ZStack{
+                                
+                                
+                                HStack(spacing: 18){
+                                    Image(systemName: "desktopcomputer")
+                                        .resizable()
+                                        .renderingMode(.template)
+                                        .frame(width: 35, height: 35)
+                                        .foregroundColor(Color.green)
+                                    
+                                    Text("Website")
+                                        .foregroundColor(Color.green)
+                                        .bold()
+                                        .font(.system(size: 17)).multilineTextAlignment(.center)
+                                }
+                            }
+                            
+                        }
+                        
                     }.offset(y: 40)
                     
                     HStack{
@@ -963,27 +1078,27 @@ struct exitPage: View {
                             withAnimation(){
                                 
                             }
-                               } label:
-                               {
-                                   ZStack{
-                                      
-                                       
-                                       HStack(spacing: 34){
-                                           Image(systemName: "newspaper")
-                                               .resizable()
-                                               .renderingMode(.template)
-                                               .frame(width: 35, height: 35)
-                                               .foregroundColor(Color.green)
-                                           
-                                           Text("Epitah")
-                                               .foregroundColor(Color.green)
-                                               .bold()
-                                               .font(.system(size: 17)).multilineTextAlignment(.center)
-                                       }
-                                   }
-                                  
-                               }
-            
+                        } label:
+                        {
+                            ZStack{
+                                
+                                
+                                HStack(spacing: 34){
+                                    Image(systemName: "newspaper")
+                                        .resizable()
+                                        .renderingMode(.template)
+                                        .frame(width: 35, height: 35)
+                                        .foregroundColor(Color.green)
+                                    
+                                    Text("Epitah")
+                                        .foregroundColor(Color.green)
+                                        .bold()
+                                        .font(.system(size: 17)).multilineTextAlignment(.center)
+                                }
+                            }
+                            
+                        }
+                        
                     }.offset(y: 60)
                     
                     HStack{
@@ -991,27 +1106,27 @@ struct exitPage: View {
                             withAnimation(){
                                 
                             }
-                               } label:
-                               {
-                                   ZStack{
-                                      
-                                       
-                                       HStack(spacing: 12){
-                                           Image("youtube")
-                                               .resizable()
-                                               .renderingMode(.template)
-                                               .frame(width: 45, height: 45)
-                                               .foregroundColor(Color.green)
-                                           
-                                           Text("YouTube")
-                                               .foregroundColor(Color.green)
-                                               .bold()
-                                               .font(.system(size: 17)).multilineTextAlignment(.center)
-                                       }
-                                   }
-                                  
-                               }
-            
+                        } label:
+                        {
+                            ZStack{
+                                
+                                
+                                HStack(spacing: 12){
+                                    Image("youtube")
+                                        .resizable()
+                                        .renderingMode(.template)
+                                        .frame(width: 45, height: 45)
+                                        .foregroundColor(Color.green)
+                                    
+                                    Text("YouTube")
+                                        .foregroundColor(Color.green)
+                                        .bold()
+                                        .font(.system(size: 17)).multilineTextAlignment(.center)
+                                }
+                            }
+                            
+                        }
+                        
                     }.offset(y: 80)
                     
                     HStack{
@@ -1023,58 +1138,59 @@ struct exitPage: View {
                                     print("Sign out error!")
                                 }
                             }
-                               } label:
-                               {
-                                   ZStack{
-                                      
-                                       
-                                       HStack(spacing: 2){
-                                           Image("signout")
-                                               .resizable()
-                                               .renderingMode(.template)
-                                               .frame(width: 55, height: 55)
-                                               .foregroundColor(Color.green)
-                                           
-                                           Text("Sign Out")
-                                               .foregroundColor(Color.green)
-                                               .bold()
-                                               .font(.system(size: 17)).multilineTextAlignment(.center)
-                                       }
-                                   }
-                                  
-                               }
-            
+                        } label:
+                        {
+                            ZStack{
+                                
+                                
+                                HStack(spacing: 2){
+                                    Image("signout")
+                                        .resizable()
+                                        .renderingMode(.template)
+                                        .frame(width: 55, height: 55)
+                                        .foregroundColor(Color.green)
+                                    
+                                    Text("Sign Out")
+                                        .foregroundColor(Color.green)
+                                        .bold()
+                                        .font(.system(size: 17)).multilineTextAlignment(.center)
+                                }
+                            }
+                            
+                        }
+                        
                     }.offset(y: 380)
                     
                 }.offset(x: 100, y: -240)
             }
-                
-                
-     
-              
+            
+            
+            
+            
             
             Button{
                 withAnimation(){
                     showMenu.toggle()
                 }
-                   } label:
-                   {
-                       ZStack{
-                           RoundedRectangle(cornerRadius: 10, style: .continuous).frame(width: 30, height: 30).foregroundColor(Color.black).opacity(0.75)
-                     
-                           
-                           Image(systemName: "chevron.backward")
-                             .resizable()
-                             .frame(width: 12, height: 20)
-                             .rotationEffect(.degrees(-180))
-                             .foregroundColor(Color.white)
-                   
-                       }.offset(x: 5, y: -20)
-                      
-                   }
+            } label:
+            {
+                ZStack{
+                    RoundedRectangle(cornerRadius: 10, style: .continuous).frame(width: 30, height: 30).foregroundColor(Color.black).opacity(0.75)
+                    
+                    
+                    Image(systemName: "chevron.backward")
+                        .resizable()
+                        .frame(width: 12, height: 20)
+                        .rotationEffect(.degrees(-180))
+                        .foregroundColor(Color.white)
+                    
+                }.offset(x: 5, y: -20)
+                
+            }
         }  .transition(.moveAndFade)
             .zIndex(2)
-
+        
         
     }
 }
+

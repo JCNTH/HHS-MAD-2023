@@ -94,7 +94,7 @@
 		BD434E5B29BE5867007F74EF /* Academics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Academics.swift; sourceTree = "<group>"; };
 		BD4EC4B92A48E7A2009C61BA /* ForumPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumPost.swift; sourceTree = "<group>"; };
 		BD7DD1F22A44EC46007C70AB /* ForumPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumPage.swift; sourceTree = "<group>"; };
-		BDC1606F29FA15CD00AF6981 /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
+		BDC1606F29FA15CD00AF6981 /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; tabWidth = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
