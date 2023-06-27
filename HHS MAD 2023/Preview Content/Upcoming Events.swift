@@ -41,6 +41,7 @@ struct CalendarUI: View {
 //                .foregroundColor(Color(red: 85/255, green: 172/255, blue: 85/255))
 //                .font(.system(size: 25, weight: .bold, design: .rounded))
 //                .offset(x:0, y:-30)
+
             
             HStack(alignment: .center, spacing: width/20){
                 Button{
@@ -171,6 +172,9 @@ struct CalendarUI: View {
                 }
             }.frame(width: width, height: height/12)
                 .offset(x:0, y:-45)
+
+                .overlay(RoundedRectangle(cornerRadius:5).offset(x:0, y:-45).foregroundColor(Color.gray).opacity(0.25).frame(width:width-width/12))
+                
                 
             
             VStack{

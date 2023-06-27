@@ -38,7 +38,7 @@ class MessagesManager: ObservableObject {
                     // Note that data(as:) is a function available only in FirebaseFirestoreSwift package - remember to import it at the top
                     return try document.data(as: Message.self)
                 } catch {
-                    // If we run into an error, print the error in the console
+                    // If we run into an error, print the error in the co   nsole
                     print("Error decoding document into Message: \(error)")
 
                     // Return nil if we run into an error - but the compactMap will not include it in the final array
