@@ -10,9 +10,13 @@ import SwiftUI
 struct CalendarPage: View {
     
     @EnvironmentObject var calendarVM : CalendarPageViewModel;
+    @State var showSportEvents = true;
+    @State var showSchoolEvents = true;
+    @State var showClubEvents = true;
+    
     
     var body: some View {
-       
+        
         VStack {
             HStack {
                 Text("Calendar")
@@ -42,7 +46,7 @@ struct CalendarPage: View {
                 }
             }
             .padding(.top, 50.0)
-           
+            
             HStack(spacing: 0) {
                 Button {
                     calendarVM.shift(shift:-7, unit: .day);
@@ -54,7 +58,7 @@ struct CalendarPage: View {
                     VStack{
                         let _ = print(calendarVM.eventsForTodaysWeek);
                         ForEach((0...6), id: \.self) { day in
-                            Day(day: day).environmentObject(calendarVM);
+                            Day(day: day, showSportEvents:$showSportEvents, showSchoolEvents:$showSchoolEvents, showClubEvents:$showClubEvents).environmentObject(calendarVM);
                         }
                     }
                     .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
@@ -66,17 +70,41 @@ struct CalendarPage: View {
                     Image(systemName: "arrowtriangle.forward.fill")
                         .foregroundColor(Color.gray)
                 }
-
+                
             }
             
-        }.padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/).background(Color(red: 231/255, green: 255/255, blue: 231/255)
-            .ignoresSafeArea())
+            VStack {
+                Toggle(isOn: $showSportEvents) {
+                    Text("Sports")
+                }
+                Toggle(isOn: $showClubEvents) {
+                    Text("Clubs")
+                }
+                Toggle(isOn: $showSchoolEvents) {
+                    Text("School Events")
+                }
+            }
+                .padding()
+                .background(.white)
+                .cornerRadius(20) /// make the background rounded
+                .overlay( /// apply a rounded border
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(.black, lineWidth: 5)
+                )
+                .frame(width: 300, height: 100)
+                .font(.system(size: 20, design: .rounded))
+                .bold()
+                
+                
+            }.padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/).background(Color(red: 231/255, green: 255/255, blue: 231/255)
+                .ignoresSafeArea())
             
-    }
+        }
     }
 
+    
 struct CalendarWrapper : View {
-//    @State var activeEvent = Event(name: "Bike for Boba", location: "Your mom's house", date: Date(), details: "Let's bike!")
+    //    @State var activeEvent = Event(name: "Bike for Boba", location: "Your mom's house", date: Date(), details: "Let's bike!")
     var body: some View {
         CalendarPage().environmentObject(CalendarPageViewModel());
     }

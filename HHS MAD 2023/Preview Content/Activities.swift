@@ -381,7 +381,7 @@ struct Activities: View {
                             }
                             Spacer()
                         }
-                        EventPage(event: calendarVM.getActiveEvent());
+                        EventPage(event: calendarVM.getActiveEvent())
                     }
                 } else {
                     CalendarPage().environmentObject(calendarVM)

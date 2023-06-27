@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 
 struct Event : Identifiable, Decodable, Hashable {
     public var id = UUID();
@@ -15,6 +16,7 @@ struct Event : Identifiable, Decodable, Hashable {
     public var date : Date;
     public var repeatDay : String;
     public var details : String;
+    public var type : String;
     
     public func describe() -> String {
         return name + " at " + location + " on " + date.formatted();
@@ -43,6 +45,7 @@ class CalendarPageViewModel : ObservableObject{
     
     func fetchEvents() {
         let db = Firestore.firestore();
+
         let ref = db.collection("events")
         ref.getDocuments { snapshot, error in
             guard error == nil else {
@@ -59,14 +62,16 @@ class CalendarPageViewModel : ObservableObject{
                     let date = (data["date"] as? Timestamp)?.dateValue() ?? Date()
                     let description = data["description"] as? String ?? ""
                     let repeatDay = data["repeat"] as? String ?? ""
+                    let type = data["type"] as? String ?? ""
 
                     
-                    let event = Event(name: name, location: location, date: date, repeatDay: repeatDay, details: description);
+                    let event = Event(name: name, location: location, date: date, repeatDay: repeatDay, details: description, type: type);
                     self.events.append(event);
                 }
             }
         }
     }
+    
     
     func fetchEventsForDate(day : Int) -> [Event] {
         var foundEvents : [Event] = [];
@@ -149,6 +154,7 @@ class CalendarPageViewModel : ObservableObject{
     static func isMatching(date1: Date, date2: Date) -> Bool {
         return date1.formatted(date: .complete, time: .omitted) == date2.formatted(date: .complete, time: .omitted);
     }
+    
     
     static func formatDate(date: Date) -> String {
         return date.formatted(Date.FormatStyle().day(.twoDigits).weekday(.abbreviated))

@@ -9,6 +9,9 @@ import SwiftUI
 
 struct Day: View {
     @State var day: Int
+    @Binding var showSportEvents : Bool;
+    @Binding var showSchoolEvents : Bool;
+    @Binding var showClubEvents : Bool;
     @EnvironmentObject var calendarVM : CalendarPageViewModel
 
 
@@ -31,17 +34,19 @@ struct Day: View {
                 .scaleEffect(0.9)
             VStack(){
                 ForEach(events, id: \.self) { event in
-                    HStack {
-                        Spacer()
-                        Button {
-                            calendarVM.activeEventID = event.id.uuidString;
-                        } label: {
-                            Text(event.name)
-                                .font(.system(size: 20, weight: .medium, design: .rounded))
-                                .foregroundColor(isToday ? Color.white : Color.black)
-                                
+                    if (isEventMatchingType(event: event, showSports: showSportEvents, showClubs: showClubEvents, showSchool: showSchoolEvents)) {
+                        HStack {
+                            Spacer()
+                            Button {
+                                calendarVM.activeEventID = event.id.uuidString;
+                            } label: {
+                                Text(event.name)
+                                    .font(.system(size: 20, weight: .medium, design: .rounded))
+                                    .foregroundColor(isToday ? Color.white : Color.black)
+                                    
+                            }
+                            .padding(1.0)
                         }
-                        .padding(1.0)
                     }
                 }
                 .offset(x: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/, y: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
@@ -55,19 +60,41 @@ struct Day: View {
     }
 }
 
-
-
-
-
-struct DayWrapper : View {
-    var body: some View {
-        Day(day:6).environmentObject(CalendarPageViewModel())
+func isEventMatchingType(event: Event, showSports: Bool, showClubs:Bool, showSchool:Bool) -> Bool {
+    let type = event.type;
+    
+    let isSportEvent = (type.elementsEqual("Sports"));
+    let isClubEvent = (type.elementsEqual("Clubs"));
+    let isSchoolEvent = (type.elementsEqual("School"));
+        
+    if (isSportEvent) {
+        return showSports;
     }
+    if (isClubEvent) {
+        return showClubs;
+    }
+    if (isSchoolEvent) {
+        return showSchool;
+    }
+    
+    return false;
 }
 
-struct Day_Previews : PreviewProvider {
-    static var previews: some View {
-        DayWrapper();
-    }
-}
+
+
+
+
+
+
+//struct DayWrapper : View {
+//    var body: some View {
+//        Day(day:6).environmentObject(CalendarPageViewModel())
+//    }
+//}
+//
+//struct Day_Previews : PreviewProvider {
+//    static var previews: some View {
+//        DayWrapper();
+//    }
+//}
 
