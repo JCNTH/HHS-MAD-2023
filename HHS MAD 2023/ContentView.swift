@@ -38,6 +38,9 @@ struct ContentView: View {
     var loginPage: some View {
         ZStack {
             Color(red: 50/255, green: 75/255, blue: 50/255)
+                .edgesIgnoringSafeArea(.top)
+
+               
             VStack {
                 Image("MAD_LOGOS-removebg-preview")
                     .resizable()

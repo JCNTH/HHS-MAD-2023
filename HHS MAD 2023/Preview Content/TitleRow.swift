@@ -8,20 +8,16 @@
 import SwiftUI
 
 struct TitleRow: View {
-    @Binding var imageUrl: URL
+    @Binding var imageUrl: String
     @Binding var name: String
     
     var body: some View {
         HStack(spacing: 20){
-            AsyncImage(url: imageUrl) { image in
-                image.resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 50, height: 50)
-                    .cornerRadius(50)
-                
-            } placeholder: {
-                ProgressView()
-            }
+            Image(imageUrl)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 50, height: 50)
+                .cornerRadius(50)
             
             VStack(alignment: .leading)
             {

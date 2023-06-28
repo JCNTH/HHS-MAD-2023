@@ -18,7 +18,7 @@ struct MessagePage: View {
     @State var message = ""
     @Binding var showPage: Bool
     @Binding var name: String
-    @Binding var image: URL
+    @Binding var image: String
     @Binding var chat: Bool
     
     let type: String
