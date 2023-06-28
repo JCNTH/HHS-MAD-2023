@@ -499,7 +499,7 @@ struct Activities: View {
             }
             
             if(showMenu){
-                exitPage(showMenu: $showMenu)
+                exitPage(showMenu: $showMenu, name: self.name)
             }
             
             
@@ -985,6 +985,7 @@ struct VisualEffectView: UIViewRepresentable {
 
 struct exitPage: View {
     @Binding var showMenu: Bool
+    @State var name: String
     let screenRect = UIScreen.main.bounds
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
@@ -1011,7 +1012,7 @@ struct exitPage: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                         
                         VStack(spacing: 6){
-                            Text("Julian Ng")
+                            Text(name)
                                 .foregroundColor(Color.green)
                                 .bold()
                                 .font(.system(size: 20)).multilineTextAlignment(.center)

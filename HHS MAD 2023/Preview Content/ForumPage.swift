@@ -121,15 +121,6 @@ struct ForumPage: View {
                     }
                 }.offset(x:0, y:240)
                 
-                //Plus button forums
-                Button(action: {
-                    createNewPost = true;
-                }) {
-                    Image(systemName: "plus")
-                        .padding(.leading).scaleEffect(3)
-                        
-                }.frame(width: 20.0, height: 20.0).offset(x: 0, y: height/3)
-                
                 
                 //Back button
                 Button(action: {
