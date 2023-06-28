@@ -25,9 +25,9 @@ The HHS-MAD 2023 app offers a wide range of features that cater to the needs of 
 
 1. **Event Feed**: A dedicated space for students to share events, post photos, and link them to seperate web pages for use. 
 2. **Calendar**: An organized view of school events, academic schedules, and important deadlines.
-3. **Messaging System**: A secure and efficient platform that enables communication between students, parents, and teachers.
-4. **Photo Sharing**: A secure and efficient platform that enables communication between students, parents, and teachers, which is moderated by teachers and selected students. 
-5. **Homework Forumns** A space for students to post questions/comments/answers about homework, allowing for students to effectively and safely collaborate. 
+3. **Messaging System**: A secure and efficient platform that enables communication between students, parents, and teachers, as well as a bug reporting system.
+4. **Photo Sharing**: Allow users to share photos from their device, download, or repost them on other social media platforms.
+6. **Homework Forumns** A space for students to post questions/comments/answers about homework, allowing for students to effectively and safely collaborate on a variety of subjects. 
 
 ## Requirements
 
@@ -56,12 +56,12 @@ Upon opening the app for the first time, follow these steps to maximize your exp
 
 1. Sign in using your school credentials (email and password).
 2. Complete your profile by adding a profile picture and personal information.
-3. Navigate the app using the bottom menu bar to access the Social Feed, Calendar, Messaging System, and Academics.
+3. Navigate the app using the bottom menu bar to access the Social Feed, Calendar, Messaging System, and Academics Forums.
 4. You can post academic questions, as well as photos to share with peers, and approved accounts (such as teachers or club officers) are able to post events that can be seen and accessed by students. 
 
 ## CodeSnippets
 
-Here is a code snippet from the project and its explanation:
+Here are two code snippets from the project and their explanations:
 
 ### Events Page
 
