@@ -60,46 +60,101 @@ struct ActivitiesPage: View {
 //                        Spacer()
                         
                         ScrollView {
+                            Button{
+                                                                UIApplication.shared.open(URL(string: "https://hhsepitaph.com/13534/news/behind-the-scenes-of-homecoming/")!)
+                            
+                                                            } label :{
+                            
+                            
+                                                                ZStack{
+                            
+                                                                   Image("homecoming")
+                                                                        .resizable()
+                                                                        .aspectRatio(contentMode: .fill)
+                                                                        .frame(width: width/1.2, height: height/5)
+                                                                        .cornerRadius(20)
+                            
+                            
+                                                                    RoundedRectangle( cornerRadius: 20, style: .continuous)
+                                                                        .frame(width: width/1.2, height: height/5)
+                                                                        .foregroundColor(Color.gray)
+                                                                        .opacity(0.5)
+                            
+                            
+                                                                    Text("Homecoming")
+                                                                        .font(.title).bold()
+                                                                        .foregroundColor(Color.white)
+                            
+                                                                }
+                                                            }
+                            
+                            
+                            Button{
+                                                                UIApplication.shared.open(URL(string: "https://hhsepitaph.com/13316/news/final-advisory-promises-strong-future/")!)
+                            
+                                                            } label :{
+                            
+                            
+                                                                ZStack{
+                            
+                                                                   Image("jprom")
+                                                                        .resizable()
+                                                                        .aspectRatio(contentMode: .fill)
+                                                                        .frame(width: width/1.2, height: height/5)
+                                                                        .cornerRadius(20)
+                            
+                            
+                                                                    RoundedRectangle( cornerRadius: 20, style: .continuous)
+                                                                        .frame(width: width/1.2, height: height/5)
+                                                                        .foregroundColor(Color.gray)
+                                                                        .opacity(0.5)
+                            
+                            
+                                                                    Text("Junior Prom")
+                                                                        .font(.title).bold()
+                                                                        .foregroundColor(Color.white)
+                            
+                                                                }
+                                                            }
 
-
-                            ForEach(0..<newActivity.activities.count, id: \.self) { value in
-
-                                Button{
-                                    UIApplication.shared.open(URL(string: newActivity.activities[value].description)!)
-
-                                } label :{
-                                    
-                                    
-                                    ZStack{
-                                                                                
-                                       newActivity.activities[value].image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: width/1.2, height: height/5)
-                                            .cornerRadius(20)
-                                    
-                                        
-                                        RoundedRectangle( cornerRadius: 20, style: .continuous)
-                                            .frame(width: width/1.2, height: height/5)
-                                            .foregroundColor(Color.gray)
-                                            .opacity(0.5)
-                                        
-                                        
-                                        Text(newActivity.activities[value].name)
-                                            .font(.title).bold()
-                                            .foregroundColor(Color.white)
-
-                                    }
-                                }
-                                
-                                Spacer()
-                           
-
-
-
-
-
-                            }
+//                            ForEach(0..<newActivity.activities.count, id: \.self) { value in
+//
+//                                Button{
+//                                    UIApplication.shared.open(URL(string: newActivity.activities[value].description)!)
+//
+//                                } label :{
+//
+//
+//                                    ZStack{
+//
+//                                       newActivity.activities[value].image
+//                                            .resizable()
+//                                            .aspectRatio(contentMode: .fill)
+//                                            .frame(width: width/1.2, height: height/5)
+//                                            .cornerRadius(20)
+//
+//
+//                                        RoundedRectangle( cornerRadius: 20, style: .continuous)
+//                                            .frame(width: width/1.2, height: height/5)
+//                                            .foregroundColor(Color.gray)
+//                                            .opacity(0.5)
+//
+//
+//                                        Text(newActivity.activities[value].name)
+//                                            .font(.title).bold()
+//                                            .foregroundColor(Color.white)
+//
+//                                    }
+//                                }
+//
+//                                Spacer()
+//
+//
+//
+//
+//
+//
+//                            }
 
                         }.frame(width: width, height: height/2)
 //                            .background(Color.black)
