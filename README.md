@@ -1,6 +1,6 @@
-# Homestead High School Mobile App Development (HHS-MAD) 2023
+# HHS CONNECT (Homestead FBLA Mobile App Development 2023)
 
-A comprehensive mobile application designed to connect students of Homestead High School and keep them updated on school news and events.
+A comprehensive mobile application designed to connect students of Homestead High School and keep them updated on school news and events. Won 9th Place at FBLA Nationals 2023 in Atlanta.
 
 ## Table of Contents
 
